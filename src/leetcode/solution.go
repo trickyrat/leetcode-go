@@ -1,10 +1,21 @@
 package leetcode
 
+// 1.Two Sum
+func twoSum(nums []int, target int) []int {
+	hashTable := map[int]int{}
+	for i, x := range nums {
+		if p, ok := hashTable[target-x]; ok {
+			return []int{p, i}
+		}
+		hashTable[x] = i
+	}
+	return nil
+}
 
 // 191. Number of 1 Bits
 func hammingWeight(num uint32) int {
 	var res int = 0
-	for  {
+	for {
 		if num == 0 {
 			break
 		}
@@ -16,5 +27,5 @@ func hammingWeight(num uint32) int {
 
 //231. Power of Two
 func isPowerOfTwo(n int) bool {
-	return n > 0 && (n & (n - 1)) == 0
+	return n > 0 && (n&(n-1)) == 0
 }
