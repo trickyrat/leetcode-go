@@ -1,4 +1,10 @@
-package leetcode
+package main
+
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
 
 type ListNode struct {
 	Val  int
@@ -60,7 +66,21 @@ func hammingWeight(num uint32) int {
 	return res
 }
 
-//231. Power of Two
+// 231. Power of Two
 func isPowerOfTwo(n int) bool {
 	return n > 0 && (n&(n-1)) == 0
+}
+
+// 537.复数的乘法
+func complexNumberMultiply(num1, num2 string) string {
+	real1, imag1 := parseComplexNumber(num1)
+	real2, imag2 := parseComplexNumber(num2)
+	return fmt.Sprintf("%d+%di", real1*real2-imag1*imag2, real1*imag2+imag1*real2)
+}
+
+func parseComplexNumber(num string) (real, imag int) {
+	i := strings.IndexByte(num, '+')
+	real, _ = strconv.Atoi(num[:i])
+	imag, _ = strconv.Atoi(num[i+1 : len(num)-1])
+	return
 }
