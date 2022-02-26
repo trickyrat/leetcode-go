@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"unicode"
 )
 
 type ListNode struct {
@@ -71,7 +72,7 @@ func isPowerOfTwo(n int) bool {
 	return n > 0 && (n&(n-1)) == 0
 }
 
-// 537.复数的乘法
+// 537. 复数的乘法
 func complexNumberMultiply(num1, num2 string) string {
 	real1, imag1 := parseComplexNumber(num1)
 	real2, imag2 := parseComplexNumber(num2)
@@ -83,4 +84,45 @@ func parseComplexNumber(num string) (real, imag int) {
 	real, _ = strconv.Atoi(num[:i])
 	imag, _ = strconv.Atoi(num[i+1 : len(num)-1])
 	return
+}
+
+// 915. 仅仅反转字母
+func reverseOnlyLetters(s string) string {
+	ans := []byte(s)
+	left, right := 0, len(s)-1
+	for {
+		for left < right && !unicode.IsLetter(rune(s[left])) {
+			left++
+		}
+		for right > left && !unicode.IsLetter(rune(s[right])) {
+			right--
+		}
+		if left >= right {
+			break
+		}
+		ans[left], ans[right] = ans[right], ans[left]
+		left++
+		right--
+	}
+	return string(ans)
+}
+
+// 2016 增量元素之间的最大差值
+func maximumDifference(nums []int) int {
+	ans := -1
+	for i, preMin := 1, nums[0]; i < len(nums); i++ {
+		if nums[i] > preMin {
+			ans = max(ans, nums[i]-preMin)
+		} else {
+			preMin = nums[i]
+		}
+	}
+	return ans
+}
+
+func max(a, b int) int {
+	if b > a {
+		return b
+	}
+	return a
 }
