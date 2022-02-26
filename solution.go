@@ -79,6 +79,25 @@ func complexNumberMultiply(num1, num2 string) string {
 	return fmt.Sprintf("%d+%di", real1*real2-imag1*imag2, real1*imag2+imag1*real2)
 }
 
+// 553. 最优除法
+func optimalDivision(nums []int) string {
+	n := len(nums)
+	if n == 1 {
+		return strconv.Itoa(nums[0])
+	}
+	if n == 2 {
+		return fmt.Sprintf("%d/%d", nums[0], nums[1])
+	}
+	ans := &strings.Builder{}
+	ans.WriteString(fmt.Sprintf("%d/(%d", nums[0], nums[1]))
+	for _, num := range nums[2:] {
+		ans.WriteByte('/')
+		ans.WriteString(strconv.Itoa(num))
+	}
+	ans.WriteByte(')')
+	return ans.String()
+}
+
 func parseComplexNumber(num string) (real, imag int) {
 	i := strings.IndexByte(num, '+')
 	real, _ = strconv.Atoi(num[:i])
@@ -86,7 +105,7 @@ func parseComplexNumber(num string) (real, imag int) {
 	return
 }
 
-// 915. 仅仅反转字母
+// 917. 仅仅反转字母
 func reverseOnlyLetters(s string) string {
 	ans := []byte(s)
 	left, right := 0, len(s)-1

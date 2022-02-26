@@ -32,6 +32,13 @@ func nameof(i interface{}) string {
 	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
 }
 
+func testArrayAndReturnString(t *testing.T, testFunction func([]int) string, input []int, expected string) {
+	actual := testFunction(input)
+	if actual != expected {
+		t.Errorf("%s(%v) = %s; expected %s", nameof(testFunction), input, actual, expected)
+	}
+}
+
 func testArrayAndReturnInt(t *testing.T, testFunction func([]int) int, input []int, expected int) {
 	actual := testFunction(input)
 	if actual != expected {
@@ -138,6 +145,10 @@ func TestReverseOnlyLetters(t *testing.T) {
 	testInputAStringAndReturnString(t, reverseOnlyLetters, "ab-cd", "dc-ba")
 	testInputAStringAndReturnString(t, reverseOnlyLetters, "a-bC-dEf-ghIj", "j-Ih-gfE-dCba")
 	testInputAStringAndReturnString(t, reverseOnlyLetters, "Test1ng-Leet=code-Q!", "Qedo1ct-eeLg=ntse-T!")
+}
+
+func TestOptimalDivision(t *testing.T) {
+	testArrayAndReturnString(t, optimalDivision, []int{1000, 100, 10, 2}, "1000/(100/10/2)")
 }
 
 func TestMaximumDifference(t *testing.T) {
