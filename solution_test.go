@@ -39,6 +39,13 @@ func testArrayAndReturnString(t *testing.T, testFunction func([]int) string, inp
 	}
 }
 
+func testInputArrayIntAndReturnIntFramework(t *testing.T, testFunction func(nums []int, k int) int, input []int, k, expected int) {
+	actual := testFunction(input, k)
+	if actual != expected {
+		t.Errorf("%s(%v, %d) = %d; expected %d", nameof(testFunction), input, k, actual, expected)
+	}
+}
+
 func testArrayAndReturnInt(t *testing.T, testFunction func([]int) int, input []int, expected int) {
 	actual := testFunction(input)
 	if actual != expected {
@@ -149,6 +156,12 @@ func TestReverseOnlyLetters(t *testing.T) {
 
 func TestOptimalDivision(t *testing.T) {
 	testArrayAndReturnString(t, optimalDivision, []int{1000, 100, 10, 2}, "1000/(100/10/2)")
+}
+
+func TestCountKDifference(t *testing.T) {
+	testInputArrayIntAndReturnIntFramework(t, countKDifference, []int{1, 2, 2, 1}, 1, 4)
+	testInputArrayIntAndReturnIntFramework(t, countKDifference, []int{1, 3}, 3, 0)
+	testInputArrayIntAndReturnIntFramework(t, countKDifference, []int{3, 2, 1, 5, 4}, 2, 3)
 }
 
 func TestMaximumDifference(t *testing.T) {
