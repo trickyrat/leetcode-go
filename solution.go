@@ -54,6 +54,25 @@ func addTwoNumbers(l1, l2 *ListNode) (head *ListNode) {
 	return
 }
 
+// 6. z字形转换
+func zconvert(s string, numRows int) string {
+	n, r := len(s), numRows
+	if r == 1 || r >= n {
+		return s
+	}
+	t := 2*r - 2
+	ans := make([]byte, 0, n)
+	for i := 0; i < r; i++ {
+		for j := 0; j < n-i; j += t {
+			ans = append(ans, s[j+i])
+			if 0 < i && i < r-1 && j+t-i < n {
+				ans = append(ans, s[j+t-i])
+			}
+		}
+	}
+	return string(ans)
+}
+
 // 191. Number of 1 Bits
 func hammingWeight(num uint32) int {
 	var res int = 0

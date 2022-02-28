@@ -88,6 +88,13 @@ func testUint32AndReturnInt(t *testing.T, testFunction func(uint32) int, input u
 	}
 }
 
+func testInputStringAndIntReturnString(t *testing.T, testFunction func(string, int) string, s string, numRows int, expected string) {
+	actual := testFunction(s, numRows)
+	if actual != expected {
+		t.Errorf("%s(%s, %d) = %s; expected %s", nameof(testFunction), s, numRows, actual, expected)
+	}
+}
+
 func testAddTwoNumbers(t *testing.T, num1, num2, res []int) {
 	l1 := createListNode(num1)
 	l2 := createListNode(num2)
@@ -121,6 +128,12 @@ func TestAddTwoNumbers(t *testing.T) {
 	testAddTwoNumbers(t, []int{2, 4, 3}, []int{5, 6, 4}, []int{7, 0, 8})
 	testAddTwoNumbers(t, []int{0}, []int{0}, []int{0})
 	testAddTwoNumbers(t, []int{9, 9, 9, 9, 9, 9, 9}, []int{9, 9, 9, 9}, []int{8, 9, 9, 9, 0, 0, 0, 1})
+}
+
+func TestZConvert(t *testing.T) {
+	testInputStringAndIntReturnString(t, zconvert, "PAYPALISHIRING", 3, "PAHNAPLSIIGYIR")
+	testInputStringAndIntReturnString(t, zconvert, "PAYPALISHIRING", 4, "PINALSIGYAHRPI")
+	testInputStringAndIntReturnString(t, zconvert, "A", 1, "A")
 }
 
 func TestPowerOfTwo(t *testing.T) {
