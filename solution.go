@@ -145,6 +145,16 @@ func reverseOnlyLetters(s string) string {
 	return string(ans)
 }
 
+// 2006. 差值的绝对值为k的数对数目
+func countKDifference(nums []int, k int) (ans int) {
+	cnt := map[int]int{}
+	for _, num := range nums {
+		ans += cnt[num-k] + cnt[num+k]
+		cnt[num]++
+	}
+	return
+}
+
 // 2016 增量元素之间的最大差值
 func maximumDifference(nums []int) int {
 	ans := -1
