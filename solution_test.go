@@ -88,6 +88,13 @@ func testIntAndReturnBool(t *testing.T, testFunction func(int) bool, input int, 
 	}
 }
 
+func testIntAndReturnInt(t *testing.T, testFunction func(int) int, input, expected int) {
+	actual := testFunction(input)
+	if actual != expected {
+		t.Errorf("%s(%d) = %d; expected %d", nameof(testFunction), input, actual, expected)
+	}
+}
+
 func testUint32AndReturnInt(t *testing.T, testFunction func(uint32) int, input uint32, expected int) {
 	actual := testFunction(input)
 	if actual != expected {
@@ -141,6 +148,20 @@ func TestZConvert(t *testing.T) {
 	testInputStringAndIntReturnString(t, zconvert, "PAYPALISHIRING", 3, "PAHNAPLSIIGYIR")
 	testInputStringAndIntReturnString(t, zconvert, "PAYPALISHIRING", 4, "PINALSIGYAHRPI")
 	testInputStringAndIntReturnString(t, zconvert, "A", 1, "A")
+}
+
+func TestReverseInt(t *testing.T) {
+	testIntAndReturnInt(t, reverseInt, 123, 321)
+	testIntAndReturnInt(t, reverseInt, -123, -321)
+	testIntAndReturnInt(t, reverseInt, 120, 21)
+	testIntAndReturnInt(t, reverseInt, 100, 1)
+	testIntAndReturnInt(t, reverseInt, 0, 0)
+	testIntAndReturnInt(t, reverseInt, -2147483649, 0)
+	testIntAndReturnInt(t, reverseInt, -2147483648, 0)
+	testIntAndReturnInt(t, reverseInt, -2147483647, 0)
+	testIntAndReturnInt(t, reverseInt, 2147483647, 0)
+	testIntAndReturnInt(t, reverseInt, 2147483648, 0)
+	testIntAndReturnInt(t, reverseInt, 2147483649, 0)
 }
 
 func TestPowerOfTwo(t *testing.T) {
