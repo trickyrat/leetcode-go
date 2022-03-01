@@ -12,6 +12,12 @@ type ListNode struct {
 	Next *ListNode
 }
 
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
 // 1.Two Sum
 func twoSum(nums []int, target int) []int {
 	hashTable := map[int]int{}
@@ -71,6 +77,22 @@ func zconvert(s string, numRows int) string {
 		}
 	}
 	return string(ans)
+}
+
+// 144.  二叉树的前序遍历
+func preorderTraversal(root *TreeNode) (vals []int) {
+	stack := []*TreeNode{}
+	node := root
+	for node != nil || len(stack) > 0 {
+		for node != nil {
+			vals = append(vals, node.Val)
+			stack = append(stack, node)
+			node = node.Left
+		}
+		node = stack[len(stack)-1].Right
+		stack = stack[:len(stack)-1]
+	}
+	return
 }
 
 // 191. Number of 1 Bits
