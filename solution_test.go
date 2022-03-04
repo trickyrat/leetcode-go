@@ -4,6 +4,7 @@ import (
 	"reflect"
 	"runtime"
 	"strconv"
+	"strings"
 	"testing"
 )
 
@@ -15,6 +16,57 @@ func createListNode(nums []int) ListNode {
 		dummyHead = dummyHead.Next
 	}
 	return *head
+}
+
+func createTreeNodeWithBFS(data string) *TreeNode {
+	sp := strings.Split(data, ",")
+	if sp[0] == "null" {
+		return nil
+	}
+	val, _ := strconv.Atoi(sp[0])
+	root := &TreeNode{val, nil, nil}
+	var queue []*TreeNode
+	queue = append(queue, root)
+	index := 1
+	for index < len(sp) {
+		var node = queue[0]
+		queue = queue[1:]
+		leftStr := sp[index]
+		rightStr := sp[index+1]
+		if leftStr != "null" {
+			leftVal, _ := strconv.Atoi(leftStr)
+			leftNode := &TreeNode{leftVal, nil, nil}
+			if node != nil {
+				node.Left = leftNode
+			}
+			queue = append(queue, leftNode)
+		}
+		if rightStr != "null" {
+			rightVal, _ := strconv.Atoi(rightStr)
+			rightNode := &TreeNode{rightVal, nil, nil}
+			if node != nil {
+				node.Right = rightNode
+			}
+			queue = append(queue, rightNode)
+		}
+		index += 2
+	}
+	return root
+}
+
+func createTreeNodeWithDFS(data string) *TreeNode {
+	sp := strings.Split(data, ",")
+	var build func() *TreeNode
+	build = func() *TreeNode {
+		if sp[0] == "null" {
+			sp = sp[1:]
+			return nil
+		}
+		val, _ := strconv.Atoi(sp[0])
+		sp = sp[1:]
+		return &TreeNode{val, build(), build()}
+	}
+	return build()
 }
 
 func (h *ListNode) tostring() string {
@@ -79,6 +131,18 @@ func testArrayIntegerAndReturnArrayFramework(t *testing.T, testFunction func(arr
 			t.Errorf("%s(%d, %d) = %v; expected %v", nameof(testFunction), input.array, input.target, actual, expected)
 		}
 	}
+}
+
+func testTreeNodeAndReturnArrayOfArray(t *testing.T, testFunction func(root *TreeNode, targetNum int) [][]int, input *TreeNode, targetNum int, expected [][]int) {
+	actual := testFunction(input, targetNum)
+	for i, item := range expected {
+		for j, elem := range actual[i] {
+			if elem != item[j] {
+				t.Errorf("%s(%v, %d) = %d; expected %d", nameof(testFunction), input, targetNum, elem, item[j])
+			}
+		}
+	}
+
 }
 
 func testIntAndReturnBool(t *testing.T, testFunction func(int) bool, input int, expected bool) {
@@ -180,6 +244,17 @@ func TestHammingWeight(t *testing.T) {
 func TestComplexNumberMultiply(t *testing.T) {
 	testTwoStringsAndReturnStringFramework(t, complexNumberMultiply, "1+1i", "1+1i", "0+2i")
 	testTwoStringsAndReturnStringFramework(t, complexNumberMultiply, "1+-1i", "1+-1i", "0+-2i")
+}
+
+func TestPathSum(t *testing.T) {
+	row1 := []int{5, 4, 11, 2}
+	row2 := []int{5, 8, 4, 5}
+	values := [][]int{}
+	values = append(values, row1)
+	values = append(values, row2)
+
+	testTreeNodeAndReturnArrayOfArray(t, pathSum, createTreeNodeWithBFS("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22, values)
+	testTreeNodeAndReturnArrayOfArray(t, pathSum, createTreeNodeWithBFS("1,2,3"), 5, [][]int{})
 }
 
 func TestReverseOnlyLetters(t *testing.T) {
