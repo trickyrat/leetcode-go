@@ -149,6 +149,16 @@ func isPowerOfTwo(n int) bool {
 	return n > 0 && (n&(n-1)) == 0
 }
 
+// 521. 最长特殊序列 Ⅰ
+func findLUSLength(a, b string) (ans int) {
+	if a == b {
+		ans = -1
+	} else {
+		ans = max(len(a), len(b))
+	}
+	return
+}
+
 // 537. 复数的乘法
 func complexNumberMultiply(num1, num2 string) string {
 	real1, imag1 := parseComplexNumber(num1)

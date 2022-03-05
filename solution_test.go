@@ -187,6 +187,13 @@ func testInputAStringAndReturnString(t *testing.T, testFunction func(string) str
 	}
 }
 
+func testTwoStringAndReturnInt(t *testing.T, testFunction func(a, b string) int, a, b string, expected int) {
+	actual := testFunction(a, b)
+	if actual != expected {
+		t.Errorf("%s(%s, %s) = %d; expected %d", nameof(testFunction), a, b, actual, expected)
+	}
+}
+
 func TestTwoSum(t *testing.T) {
 	testArrayIntegerAndReturnArrayFramework(t, twoSum, struct {
 		array  []int
@@ -228,24 +235,6 @@ func TestReverseInt(t *testing.T) {
 	testIntAndReturnInt(t, reverseInt, 2147483649, 0)
 }
 
-func TestPowerOfTwo(t *testing.T) {
-	testIntAndReturnBool(t, isPowerOfTwo, 1, true)
-	testIntAndReturnBool(t, isPowerOfTwo, 16, true)
-	testIntAndReturnBool(t, isPowerOfTwo, 3, false)
-	testIntAndReturnBool(t, isPowerOfTwo, 4, true)
-	testIntAndReturnBool(t, isPowerOfTwo, 5, false)
-}
-
-func TestHammingWeight(t *testing.T) {
-	testUint32AndReturnInt(t, hammingWeight, 00000000000000000000000000001011, 3)
-	testUint32AndReturnInt(t, hammingWeight, 00000000000000000000000010000000, 1)
-}
-
-func TestComplexNumberMultiply(t *testing.T) {
-	testTwoStringsAndReturnStringFramework(t, complexNumberMultiply, "1+1i", "1+1i", "0+2i")
-	testTwoStringsAndReturnStringFramework(t, complexNumberMultiply, "1+-1i", "1+-1i", "0+-2i")
-}
-
 func TestPathSum(t *testing.T) {
 	row1 := []int{5, 4, 11, 2}
 	row2 := []int{5, 8, 4, 5}
@@ -255,6 +244,30 @@ func TestPathSum(t *testing.T) {
 
 	testTreeNodeAndReturnArrayOfArray(t, pathSum, createTreeNodeWithBFS("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22, values)
 	testTreeNodeAndReturnArrayOfArray(t, pathSum, createTreeNodeWithBFS("1,2,3"), 5, [][]int{})
+}
+
+func TestHammingWeight(t *testing.T) {
+	testUint32AndReturnInt(t, hammingWeight, 00000000000000000000000000001011, 3)
+	testUint32AndReturnInt(t, hammingWeight, 00000000000000000000000010000000, 1)
+}
+
+func TestPowerOfTwo(t *testing.T) {
+	testIntAndReturnBool(t, isPowerOfTwo, 1, true)
+	testIntAndReturnBool(t, isPowerOfTwo, 16, true)
+	testIntAndReturnBool(t, isPowerOfTwo, 3, false)
+	testIntAndReturnBool(t, isPowerOfTwo, 4, true)
+	testIntAndReturnBool(t, isPowerOfTwo, 5, false)
+}
+
+func TestFindLUSLength(t *testing.T) {
+	testTwoStringAndReturnInt(t, findLUSLength, "aba", "cdc", 3)
+	testTwoStringAndReturnInt(t, findLUSLength, "aaa", "bbb", 3)
+	testTwoStringAndReturnInt(t, findLUSLength, "aaa", "aaa", -1)
+}
+
+func TestComplexNumberMultiply(t *testing.T) {
+	testTwoStringsAndReturnStringFramework(t, complexNumberMultiply, "1+1i", "1+1i", "0+2i")
+	testTwoStringsAndReturnStringFramework(t, complexNumberMultiply, "1+-1i", "1+-1i", "0+-2i")
 }
 
 func TestReverseOnlyLetters(t *testing.T) {
