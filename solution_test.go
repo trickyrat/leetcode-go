@@ -142,7 +142,13 @@ func testTreeNodeAndReturnArrayOfArray(t *testing.T, testFunction func(root *Tre
 			}
 		}
 	}
+}
 
+func testIntAndReturnString(t *testing.T, testFunction func(int) string, input int, expected string) {
+	actual := testFunction(input)
+	if actual != expected {
+		t.Errorf("%s(%d) = %s; expected %s", nameof(testFunction), input, actual, expected)
+	}
 }
 
 func testIntAndReturnBool(t *testing.T, testFunction func(int) bool, input int, expected bool) {
@@ -257,6 +263,11 @@ func TestPowerOfTwo(t *testing.T) {
 	testIntAndReturnBool(t, isPowerOfTwo, 3, false)
 	testIntAndReturnBool(t, isPowerOfTwo, 4, true)
 	testIntAndReturnBool(t, isPowerOfTwo, 5, false)
+}
+
+func TestConvertToBase7(t *testing.T) {
+	testIntAndReturnString(t, convertToBase7, 100, "202")
+	testIntAndReturnString(t, convertToBase7, -7, "-10")
 }
 
 func TestFindLUSLength(t *testing.T) {
