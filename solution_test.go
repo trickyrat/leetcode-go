@@ -193,6 +193,16 @@ func testInputAStringAndReturnString(t *testing.T, testFunction func(string) str
 	}
 }
 
+func testStringArrayAndReturnArray(t *testing.T, testFunction func(string, [][]int) []int, input string, queries [][]int, expected []int) {
+	actual := testFunction(input, queries)
+	for i, item := range actual {
+		if item != expected[i] {
+			t.Errorf("%s(%s, %v) = %v; expected %v", nameof(testFunction), input, queries, actual, expected)
+		}
+	}
+
+}
+
 func testTwoStringAndReturnInt(t *testing.T, testFunction func(a, b string) int, a, b string, expected int) {
 	actual := testFunction(a, b)
 	if actual != expected {
@@ -301,4 +311,26 @@ func TestMaximumDifference(t *testing.T) {
 	testArrayAndReturnInt(t, maximumDifference, []int{7, 1, 5, 4}, 4)
 	testArrayAndReturnInt(t, maximumDifference, []int{9, 4, 3, 2}, -1)
 	testArrayAndReturnInt(t, maximumDifference, []int{1, 5, 2, 10}, 9)
+}
+
+func TestPlatesBetweenCandles(t *testing.T) {
+	query1 := []int{2, 5}
+	query2 := []int{5, 9}
+	queries1 := [][]int{}
+	queries1 = append(queries1, query1)
+	queries1 = append(queries1, query2)
+	testStringArrayAndReturnArray(t, platesBetweenCandles, "**|**|***|", queries1, []int{2, 3})
+
+	query3 := []int{1, 17}
+	query4 := []int{4, 5}
+	query5 := []int{14, 17}
+	query6 := []int{5, 11}
+	query7 := []int{15, 16}
+	queries2 := [][]int{}
+	queries2 = append(queries2, query3)
+	queries2 = append(queries2, query4)
+	queries2 = append(queries2, query5)
+	queries2 = append(queries2, query6)
+	queries2 = append(queries2, query7)
+	testStringArrayAndReturnArray(t, platesBetweenCandles, "***|**|*****|**||**|*", queries2, []int{9, 0, 0, 0, 0})
 }
