@@ -13,6 +13,11 @@ type ListNode struct {
 	Next *ListNode
 }
 
+type Node struct {
+	Val      int
+	Children []*Node
+}
+
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -213,6 +218,38 @@ func parseComplexNumber(num string) (real, imag int) {
 	i := strings.IndexByte(num, '+')
 	real, _ = strconv.Atoi(num[:i])
 	imag, _ = strconv.Atoi(num[i+1 : len(num)-1])
+	return
+}
+
+// 589. N叉树的前序遍历
+func preorder(root *Node) (ans []int) {
+	var dfs func(*Node)
+	dfs = func(node *Node) {
+		if node == nil {
+			return
+		}
+		ans = append(ans, node.Val)
+		for _, ch := range node.Children {
+			dfs(ch)
+		}
+	}
+	dfs(root)
+	return
+}
+
+// 590. N叉树的后序遍历
+func postorder(root *Node) (ans []int) {
+	var dfs func(*Node)
+	dfs = func(node *Node) {
+		if node == nil {
+			return
+		}
+		for _, ch := range node.Children {
+			dfs(ch)
+		}
+		ans = append(ans, node.Val)
+	}
+	dfs(root)
 	return
 }
 
