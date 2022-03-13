@@ -121,6 +121,16 @@ func testTwoStringsAndReturnStringFramework(t *testing.T, testFunction func(str1
 	}
 }
 
+func testTwoStringArraysAndReturnStringArray(t *testing.T, testFunction func(str1, str2 []string) []string, str1, str2, expected []string) {
+	actual := testFunction(str1, str2)
+	for i, item := range expected {
+		if item != actual[i] {
+			t.Errorf("%s(%s, %s) = %s; expected %s", nameof(testFunction), str1, str2, actual, expected)
+		}
+	}
+
+}
+
 func testArrayIntegerAndReturnArrayFramework(t *testing.T, testFunction func(array []int, target int) []int, input struct {
 	array  []int
 	target int
@@ -322,6 +332,11 @@ func TestReverseOnlyLetters(t *testing.T) {
 
 func TestOptimalDivision(t *testing.T) {
 	testArrayAndReturnString(t, optimalDivision, []int{1000, 100, 10, 2}, "1000/(100/10/2)")
+}
+
+func TestFindRestaurant(t *testing.T) {
+	testTwoStringArraysAndReturnStringArray(t, findRestaurant, []string{"Shogun", "Tapioca Express", "Burger King", "KFC"}, []string{"Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"}, []string{"Shogun"})
+	testTwoStringArraysAndReturnStringArray(t, findRestaurant, []string{"Shogun", "Tapioca Express", "Burger King", "KFC"}, []string{"KFC", "Shogun", "Burger King"}, []string{"Shogun"})
 }
 
 func TestCountKDifference(t *testing.T) {

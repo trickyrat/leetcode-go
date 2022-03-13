@@ -302,6 +302,26 @@ func postorder(root *Node) (ans []int) {
 	return
 }
 
+// 599.两个列表的最小的索引和
+func findRestaurant(list1, list2 []string) (ans []string) {
+	index := make(map[string]int, len(list1))
+	for i, s := range list1 {
+		index[s] = i
+	}
+	indexSum := math.MaxInt32
+	for i, s := range list2 {
+		if j, ok := index[s]; ok {
+			if i+j < indexSum {
+				indexSum = i + j
+				ans = []string{s}
+			} else if i+j == indexSum {
+				ans = append(ans, s)
+			}
+		}
+	}
+	return
+}
+
 // 917. 仅仅反转字母
 func reverseOnlyLetters(s string) string {
 	ans := []byte(s)
