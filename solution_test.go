@@ -210,6 +210,13 @@ func testTwoStringAndReturnInt(t *testing.T, testFunction func(a, b string) int,
 	}
 }
 
+func testInputArrayAndReturnBool(t *testing.T, testFunction func([]int) bool, input []int, expected bool) {
+	actual := testFunction(input)
+	if actual != expected {
+		t.Errorf("%s(%v) = %t; expected %t", nameof(testFunction), input, actual, expected)
+	}
+}
+
 func TestTwoSum(t *testing.T) {
 	testArrayIntegerAndReturnArrayFramework(t, twoSum, struct {
 		array  []int
@@ -273,6 +280,11 @@ func TestPowerOfTwo(t *testing.T) {
 	testIntAndReturnBool(t, isPowerOfTwo, 3, false)
 	testIntAndReturnBool(t, isPowerOfTwo, 4, true)
 	testIntAndReturnBool(t, isPowerOfTwo, 5, false)
+}
+
+func TestValidUtf8(t *testing.T) {
+	testInputArrayAndReturnBool(t, validUtf8, []int{197, 130, 1}, true)
+	testInputArrayAndReturnBool(t, validUtf8, []int{235, 140, 4}, false)
 }
 
 func TestConvertToBase7(t *testing.T) {
