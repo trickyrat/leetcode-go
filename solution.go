@@ -154,6 +154,19 @@ func isPowerOfTwo(n int) bool {
 	return n > 0 && (n&(n-1)) == 0
 }
 
+// 206.反转链表
+func reverseList(head *ListNode) *ListNode {
+	var prev *ListNode
+	curr := head
+	for curr != nil {
+		next := curr.Next
+		curr.Next = prev
+		prev = curr
+		curr = next
+	}
+	return prev
+}
+
 // 393.UTF-8编码验证
 const mask1, mask2 = 1 << 7, 1<<7 | 1<<6
 

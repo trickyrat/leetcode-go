@@ -8,14 +8,14 @@ import (
 	"testing"
 )
 
-func createListNode(nums []int) ListNode {
+func createListNode(nums []int) *ListNode {
 	head := &ListNode{Val: nums[0]}
 	dummyHead := head
 	for i := 1; i < len(nums); i++ {
 		dummyHead.Next = &ListNode{Val: nums[i]}
 		dummyHead = dummyHead.Next
 	}
-	return *head
+	return head
 }
 
 func createTreeNodeWithBFS(data string) *TreeNode {
@@ -183,7 +183,7 @@ func testAddTwoNumbers(t *testing.T, num1, num2, res []int) {
 	l1 := createListNode(num1)
 	l2 := createListNode(num2)
 	expected := createListNode(res)
-	testTwoListNodeAndReturnListNode(t, addTwoNumbers, &l1, &l2, &expected)
+	testTwoListNodeAndReturnListNode(t, addTwoNumbers, l1, l2, expected)
 }
 
 func testInputAStringAndReturnString(t *testing.T, testFunction func(string) string, input, expected string) {
@@ -214,6 +214,13 @@ func testInputArrayAndReturnBool(t *testing.T, testFunction func([]int) bool, in
 	actual := testFunction(input)
 	if actual != expected {
 		t.Errorf("%s(%v) = %t; expected %t", nameof(testFunction), input, actual, expected)
+	}
+}
+
+func testInputListNodeAndReturnListNode(t *testing.T, testFunction func(*ListNode) *ListNode, input *ListNode, expected *ListNode) {
+	actual := testFunction(input)
+	if actual.tostring() != expected.tostring() {
+		t.Errorf("%s(%s) = %s; expected %s", nameof(testFunction), input.tostring(), actual.tostring(), expected.tostring())
 	}
 }
 
@@ -261,7 +268,7 @@ func TestReverseInt(t *testing.T) {
 func TestPathSum(t *testing.T) {
 	row1 := []int{5, 4, 11, 2}
 	row2 := []int{5, 8, 4, 5}
-	values := [][]int{}
+	var values [][]int
 	values = append(values, row1)
 	values = append(values, row2)
 
@@ -280,6 +287,10 @@ func TestPowerOfTwo(t *testing.T) {
 	testIntAndReturnBool(t, isPowerOfTwo, 3, false)
 	testIntAndReturnBool(t, isPowerOfTwo, 4, true)
 	testIntAndReturnBool(t, isPowerOfTwo, 5, false)
+}
+
+func TestReverseListNode(t *testing.T) {
+	testInputListNodeAndReturnListNode(t, reverseList, createListNode([]int{1, 2, 3, 4, 5}), createListNode([]int{5, 4, 3, 2, 1}))
 }
 
 func TestValidUtf8(t *testing.T) {
