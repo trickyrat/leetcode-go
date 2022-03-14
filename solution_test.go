@@ -351,6 +351,12 @@ func TestMaximumDifference(t *testing.T) {
 	testArrayAndReturnInt(t, maximumDifference, []int{1, 5, 2, 10}, 9)
 }
 
+func TestCountMaxOrSubsets(t *testing.T) {
+	testArrayAndReturnInt(t, countMaxOrSubsets, []int{3, 1}, 2)
+	testArrayAndReturnInt(t, countMaxOrSubsets, []int{2, 2, 2}, 7)
+	testArrayAndReturnInt(t, countMaxOrSubsets, []int{3, 2, 1, 5}, 6)
+}
+
 func TestPlatesBetweenCandles(t *testing.T) {
 	query1 := []int{2, 5}
 	query2 := []int{5, 9}

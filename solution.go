@@ -373,6 +373,27 @@ func max(a, b int) int {
 	return a
 }
 
+// 2044  统计按位或能得到最大值的子集数目
+func countMaxOrSubsets(nums []int) (ans int) {
+	maxOr := 0
+	var dfs func(int, int)
+	dfs = func(pos, or int) {
+		if pos == len(nums) {
+			if or > maxOr {
+				maxOr = or
+				ans = 1
+			} else if or == maxOr {
+				ans++
+			}
+			return
+		}
+		dfs(pos+1, or|nums[pos])
+		dfs(pos+1, or)
+	}
+	dfs(0, 0)
+	return
+}
+
 // 2055 蜡烛之间的盘子
 func platesBetweenCandles(s string, queries [][]int) []int {
 	n := len(s)
