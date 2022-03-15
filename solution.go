@@ -24,7 +24,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-// 1.Two Sum
+// 1.两数之和
 func twoSum(nums []int, target int) []int {
 	hashTable := map[int]int{}
 	for i, x := range nums {
@@ -36,7 +36,7 @@ func twoSum(nums []int, target int) []int {
 	return nil
 }
 
-// 2. Add Two Numbers
+// 2.两数相加
 func addTwoNumbers(l1, l2 *ListNode) (head *ListNode) {
 	var tail *ListNode
 	carry := 0
@@ -66,7 +66,7 @@ func addTwoNumbers(l1, l2 *ListNode) (head *ListNode) {
 	return
 }
 
-// 6. z字形转换
+// 6.z字形转换
 func zconvert(s string, numRows int) string {
 	n, r := len(s), numRows
 	if r == 1 || r >= n {
@@ -85,7 +85,7 @@ func zconvert(s string, numRows int) string {
 	return string(ans)
 }
 
-// 7. 整数反转
+// 7.整数反转
 func reverseInt(x int) (res int) {
 	for x != 0 {
 		if res < math.MinInt32/10 || res > math.MaxInt32/10 {
@@ -120,7 +120,7 @@ func pathSum(root *TreeNode, targetSum int) (ans [][]int) {
 	return
 }
 
-// 144.  二叉树的前序遍历
+// 144.二叉树的前序遍历
 func preorderTraversal(root *TreeNode) (vals []int) {
 	stack := []*TreeNode{}
 	node := root
@@ -136,7 +136,7 @@ func preorderTraversal(root *TreeNode) (vals []int) {
 	return
 }
 
-// 191. Number of 1 Bits
+// 191.Number of 1 Bits
 func hammingWeight(num uint32) int {
 	var res int = 0
 	for {
@@ -149,7 +149,7 @@ func hammingWeight(num uint32) int {
 	return res
 }
 
-// 231. Power of Two
+// 231.Power of Two
 func isPowerOfTwo(n int) bool {
 	return n > 0 && (n&(n-1)) == 0
 }
@@ -167,7 +167,6 @@ func reverseList(head *ListNode) *ListNode {
 	return prev
 }
 
-// 393.UTF-8编码验证
 const mask1, mask2 = 1 << 7, 1<<7 | 1<<6
 
 func getBytes(num int) int {
@@ -187,6 +186,7 @@ func getBytes(num int) int {
 	return -1
 }
 
+// 393.UTF-8编码验证
 func validUtf8(data []int) bool {
 	for index, m := 0, len(data); index < m; {
 		n := getBytes(data[index])
@@ -227,7 +227,7 @@ func convertToBase7(num int) string {
 
 }
 
-// 521. 最长特殊序列 Ⅰ
+// 521.最长特殊序列 Ⅰ
 func findLUSLength(a, b string) (ans int) {
 	if a == b {
 		ans = -1
@@ -237,14 +237,14 @@ func findLUSLength(a, b string) (ans int) {
 	return
 }
 
-// 537. 复数的乘法
+// 537.复数的乘法
 func complexNumberMultiply(num1, num2 string) string {
 	real1, imag1 := parseComplexNumber(num1)
 	real2, imag2 := parseComplexNumber(num2)
 	return fmt.Sprintf("%d+%di", real1*real2-imag1*imag2, real1*imag2+imag1*real2)
 }
 
-// 553. 最优除法
+// 553.最优除法
 func optimalDivision(nums []int) string {
 	n := len(nums)
 	if n == 1 {
@@ -270,7 +270,7 @@ func parseComplexNumber(num string) (real, imag int) {
 	return
 }
 
-// 589. N叉树的前序遍历
+// 589.N叉树的前序遍历
 func preorder(root *Node) (ans []int) {
 	var dfs func(*Node)
 	dfs = func(node *Node) {
@@ -286,7 +286,7 @@ func preorder(root *Node) (ans []int) {
 	return
 }
 
-// 590. N叉树的后序遍历
+// 590.N叉树的后序遍历
 func postorder(root *Node) (ans []int) {
 	var dfs func(*Node)
 	dfs = func(node *Node) {
@@ -322,7 +322,7 @@ func findRestaurant(list1, list2 []string) (ans []string) {
 	return
 }
 
-// 917. 仅仅反转字母
+// 917.仅仅反转字母
 func reverseOnlyLetters(s string) string {
 	ans := []byte(s)
 	left, right := 0, len(s)-1
@@ -343,7 +343,23 @@ func reverseOnlyLetters(s string) string {
 	return string(ans)
 }
 
-// 2006. 差值的绝对值为k的数对数目
+// 1991.寻找数组的中间位置
+func pivotIndex(nums []int) int {
+	total := 0
+	for _, num := range nums {
+		total += num
+	}
+	sum := 0
+	for i, num := range nums {
+		if 2*sum+num == total {
+			return i
+		}
+		sum += num
+	}
+	return -1
+}
+
+// 2006.差值的绝对值为k的数对数目
 func countKDifference(nums []int, k int) (ans int) {
 	cnt := map[int]int{}
 	for _, num := range nums {
@@ -353,7 +369,7 @@ func countKDifference(nums []int, k int) (ans int) {
 	return
 }
 
-// 2016 增量元素之间的最大差值
+// 2016.增量元素之间的最大差值
 func maximumDifference(nums []int) int {
 	ans := -1
 	for i, preMin := 1, nums[0]; i < len(nums); i++ {
@@ -373,7 +389,7 @@ func max(a, b int) int {
 	return a
 }
 
-// 2044  统计按位或能得到最大值的子集数目
+// 2044.统计按位或能得到最大值的子集数目
 func countMaxOrSubsets(nums []int) (ans int) {
 	maxOr := 0
 	var dfs func(int, int)
@@ -394,7 +410,7 @@ func countMaxOrSubsets(nums []int) (ans int) {
 	return
 }
 
-// 2055 蜡烛之间的盘子
+// 2055.蜡烛之间的盘子
 func platesBetweenCandles(s string, queries [][]int) []int {
 	n := len(s)
 	preSum := make([]int, n)

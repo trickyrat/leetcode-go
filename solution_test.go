@@ -301,6 +301,7 @@ func TestPowerOfTwo(t *testing.T) {
 
 func TestReverseListNode(t *testing.T) {
 	testInputListNodeAndReturnListNode(t, reverseList, createListNode([]int{1, 2, 3, 4, 5}), createListNode([]int{5, 4, 3, 2, 1}))
+	testInputListNodeAndReturnListNode(t, reverseList, createListNode([]int{1, 2}), createListNode([]int{2, 1}))
 }
 
 func TestValidUtf8(t *testing.T) {
@@ -337,6 +338,12 @@ func TestOptimalDivision(t *testing.T) {
 func TestFindRestaurant(t *testing.T) {
 	testTwoStringArraysAndReturnStringArray(t, findRestaurant, []string{"Shogun", "Tapioca Express", "Burger King", "KFC"}, []string{"Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"}, []string{"Shogun"})
 	testTwoStringArraysAndReturnStringArray(t, findRestaurant, []string{"Shogun", "Tapioca Express", "Burger King", "KFC"}, []string{"KFC", "Shogun", "Burger King"}, []string{"Shogun"})
+}
+
+func TestPivotIndex(t *testing.T) {
+	testArrayAndReturnInt(t, pivotIndex, []int{2, 3, -1, 8, 4}, 3)
+	testArrayAndReturnInt(t, pivotIndex, []int{1, -1, 4}, 2)
+	testArrayAndReturnInt(t, pivotIndex, []int{2, 5}, -1)
 }
 
 func TestCountKDifference(t *testing.T) {
