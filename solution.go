@@ -322,6 +322,24 @@ func findRestaurant(list1, list2 []string) (ans []string) {
 	return
 }
 
+// 728.自除数
+func selfDividingNumbers(left, right int) (ans []int) {
+	for i := left; i <= right; i++ {
+		if isSelfDividing(i) {
+			ans = append(ans, i)
+		}
+	}
+	return
+}
+func isSelfDividing(num int) bool {
+	for x := num; x > 0; x /= 10 {
+		if d := x % 10; d == 0 || num%d != 0 {
+			return false
+		}
+	}
+	return true
+}
+
 // 917.仅仅反转字母
 func reverseOnlyLetters(s string) string {
 	ans := []byte(s)

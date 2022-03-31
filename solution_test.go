@@ -234,6 +234,15 @@ func testInputListNodeAndReturnListNode(t *testing.T, testFunction func(*ListNod
 	}
 }
 
+func testInputTwoIntegersAndReturnArray(t *testing.T, testFunction func(int, int) []int, num1, num2 int, expected []int) {
+	actual := testFunction(num1, num2)
+	for i, item := range actual {
+		if item != expected[i] {
+			t.Errorf("%s(%d, %d) = %v; expected %v", nameof(testFunction), num1, num2, actual, expected)
+		}
+	}
+}
+
 func TestTwoSum(t *testing.T) {
 	testArrayIntegerAndReturnArrayFramework(t, twoSum, struct {
 		array  []int
@@ -338,6 +347,11 @@ func TestOptimalDivision(t *testing.T) {
 func TestFindRestaurant(t *testing.T) {
 	testTwoStringArraysAndReturnStringArray(t, findRestaurant, []string{"Shogun", "Tapioca Express", "Burger King", "KFC"}, []string{"Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"}, []string{"Shogun"})
 	testTwoStringArraysAndReturnStringArray(t, findRestaurant, []string{"Shogun", "Tapioca Express", "Burger King", "KFC"}, []string{"KFC", "Shogun", "Burger King"}, []string{"Shogun"})
+}
+
+func TestSelfDividingNumbers(t *testing.T) {
+	testInputTwoIntegersAndReturnArray(t, selfDividingNumbers, 1, 22, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22})
+	testInputTwoIntegersAndReturnArray(t, selfDividingNumbers, 48, 85, []int{48, 55, 66, 77})
 }
 
 func TestPivotIndex(t *testing.T) {
