@@ -320,6 +320,11 @@ func TestReverseListNode(t *testing.T) {
 	testListNodeAndReturnListNode(t, reverseList, createListNode([]int{1, 2}), createListNode([]int{2, 1}))
 }
 
+func TestCountNumbersWithUniqueDigits(t *testing.T) {
+	testIntAndReturnInt(t, countNumbersWithUniqueDigits, 2, 91)
+	testIntAndReturnInt(t, countNumbersWithUniqueDigits, 0, 1)
+}
+
 func TestValidUtf8(t *testing.T) {
 	testArrayAndReturnBool(t, validUtf8, []int{197, 130, 1}, true)
 	testArrayAndReturnBool(t, validUtf8, []int{235, 140, 4}, false)

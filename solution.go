@@ -186,6 +186,22 @@ func getBytes(num int) int {
 	return -1
 }
 
+// 357. 统计各位数字都不同的数字个数
+func countNumbersWithUniqueDigits(n int) int {
+	if n == 0 {
+		return 1
+	}
+	if n == 1 {
+		return 10
+	}
+	ans, cur := 10, 9
+	for i := 0; i < n-1; i++ {
+		cur *= 9 - i
+		ans += cur
+	}
+	return ans
+}
+
 // 393.UTF-8编码验证
 func validUtf8(data []int) bool {
 	for index, m := 0, len(data); index < m; {
