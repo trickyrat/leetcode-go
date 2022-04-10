@@ -340,6 +340,24 @@ func isSelfDividing(num int) bool {
 	return true
 }
 
+func uniqueMorseRepresentations(words []string) int {
+	var morse = []string{
+		".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+		"....", "..", ".---", "-.-", ".-..", "--", "-.",
+		"---", ".--.", "--.-", ".-.", "...", "-", "..-",
+		"...-", ".--", "-..-", "-.--", "--..",
+	}
+	set := map[string]struct{}{}
+	for _, word := range words {
+		trans := &strings.Builder{}
+		for _, ch := range word {
+			trans.WriteString(morse[ch-'a'])
+		}
+		set[trans.String()] = struct{}{}
+	}
+	return len(set)
+}
+
 // 917.仅仅反转字母
 func reverseOnlyLetters(s string) string {
 	ans := []byte(s)

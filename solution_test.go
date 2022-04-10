@@ -91,14 +91,40 @@ func testArrayAndReturnString(t *testing.T, testFunction func([]int) string, inp
 	}
 }
 
-func testInputArrayIntAndReturnIntFramework(t *testing.T, testFunction func(nums []int, k int) int, input []int, k, expected int) {
+func testArrayAndReturnInt(t *testing.T, testFunction func([]int) int, input []int, expected int) {
+	actual := testFunction(input)
+	if actual != expected {
+		t.Errorf("%s(%v) = %d; expected %d", nameof(testFunction), input, actual, expected)
+	}
+}
+
+func testArrayIntAndReturnInt(t *testing.T, testFunction func(nums []int, k int) int, input []int, k, expected int) {
 	actual := testFunction(input, k)
 	if actual != expected {
 		t.Errorf("%s(%v, %d) = %d; expected %d", nameof(testFunction), input, k, actual, expected)
 	}
 }
 
-func testArrayAndReturnInt(t *testing.T, testFunction func([]int) int, input []int, expected int) {
+func testArrayAndReturnBool(t *testing.T, testFunction func([]int) bool, input []int, expected bool) {
+	actual := testFunction(input)
+	if actual != expected {
+		t.Errorf("%s(%v) = %t; expected %t", nameof(testFunction), input, actual, expected)
+	}
+}
+
+func testArrayIntegerAndReturnArray(t *testing.T, testFunction func(array []int, target int) []int, input struct {
+	array  []int
+	target int
+}, expected []int) {
+	actual := testFunction(input.array, input.target)
+	for index, val := range actual {
+		if val != expected[index] {
+			t.Errorf("%s(%d, %d) = %v; expected %v", nameof(testFunction), input.array, input.target, actual, expected)
+		}
+	}
+}
+
+func testArrayAndReturnInteger(t *testing.T, testFunction func(array []string) int, input []string, expected int) {
 	actual := testFunction(input)
 	if actual != expected {
 		t.Errorf("%s(%v) = %d; expected %d", nameof(testFunction), input, actual, expected)
@@ -112,6 +138,13 @@ func testTwoListNodeAndReturnListNode(t *testing.T, testFunction func(*ListNode,
 	if actualStr != expectedStr {
 		t.Errorf("%s(%s, %s) = %s; expected %s", nameof(testFunction), l1.tostring(), l2.tostring(), actualStr, expectedStr)
 	}
+}
+
+func testAddTwoNumbers(t *testing.T, num1, num2, res []int) {
+	l1 := createListNode(num1)
+	l2 := createListNode(num2)
+	expected := createListNode(res)
+	testTwoListNodeAndReturnListNode(t, addTwoNumbers, l1, l2, expected)
 }
 
 func testTwoStringsAndReturnStringFramework(t *testing.T, testFunction func(str1, str2 string) string, str1, str2, expected string) {
@@ -129,18 +162,6 @@ func testTwoStringArraysAndReturnStringArray(t *testing.T, testFunction func(str
 		}
 	}
 
-}
-
-func testArrayIntegerAndReturnArrayFramework(t *testing.T, testFunction func(array []int, target int) []int, input struct {
-	array  []int
-	target int
-}, expected []int) {
-	actual := testFunction(input.array, input.target)
-	for index, val := range actual {
-		if val != expected[index] {
-			t.Errorf("%s(%d, %d) = %v; expected %v", nameof(testFunction), input.array, input.target, actual, expected)
-		}
-	}
 }
 
 func testTreeNodeAndReturnArrayOfArray(t *testing.T, testFunction func(root *TreeNode, targetNum int) [][]int, input *TreeNode, targetNum int, expected [][]int) {
@@ -182,18 +203,11 @@ func testUint32AndReturnInt(t *testing.T, testFunction func(uint32) int, input u
 	}
 }
 
-func testInputStringAndIntReturnString(t *testing.T, testFunction func(string, int) string, s string, numRows int, expected string) {
+func testStringAndIntReturnString(t *testing.T, testFunction func(string, int) string, s string, numRows int, expected string) {
 	actual := testFunction(s, numRows)
 	if actual != expected {
 		t.Errorf("%s(%s, %d) = %s; expected %s", nameof(testFunction), s, numRows, actual, expected)
 	}
-}
-
-func testAddTwoNumbers(t *testing.T, num1, num2, res []int) {
-	l1 := createListNode(num1)
-	l2 := createListNode(num2)
-	expected := createListNode(res)
-	testTwoListNodeAndReturnListNode(t, addTwoNumbers, l1, l2, expected)
 }
 
 func testInputAStringAndReturnString(t *testing.T, testFunction func(string) string, input, expected string) {
@@ -220,21 +234,14 @@ func testTwoStringAndReturnInt(t *testing.T, testFunction func(a, b string) int,
 	}
 }
 
-func testInputArrayAndReturnBool(t *testing.T, testFunction func([]int) bool, input []int, expected bool) {
-	actual := testFunction(input)
-	if actual != expected {
-		t.Errorf("%s(%v) = %t; expected %t", nameof(testFunction), input, actual, expected)
-	}
-}
-
-func testInputListNodeAndReturnListNode(t *testing.T, testFunction func(*ListNode) *ListNode, input *ListNode, expected *ListNode) {
+func testListNodeAndReturnListNode(t *testing.T, testFunction func(*ListNode) *ListNode, input *ListNode, expected *ListNode) {
 	actual := testFunction(input)
 	if actual.tostring() != expected.tostring() {
 		t.Errorf("%s(%s) = %s; expected %s", nameof(testFunction), input.tostring(), actual.tostring(), expected.tostring())
 	}
 }
 
-func testInputTwoIntegersAndReturnArray(t *testing.T, testFunction func(int, int) []int, num1, num2 int, expected []int) {
+func testTwoIntegersAndReturnArray(t *testing.T, testFunction func(int, int) []int, num1, num2 int, expected []int) {
 	actual := testFunction(num1, num2)
 	for i, item := range actual {
 		if item != expected[i] {
@@ -244,15 +251,15 @@ func testInputTwoIntegersAndReturnArray(t *testing.T, testFunction func(int, int
 }
 
 func TestTwoSum(t *testing.T) {
-	testArrayIntegerAndReturnArrayFramework(t, twoSum, struct {
+	testArrayIntegerAndReturnArray(t, twoSum, struct {
 		array  []int
 		target int
 	}{[]int{2, 7, 11, 15}, 9}, []int{0, 1})
-	testArrayIntegerAndReturnArrayFramework(t, twoSum, struct {
+	testArrayIntegerAndReturnArray(t, twoSum, struct {
 		array  []int
 		target int
 	}{[]int{3, 2, 4}, 6}, []int{1, 2})
-	testArrayIntegerAndReturnArrayFramework(t, twoSum, struct {
+	testArrayIntegerAndReturnArray(t, twoSum, struct {
 		array  []int
 		target int
 	}{[]int{3, 3}, 6}, []int{0, 1})
@@ -265,9 +272,9 @@ func TestAddTwoNumbers(t *testing.T) {
 }
 
 func TestZConvert(t *testing.T) {
-	testInputStringAndIntReturnString(t, zconvert, "PAYPALISHIRING", 3, "PAHNAPLSIIGYIR")
-	testInputStringAndIntReturnString(t, zconvert, "PAYPALISHIRING", 4, "PINALSIGYAHRPI")
-	testInputStringAndIntReturnString(t, zconvert, "A", 1, "A")
+	testStringAndIntReturnString(t, zconvert, "PAYPALISHIRING", 3, "PAHNAPLSIIGYIR")
+	testStringAndIntReturnString(t, zconvert, "PAYPALISHIRING", 4, "PINALSIGYAHRPI")
+	testStringAndIntReturnString(t, zconvert, "A", 1, "A")
 }
 
 func TestReverseInt(t *testing.T) {
@@ -309,13 +316,13 @@ func TestPowerOfTwo(t *testing.T) {
 }
 
 func TestReverseListNode(t *testing.T) {
-	testInputListNodeAndReturnListNode(t, reverseList, createListNode([]int{1, 2, 3, 4, 5}), createListNode([]int{5, 4, 3, 2, 1}))
-	testInputListNodeAndReturnListNode(t, reverseList, createListNode([]int{1, 2}), createListNode([]int{2, 1}))
+	testListNodeAndReturnListNode(t, reverseList, createListNode([]int{1, 2, 3, 4, 5}), createListNode([]int{5, 4, 3, 2, 1}))
+	testListNodeAndReturnListNode(t, reverseList, createListNode([]int{1, 2}), createListNode([]int{2, 1}))
 }
 
 func TestValidUtf8(t *testing.T) {
-	testInputArrayAndReturnBool(t, validUtf8, []int{197, 130, 1}, true)
-	testInputArrayAndReturnBool(t, validUtf8, []int{235, 140, 4}, false)
+	testArrayAndReturnBool(t, validUtf8, []int{197, 130, 1}, true)
+	testArrayAndReturnBool(t, validUtf8, []int{235, 140, 4}, false)
 }
 
 func TestConvertToBase7(t *testing.T) {
@@ -350,8 +357,13 @@ func TestFindRestaurant(t *testing.T) {
 }
 
 func TestSelfDividingNumbers(t *testing.T) {
-	testInputTwoIntegersAndReturnArray(t, selfDividingNumbers, 1, 22, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22})
-	testInputTwoIntegersAndReturnArray(t, selfDividingNumbers, 48, 85, []int{48, 55, 66, 77})
+	testTwoIntegersAndReturnArray(t, selfDividingNumbers, 1, 22, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22})
+	testTwoIntegersAndReturnArray(t, selfDividingNumbers, 48, 85, []int{48, 55, 66, 77})
+}
+
+func TestUniqueMorseRepresentations(t *testing.T) {
+	testArrayAndReturnInteger(t, uniqueMorseRepresentations, []string{"gin", "zen", "gig", "msg"}, 2)
+	testArrayAndReturnInteger(t, uniqueMorseRepresentations, []string{"a"}, 1)
 }
 
 func TestPivotIndex(t *testing.T) {
@@ -361,9 +373,9 @@ func TestPivotIndex(t *testing.T) {
 }
 
 func TestCountKDifference(t *testing.T) {
-	testInputArrayIntAndReturnIntFramework(t, countKDifference, []int{1, 2, 2, 1}, 1, 4)
-	testInputArrayIntAndReturnIntFramework(t, countKDifference, []int{1, 3}, 3, 0)
-	testInputArrayIntAndReturnIntFramework(t, countKDifference, []int{3, 2, 1, 5, 4}, 2, 3)
+	testArrayIntAndReturnInt(t, countKDifference, []int{1, 2, 2, 1}, 1, 4)
+	testArrayIntAndReturnInt(t, countKDifference, []int{1, 3}, 3, 0)
+	testArrayIntAndReturnInt(t, countKDifference, []int{3, 2, 1, 5, 4}, 2, 3)
 }
 
 func TestMaximumDifference(t *testing.T) {
