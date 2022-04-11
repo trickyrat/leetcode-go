@@ -356,6 +356,7 @@ func isSelfDividing(num int) bool {
 	return true
 }
 
+// 804.唯一摩尔斯密码词
 func uniqueMorseRepresentations(words []string) int {
 	var morse = []string{
 		".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
@@ -372,6 +373,22 @@ func uniqueMorseRepresentations(words []string) int {
 		set[trans.String()] = struct{}{}
 	}
 	return len(set)
+}
+
+// 806. 写字符串需要的行数
+func numberOfLines(widths []int, s string) (ans []int) {
+	const MAX_WIDTH = 100
+	lines, width := 1, 0
+	for _, ch := range s {
+		need := widths[ch-'a']
+		width += need
+		if width > MAX_WIDTH {
+			width = need
+			lines++
+		}
+	}
+	ans = append(ans, lines, width)
+	return
 }
 
 // 917.仅仅反转字母

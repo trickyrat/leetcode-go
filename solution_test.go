@@ -124,6 +124,15 @@ func testArrayIntegerAndReturnArray(t *testing.T, testFunction func(array []int,
 	}
 }
 
+func testArrayIntegerAndStringReturnArray(t *testing.T, testFunction func(array []int, s string) []int, input []int, s string, expected []int) {
+	actual := testFunction(input, s)
+	for index, val := range actual {
+		if val != expected[index] {
+			t.Errorf("%s(%d, %s) = %v; expected %v", nameof(testFunction), input, s, actual, expected)
+		}
+	}
+}
+
 func testArrayAndReturnInteger(t *testing.T, testFunction func(array []string) int, input []string, expected int) {
 	actual := testFunction(input)
 	if actual != expected {
@@ -369,6 +378,11 @@ func TestSelfDividingNumbers(t *testing.T) {
 func TestUniqueMorseRepresentations(t *testing.T) {
 	testArrayAndReturnInteger(t, uniqueMorseRepresentations, []string{"gin", "zen", "gig", "msg"}, 2)
 	testArrayAndReturnInteger(t, uniqueMorseRepresentations, []string{"a"}, 1)
+}
+
+func TestNumberOfLines(t *testing.T) {
+	testArrayIntegerAndStringReturnArray(t, numberOfLines, []int{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10}, "abcdefghijklmnopqrstuvwxyz", []int{3, 60})
+	testArrayIntegerAndStringReturnArray(t, numberOfLines, []int{4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10}, "bbbcccdddaaa", []int{2, 4})
 }
 
 func TestPivotIndex(t *testing.T) {
