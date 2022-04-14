@@ -8,22 +8,6 @@ import (
 	"unicode"
 )
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-type Node struct {
-	Val      int
-	Children []*Node
-}
-
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 // 1.两数之和
 func twoSum(nums []int, target int) []int {
 	hashTable := map[int]int{}
