@@ -149,6 +149,13 @@ func testTwoListNodeAndReturnListNode(t *testing.T, testFunction func(*ListNode,
 	}
 }
 
+func testStringAndStringArray(t *testing.T, testFunction func(string, []string) string, words string, banned []string, expected string) {
+	actual := testFunction(words, banned)
+	if actual != expected {
+		t.Errorf("%s(%s, %v) = %s; expected %s", nameof(testFunction), words, banned, actual, expected)
+	}
+}
+
 func testAddTwoNumbers(t *testing.T, num1, num2, res []int) {
 	l1 := createListNode(num1)
 	l2 := createListNode(num2)
@@ -383,6 +390,10 @@ func TestUniqueMorseRepresentations(t *testing.T) {
 func TestNumberOfLines(t *testing.T) {
 	testArrayIntegerAndStringReturnArray(t, numberOfLines, []int{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10}, "abcdefghijklmnopqrstuvwxyz", []int{3, 60})
 	testArrayIntegerAndStringReturnArray(t, numberOfLines, []int{4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10}, "bbbcccdddaaa", []int{2, 4})
+}
+
+func TestMostCommonWord(t *testing.T) {
+	testStringAndStringArray(t, mostCommonWord, "Bob hit a ball, the hit BALL flew far after it was hit.", []string{"hit"}, "ball")
 }
 
 func TestPivotIndex(t *testing.T) {
