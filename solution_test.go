@@ -70,7 +70,7 @@ func createTreeNodeWithDFS(data string) *TreeNode {
 }
 
 func (h *ListNode) tostring() string {
-	var res string = "["
+	var res = "["
 	res += strconv.Itoa(h.Val)
 	for h.Next != nil {
 		res += strconv.Itoa(h.Val)
@@ -212,6 +212,16 @@ func testIntAndReturnInt(t *testing.T, testFunction func(int) int, input, expect
 	}
 }
 
+func testIntAndReturnIntArray(t *testing.T, testFunction func(int) []int, input int, expected []int) {
+	actual := testFunction(input)
+	for i, item := range actual {
+		if item != expected[i] {
+			t.Errorf("%s(%d) = %v; expected %v", nameof(testFunction), input, actual, expected)
+		}
+	}
+
+}
+
 func testUint32AndReturnInt(t *testing.T, testFunction func(uint32) int, input uint32, expected int) {
 	actual := testFunction(input)
 	if actual != expected {
@@ -339,6 +349,11 @@ func TestReverseListNode(t *testing.T) {
 func TestCountNumbersWithUniqueDigits(t *testing.T) {
 	testIntAndReturnInt(t, countNumbersWithUniqueDigits, 2, 91)
 	testIntAndReturnInt(t, countNumbersWithUniqueDigits, 0, 1)
+}
+
+func TestLexicalOrder(t *testing.T) {
+	testIntAndReturnIntArray(t, lexicalOrder, 13, []int{1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9})
+	testIntAndReturnIntArray(t, lexicalOrder, 2, []int{1, 2})
 }
 
 func TestValidUtf8(t *testing.T) {

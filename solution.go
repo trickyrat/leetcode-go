@@ -122,7 +122,7 @@ func preorderTraversal(root *TreeNode) (vals []int) {
 
 // 191.Number of 1 Bits
 func hammingWeight(num uint32) int {
-	var res int = 0
+	var res = 0
 	for {
 		if num == 0 {
 			break
@@ -184,6 +184,24 @@ func countNumbersWithUniqueDigits(n int) int {
 		ans += cur
 	}
 	return ans
+}
+
+//386. 字典序排数
+func lexicalOrder(n int) []int {
+	ret := make([]int, n)
+	num := 1
+	for i := range ret {
+		ret[i] = num
+		if num*10 <= n {
+			num *= 10
+		} else {
+			for num%10 == 9 || num+1 > n {
+				num /= 10
+			}
+			num++
+		}
+	}
+	return ret
 }
 
 // 393.UTF-8编码验证
