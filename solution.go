@@ -422,6 +422,24 @@ func mostCommonWord(paragraph string, banned []string) string {
 	return ""
 }
 
+//883. 三维形体投影面积
+func projectionArea(grid [][]int) int {
+	var xyArea, yzArea, zxArea int
+	for i, row := range grid {
+		yzHeight, zxHeight := 0, 0
+		for j, v := range row {
+			if v > 0 {
+				xyArea++
+			}
+			yzHeight = max(yzHeight, grid[j][i])
+			zxHeight = max(zxHeight, v)
+		}
+		yzArea += yzHeight
+		zxArea += zxHeight
+	}
+	return xyArea + yzArea + zxArea
+}
+
 // 917.仅仅反转字母
 func reverseOnlyLetters(s string) string {
 	ans := []byte(s)

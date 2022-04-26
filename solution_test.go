@@ -149,6 +149,13 @@ func testTwoListNodeAndReturnListNode(t *testing.T, testFunction func(*ListNode,
 	}
 }
 
+func testMatrixReturnInt(t *testing.T, testFunction func([][]int) int, matrix [][]int, expected int) {
+	actual := testFunction(matrix)
+	if actual != expected {
+		t.Errorf("%s(%v) = %d; expected %d", nameof(testFunction), matrix, actual, expected)
+	}
+}
+
 func testStringAndStringArray(t *testing.T, testFunction func(string, []string) string, words string, banned []string, expected string) {
 	actual := testFunction(words, banned)
 	if actual != expected {
@@ -411,6 +418,20 @@ func TestMostCommonWord(t *testing.T) {
 	testStringAndStringArray(t, mostCommonWord, "Bob hit a ball, the hit BALL flew far after it was hit.", []string{"hit"}, "ball")
 }
 
+func TestProjectionArea(t *testing.T) {
+	var grid1 [][]int
+	grid1 = append(grid1, []int{1, 2})
+	grid1 = append(grid1, []int{3, 4})
+	var grid2 [][]int
+	grid2 = append(grid2, []int{2})
+	var grid3 [][]int
+	grid3 = append(grid3, []int{1, 0})
+	grid3 = append(grid3, []int{0, 2})
+	testMatrixReturnInt(t, projectionArea, grid1, 17)
+	testMatrixReturnInt(t, projectionArea, grid2, 5)
+	testMatrixReturnInt(t, projectionArea, grid3, 8)
+}
+
 func TestPivotIndex(t *testing.T) {
 	testArrayAndReturnInt(t, pivotIndex, []int{2, 3, -1, 8, 4}, 3)
 	testArrayAndReturnInt(t, pivotIndex, []int{1, -1, 4}, 2)
@@ -438,7 +459,7 @@ func TestCountMaxOrSubsets(t *testing.T) {
 func TestPlatesBetweenCandles(t *testing.T) {
 	query1 := []int{2, 5}
 	query2 := []int{5, 9}
-	queries1 := [][]int{}
+	var queries1 [][]int
 	queries1 = append(queries1, query1)
 	queries1 = append(queries1, query2)
 	testStringArrayAndReturnArray(t, platesBetweenCandles, "**|**|***|", queries1, []int{2, 3})
@@ -448,7 +469,7 @@ func TestPlatesBetweenCandles(t *testing.T) {
 	query5 := []int{14, 17}
 	query6 := []int{5, 11}
 	query7 := []int{15, 16}
-	queries2 := [][]int{}
+	var queries2 [][]int
 	queries2 = append(queries2, query3)
 	queries2 = append(queries2, query4)
 	queries2 = append(queries2, query5)
