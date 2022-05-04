@@ -461,6 +461,15 @@ func reverseOnlyLetters(s string) string {
 	return string(ans)
 }
 
+// 1823. Find the Winner of the Circular Game
+func findTheWinner(n, k int) int {
+	winner := 1
+	for i := 2; i <= n; i++ {
+		winner = (winner+k-1)%i + 1
+	}
+	return winner
+}
+
 // 1991.寻找数组的中间位置
 func pivotIndex(nums []int) int {
 	total := 0

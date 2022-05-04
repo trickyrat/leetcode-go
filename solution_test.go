@@ -283,6 +283,13 @@ func testTwoIntegersAndReturnArray(t *testing.T, testFunction func(int, int) []i
 	}
 }
 
+func testTwoIntegersAndReturnInteger(t *testing.T, testFunction func(int, int) int, num1, num2 int, expected int) {
+	actual := testFunction(num1, num2)
+	if actual != expected {
+		t.Errorf("%s(%d, %d) = %d; expected %d", nameof(testFunction), num1, num2, actual, expected)
+	}
+}
+
 func TestTwoSum(t *testing.T) {
 	testArrayIntegerAndReturnArray(t, twoSum, struct {
 		array  []int
@@ -430,6 +437,11 @@ func TestProjectionArea(t *testing.T) {
 	testMatrixReturnInt(t, projectionArea, grid1, 17)
 	testMatrixReturnInt(t, projectionArea, grid2, 5)
 	testMatrixReturnInt(t, projectionArea, grid3, 8)
+}
+
+func TestFindTheWinner(t *testing.T) {
+	testTwoIntegersAndReturnInteger(t, findTheWinner, 5, 2, 3)
+	testTwoIntegersAndReturnInteger(t, findTheWinner, 6, 5, 1)
 }
 
 func TestPivotIndex(t *testing.T) {
