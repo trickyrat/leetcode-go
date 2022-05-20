@@ -439,6 +439,12 @@ func TestProjectionArea(t *testing.T) {
 	testMatrixReturnInt(t, projectionArea, grid3, 8)
 }
 
+func TestRepeatedNTimes(t *testing.T) {
+	testArrayAndReturnInt(t, repeatedNTimes, []int{1, 2, 3, 3}, 3)
+	testArrayAndReturnInt(t, repeatedNTimes, []int{2, 1, 2, 5, 3, 2}, 2)
+	testArrayAndReturnInt(t, repeatedNTimes, []int{5, 1, 5, 2, 5, 3, 5, 4}, 5)
+}
+
 func TestFindTheWinner(t *testing.T) {
 	testTwoIntegersAndReturnInteger(t, findTheWinner, 5, 2, 3)
 	testTwoIntegersAndReturnInteger(t, findTheWinner, 6, 5, 1)

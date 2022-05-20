@@ -84,7 +84,7 @@ func reverseInt(x int) (res int) {
 
 // 113.路径总和
 func pathSum(root *TreeNode, targetSum int) (ans [][]int) {
-	path := []int{}
+	var path []int
 	var dfs func(*TreeNode, int)
 	dfs = func(node *TreeNode, left int) {
 		if node == nil {
@@ -106,7 +106,7 @@ func pathSum(root *TreeNode, targetSum int) (ans [][]int) {
 
 // 144.二叉树的前序遍历
 func preorderTraversal(root *TreeNode) (vals []int) {
-	stack := []*TreeNode{}
+	var stack []*TreeNode
 	node := root
 	for node != nil || len(stack) > 0 {
 		for node != nil {
@@ -230,7 +230,7 @@ func convertToBase7(num int) string {
 	if negative {
 		num = -num
 	}
-	s := []byte{}
+	var s []byte
 	for num > 0 {
 		s = append(s, '0'+byte(num%7))
 		num /= 7
@@ -379,12 +379,12 @@ func uniqueMorseRepresentations(words []string) int {
 
 // 806. 写字符串需要的行数
 func numberOfLines(widths []int, s string) (ans []int) {
-	const MAX_WIDTH = 100
+	const MaxWidth = 100
 	lines, width := 1, 0
 	for _, ch := range s {
 		need := widths[ch-'a']
 		width += need
-		if width > MAX_WIDTH {
+		if width > MaxWidth {
 			width = need
 			lines++
 		}
@@ -459,6 +459,18 @@ func reverseOnlyLetters(s string) string {
 		right--
 	}
 	return string(ans)
+}
+
+// 961. N-Repeated Element in Size 2N Array
+func repeatedNTimes(nums []int) int {
+	found := map[int]bool{}
+	for _, num := range nums {
+		if found[num] {
+			return num
+		}
+		found[num] = true
+	}
+	return -1
 }
 
 // 1823. Find the Winner of the Circular Game
