@@ -290,6 +290,13 @@ func testTwoIntegersAndReturnInteger(t *testing.T, testFunction func(int, int) i
 	}
 }
 
+func testStringAndReturnInt(t *testing.T, testFunction func(string) int, input string, expected int) {
+	actual := testFunction(input)
+	if actual != expected {
+		t.Errorf("%s(%s) = %d; expected %d", nameof(testFunction), input, actual, expected)
+	}
+}
+
 func TestTwoSum(t *testing.T) {
 	testArrayIntegerAndReturnArray(t, twoSum, struct {
 		array  []int
@@ -373,6 +380,12 @@ func TestLexicalOrder(t *testing.T) {
 func TestValidUtf8(t *testing.T) {
 	testArrayAndReturnBool(t, validUtf8, []int{197, 130, 1}, true)
 	testArrayAndReturnBool(t, validUtf8, []int{235, 140, 4}, false)
+}
+
+func TestFindSubstringWraparoundString(t *testing.T) {
+	testStringAndReturnInt(t, findSubstringWraparoundString, "a", 1)
+	testStringAndReturnInt(t, findSubstringWraparoundString, "cac", 2)
+	testStringAndReturnInt(t, findSubstringWraparoundString, "zab", 6)
 }
 
 func TestConvertToBase7(t *testing.T) {
