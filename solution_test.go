@@ -124,6 +124,15 @@ func testArrayIntegerAndReturnArray(t *testing.T, testFunction func(array []int,
 	}
 }
 
+func testArrayAndReturnArray(t *testing.T, testFunction func(array []int) []int, input []int, expected []int) {
+	actual := testFunction(input)
+	for index, val := range actual {
+		if val != expected[index] {
+			t.Errorf("%s(%d) = %v; expected %v", nameof(testFunction), input, actual, expected)
+		}
+	}
+}
+
 func testArrayIntegerAndStringReturnArray(t *testing.T, testFunction func(array []int, s string) []int, input []int, s string, expected []int) {
 	actual := testFunction(input, s)
 	for index, val := range actual {
@@ -456,6 +465,12 @@ func TestRepeatedNTimes(t *testing.T) {
 	testArrayAndReturnInt(t, repeatedNTimes, []int{1, 2, 3, 3}, 3)
 	testArrayAndReturnInt(t, repeatedNTimes, []int{2, 1, 2, 5, 3, 2}, 2)
 	testArrayAndReturnInt(t, repeatedNTimes, []int{5, 1, 5, 2, 5, 3, 5, 4}, 5)
+}
+
+func TestMinSubsequence(t *testing.T) {
+	testArrayAndReturnArray(t, minSubsequence, []int{4, 3, 10, 9, 8}, []int{10, 9})
+	testArrayAndReturnArray(t, minSubsequence, []int{4, 4, 7, 6, 7}, []int{7, 7, 6})
+	testArrayAndReturnArray(t, minSubsequence, []int{6}, []int{6})
 }
 
 func TestFindTheWinner(t *testing.T) {

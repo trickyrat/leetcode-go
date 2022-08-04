@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"sort"
 	"strconv"
 	"strings"
 	"unicode"
@@ -489,6 +490,21 @@ func repeatedNTimes(nums []int) int {
 		found[num] = true
 	}
 	return -1
+}
+
+// 1403. Minimum Subsequence in Non-Increasing Order
+func minSubsequence(nums []int) []int {
+	sort.Sort(sort.Reverse(sort.IntSlice(nums)))
+	total := 0
+	for _, num := range nums {
+		total += num
+	}
+	for i, curr := 0, 0; ; i++ {
+		curr += nums[i]
+		if total-curr < curr {
+			return nums[:i+1]
+		}
+	}
 }
 
 // 1823. Find the Winner of the Circular Game
