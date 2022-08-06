@@ -1,4 +1,4 @@
-module leetcode/solution
+module leetcode
 
 go 1.18
 
