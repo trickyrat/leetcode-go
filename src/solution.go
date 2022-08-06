@@ -333,6 +333,35 @@ func findRestaurant(list1, list2 []string) (ans []string) {
 	return
 }
 
+// 636. Exclusive Time of Functions
+func exclusiveTime(n int, logs []string) []int {
+	res := make([]int, n)
+	type pair struct {
+		index, timestamp int
+	}
+	var stack []pair
+	for _, log := range logs {
+		sp := strings.Split(log, ":")
+		index, _ := strconv.Atoi(sp[0])
+		timestamp, _ := strconv.Atoi(sp[2])
+		if sp[1][0] == 's' { // 0:start:1
+			if len(stack) > 0 {
+				res[stack[len(stack)-1].index] += timestamp - stack[len(stack)-1].timestamp
+				stack[len(stack)-1].timestamp = timestamp
+			}
+			stack = append(stack, pair{index, timestamp})
+		} else { // 0:end:1
+			p := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			res[p.index] += timestamp - p.timestamp + 1
+			if len(stack) > 0 {
+				stack[len(stack)-1].timestamp = timestamp + 1
+			}
+		}
+	}
+	return res
+}
+
 // 728.Self Dividing Numbers
 func selfDividingNumbers(left, right int) (ans []int) {
 	for i := left; i <= right; i++ {

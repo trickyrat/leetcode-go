@@ -117,6 +117,14 @@ func TestFindRestaurant(t *testing.T) {
 	assert.Equal(t, []string{"Shogun"}, findRestaurant([]string{"Shogun", "Tapioca Express", "Burger King", "KFC"}, []string{"KFC", "Shogun", "Burger King"}))
 }
 
+func TestExclusiveTime(t *testing.T) {
+	assert.Equal(t, []int{3, 4}, exclusiveTime(2, []string{"0:start:0", "1:start:2", "1:end:5", "0:end:6"}))
+	assert.Equal(t, []int{8}, exclusiveTime(1, []string{"0:start:0", "0:start:2", "0:end:5", "0:start:6", "0:end:6", "0:end:7"}))
+	assert.Equal(t, []int{7, 1}, exclusiveTime(2, []string{"0:start:0", "0:start:2", "0:end:5", "1:start:6", "1:end:6", "0:end:7"}))
+	assert.Equal(t, []int{8, 1}, exclusiveTime(2, []string{"0:start:0", "0:start:2", "0:end:5", "1:start:7", "1:end:7", "0:end:8"}))
+	assert.Equal(t, []int{1}, exclusiveTime(1, []string{"0:start:0", "0:end:0"}))
+}
+
 func TestSelfDividingNumbers(t *testing.T) {
 	assert.Equal(t, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22}, selfDividingNumbers(1, 22))
 	assert.Equal(t, []int{48, 55, 66, 77}, selfDividingNumbers(48, 85))
