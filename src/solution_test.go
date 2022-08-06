@@ -2,82 +2,8 @@ package main
 
 import (
 	"github.com/stretchr/testify/assert"
-	"strconv"
-	"strings"
 	"testing"
 )
-
-func createListNode(nums []int) *ListNode {
-	head := &ListNode{Val: nums[0]}
-	dummyHead := head
-	for i := 1; i < len(nums); i++ {
-		dummyHead.Next = &ListNode{Val: nums[i]}
-		dummyHead = dummyHead.Next
-	}
-	return head
-}
-
-func createTreeNodeWithBFS(data string) *TreeNode {
-	sp := strings.Split(data, ",")
-	if sp[0] == "null" {
-		return nil
-	}
-	val, _ := strconv.Atoi(sp[0])
-	root := &TreeNode{val, nil, nil}
-	var queue []*TreeNode
-	queue = append(queue, root)
-	index := 1
-	for index < len(sp) {
-		var node = queue[0]
-		queue = queue[1:]
-		leftStr := sp[index]
-		rightStr := sp[index+1]
-		if leftStr != "null" {
-			leftVal, _ := strconv.Atoi(leftStr)
-			leftNode := &TreeNode{leftVal, nil, nil}
-			if node != nil {
-				node.Left = leftNode
-			}
-			queue = append(queue, leftNode)
-		}
-		if rightStr != "null" {
-			rightVal, _ := strconv.Atoi(rightStr)
-			rightNode := &TreeNode{rightVal, nil, nil}
-			if node != nil {
-				node.Right = rightNode
-			}
-			queue = append(queue, rightNode)
-		}
-		index += 2
-	}
-	return root
-}
-
-func createTreeNodeWithDFS(data string) *TreeNode {
-	sp := strings.Split(data, ",")
-	var build func() *TreeNode
-	build = func() *TreeNode {
-		if sp[0] == "null" {
-			sp = sp[1:]
-			return nil
-		}
-		val, _ := strconv.Atoi(sp[0])
-		sp = sp[1:]
-		return &TreeNode{val, build(), build()}
-	}
-	return build()
-}
-
-func (h *ListNode) toString() string {
-	var res = "["
-	res += strconv.Itoa(h.Val)
-	for h.Next != nil {
-		res += strconv.Itoa(h.Val)
-		h = h.Next
-	}
-	res += "]"
-	return res
-}
 
 func TestTwoSum(t *testing.T) {
 	assert.Equal(t, []int{0, 1}, twoSum([]int{2, 7, 11, 15}, 9))
