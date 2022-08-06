@@ -98,6 +98,15 @@ func testArrayAndReturnInt(t *testing.T, testFunction func([]int) int, input []i
 	}
 }
 
+func testStringArrayAndReturnStringArray(t *testing.T, testFunction func([]string) []string, input []string, expected []string) {
+	actual := testFunction(input)
+	for index, val := range actual {
+		if val != expected[index] {
+			t.Errorf("%s(%v) = %v; expected %v", nameof(testFunction), input, actual, expected)
+		}
+	}
+}
+
 func testArrayIntAndReturnInt(t *testing.T, testFunction func(nums []int, k int) int, input []int, k, expected int) {
 	actual := testFunction(input, k)
 	if actual != expected {
@@ -471,6 +480,12 @@ func TestMinSubsequence(t *testing.T) {
 	testArrayAndReturnArray(t, minSubsequence, []int{4, 3, 10, 9, 8}, []int{10, 9})
 	testArrayAndReturnArray(t, minSubsequence, []int{4, 4, 7, 6, 7}, []int{7, 7, 6})
 	testArrayAndReturnArray(t, minSubsequence, []int{6}, []int{6})
+}
+
+func TestStringMatching(t *testing.T) {
+	testStringArrayAndReturnStringArray(t, stringMatching, []string{"mass", "as", "hero", "superhero"}, []string{"as", "hero"})
+	testStringArrayAndReturnStringArray(t, stringMatching, []string{"leetcode", "et", "code"}, []string{"et", "code"})
+	testStringArrayAndReturnStringArray(t, stringMatching, []string{"blue", "green", "bu"}, []string{})
 }
 
 func TestFindTheWinner(t *testing.T) {

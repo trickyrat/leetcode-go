@@ -507,6 +507,21 @@ func minSubsequence(nums []int) []int {
 	}
 }
 
+/*
+1408. String Matching in an Array
+*/
+func stringMatching(words []string) (res []string) {
+	for i, x := range words {
+		for j, y := range words {
+			if j != i && strings.Contains(y, x) {
+				res = append(res, x)
+				break
+			}
+		}
+	}
+	return
+}
+
 // 1823. Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
