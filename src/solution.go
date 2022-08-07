@@ -3,12 +3,13 @@ package main
 import (
 	"fmt"
 	"math"
+	"sort"
 	"strconv"
 	"strings"
 	"unicode"
 )
 
-// 1.两数之和
+// 1.Two Sum
 func twoSum(nums []int, target int) []int {
 	hashTable := map[int]int{}
 	for i, x := range nums {
@@ -20,7 +21,7 @@ func twoSum(nums []int, target int) []int {
 	return nil
 }
 
-// 2.两数相加
+// 2.Add Two Numbers
 func addTwoNumbers(l1, l2 *ListNode) (head *ListNode) {
 	var tail *ListNode
 	carry := 0
@@ -50,7 +51,7 @@ func addTwoNumbers(l1, l2 *ListNode) (head *ListNode) {
 	return
 }
 
-// 6.z字形转换
+// 6.Zigzag Conversion
 func zconvert(s string, numRows int) string {
 	n, r := len(s), numRows
 	if r == 1 || r >= n {
@@ -69,7 +70,7 @@ func zconvert(s string, numRows int) string {
 	return string(ans)
 }
 
-// 7.整数反转
+// 7.Reverse Integer
 func reverseInt(x int) (res int) {
 	for x != 0 {
 		if res < math.MinInt32/10 || res > math.MaxInt32/10 {
@@ -82,9 +83,9 @@ func reverseInt(x int) (res int) {
 	return
 }
 
-// 113.路径总和
+// 113.Path Sum II
 func pathSum(root *TreeNode, targetSum int) (ans [][]int) {
-	path := []int{}
+	var path []int
 	var dfs func(*TreeNode, int)
 	dfs = func(node *TreeNode, left int) {
 		if node == nil {
@@ -104,9 +105,9 @@ func pathSum(root *TreeNode, targetSum int) (ans [][]int) {
 	return
 }
 
-// 144.二叉树的前序遍历
+// 144.Binary Tree Preorder Traversal
 func preorderTraversal(root *TreeNode) (vals []int) {
-	stack := []*TreeNode{}
+	var stack []*TreeNode
 	node := root
 	for node != nil || len(stack) > 0 {
 		for node != nil {
@@ -138,7 +139,7 @@ func isPowerOfTwo(n int) bool {
 	return n > 0 && (n&(n-1)) == 0
 }
 
-// 206.反转链表
+// 206.Reverse Linked List
 func reverseList(head *ListNode) *ListNode {
 	var prev *ListNode
 	curr := head
@@ -151,26 +152,7 @@ func reverseList(head *ListNode) *ListNode {
 	return prev
 }
 
-const mask1, mask2 = 1 << 7, 1<<7 | 1<<6
-
-func getBytes(num int) int {
-	if num&mask1 == 0 {
-		return 1
-	}
-	n := 0
-	for mask := mask1; num&mask != 0; mask >>= 1 {
-		n++
-		if n > 4 {
-			return -1
-		}
-	}
-	if n >= 2 {
-		return n
-	}
-	return -1
-}
-
-// 357. 统计各位数字都不同的数字个数
+// 357.Count Numbers with Unique Digits
 func countNumbersWithUniqueDigits(n int) int {
 	if n == 0 {
 		return 1
@@ -186,7 +168,7 @@ func countNumbersWithUniqueDigits(n int) int {
 	return ans
 }
 
-//386. 字典序排数
+// 386.Lexicographical Numbers
 func lexicalOrder(n int) []int {
 	ret := make([]int, n)
 	num := 1
@@ -204,7 +186,7 @@ func lexicalOrder(n int) []int {
 	return ret
 }
 
-// 393.UTF-8编码验证
+// 393.UTF-8 Validation
 func validUtf8(data []int) bool {
 	for index, m := 0, len(data); index < m; {
 		n := getBytes(data[index])
@@ -221,7 +203,25 @@ func validUtf8(data []int) bool {
 	return true
 }
 
-// 504.七进制数
+// 467.Unique Substrings in Wraparound String
+func findSubstringWraparoundString(p string) (ans int) {
+	dp := [26]int{}
+	k := 0
+	for i, ch := range p {
+		if i > 0 && (byte(ch)-p[i-1]+26)%26 == 1 {
+			k++
+		} else {
+			k = 1
+		}
+		dp[ch-'a'] = max(dp[ch-'a'], k)
+	}
+	for _, v := range dp {
+		ans += v
+	}
+	return
+}
+
+// 504.Base 7
 func convertToBase7(num int) string {
 	if num == 0 {
 		return "0"
@@ -230,7 +230,7 @@ func convertToBase7(num int) string {
 	if negative {
 		num = -num
 	}
-	s := []byte{}
+	var s []byte
 	for num > 0 {
 		s = append(s, '0'+byte(num%7))
 		num /= 7
@@ -245,7 +245,7 @@ func convertToBase7(num int) string {
 
 }
 
-// 521.最长特殊序列 Ⅰ
+// 521.Longest Uncommon Subsequence I
 func findLUSLength(a, b string) (ans int) {
 	if a == b {
 		ans = -1
@@ -255,14 +255,14 @@ func findLUSLength(a, b string) (ans int) {
 	return
 }
 
-// 537.复数的乘法
+// 537.Complex Number Multiplication
 func complexNumberMultiply(num1, num2 string) string {
 	real1, imag1 := parseComplexNumber(num1)
 	real2, imag2 := parseComplexNumber(num2)
 	return fmt.Sprintf("%d+%di", real1*real2-imag1*imag2, real1*imag2+imag1*real2)
 }
 
-// 553.最优除法
+// 553.Optimal Division
 func optimalDivision(nums []int) string {
 	n := len(nums)
 	if n == 1 {
@@ -281,14 +281,7 @@ func optimalDivision(nums []int) string {
 	return ans.String()
 }
 
-func parseComplexNumber(num string) (real, imag int) {
-	i := strings.IndexByte(num, '+')
-	real, _ = strconv.Atoi(num[:i])
-	imag, _ = strconv.Atoi(num[i+1 : len(num)-1])
-	return
-}
-
-// 589.N叉树的前序遍历
+// 589.N-ary Tree Preorder Traversal
 func preorder(root *Node) (ans []int) {
 	var dfs func(*Node)
 	dfs = func(node *Node) {
@@ -304,7 +297,7 @@ func preorder(root *Node) (ans []int) {
 	return
 }
 
-// 590.N叉树的后序遍历
+// 590.N-ary Tree Postorder Traversal
 func postorder(root *Node) (ans []int) {
 	var dfs func(*Node)
 	dfs = func(node *Node) {
@@ -320,7 +313,7 @@ func postorder(root *Node) (ans []int) {
 	return
 }
 
-// 599.两个列表的最小的索引和
+// 599.Minimum Index Sum of Two Lists
 func findRestaurant(list1, list2 []string) (ans []string) {
 	index := make(map[string]int, len(list1))
 	for i, s := range list1 {
@@ -340,7 +333,35 @@ func findRestaurant(list1, list2 []string) (ans []string) {
 	return
 }
 
-// 728.自除数
+// 636. Exclusive Time of Functions
+func exclusiveTime(n int, logs []string) []int {
+	res := make([]int, n)
+	type pair struct {
+		index, timestamp int
+	}
+	var stack []pair
+	for _, log := range logs {
+		sp := strings.Split(log, ":")
+		index, _ := strconv.Atoi(sp[0])
+		timestamp, _ := strconv.Atoi(sp[2])
+		if sp[1][0] == 's' { // 0:start:1
+			if len(stack) > 0 {
+				res[stack[len(stack)-1].index] += timestamp - stack[len(stack)-1].timestamp
+			}
+			stack = append(stack, pair{index, timestamp})
+		} else { // 0:end:1
+			p := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			res[p.index] += timestamp - p.timestamp + 1
+			if len(stack) > 0 {
+				stack[len(stack)-1].timestamp = timestamp + 1
+			}
+		}
+	}
+	return res
+}
+
+// 728.Self Dividing Numbers
 func selfDividingNumbers(left, right int) (ans []int) {
 	for i := left; i <= right; i++ {
 		if isSelfDividing(i) {
@@ -349,16 +370,8 @@ func selfDividingNumbers(left, right int) (ans []int) {
 	}
 	return
 }
-func isSelfDividing(num int) bool {
-	for x := num; x > 0; x /= 10 {
-		if d := x % 10; d == 0 || num%d != 0 {
-			return false
-		}
-	}
-	return true
-}
 
-// 804.唯一摩尔斯密码词
+// 804.Unique Morse Code Words
 func uniqueMorseRepresentations(words []string) int {
 	var morse = []string{
 		".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
@@ -377,14 +390,14 @@ func uniqueMorseRepresentations(words []string) int {
 	return len(set)
 }
 
-// 806. 写字符串需要的行数
+// 806.Number of Lines To Write String
 func numberOfLines(widths []int, s string) (ans []int) {
-	const MAX_WIDTH = 100
+	const MaxWidth = 100
 	lines, width := 1, 0
 	for _, ch := range s {
 		need := widths[ch-'a']
 		width += need
-		if width > MAX_WIDTH {
+		if width > MaxWidth {
 			width = need
 			lines++
 		}
@@ -393,7 +406,7 @@ func numberOfLines(widths []int, s string) (ans []int) {
 	return
 }
 
-// 819. 最常见的单词
+// 819.Most Common Word
 func mostCommonWord(paragraph string, banned []string) string {
 	ban := map[string]bool{}
 	for _, s := range banned {
@@ -422,7 +435,25 @@ func mostCommonWord(paragraph string, banned []string) string {
 	return ""
 }
 
-// 917.仅仅反转字母
+// 883.Projection Area of 3D Shapes
+func projectionArea(grid [][]int) int {
+	var xyArea, yzArea, zxArea int
+	for i, row := range grid {
+		yzHeight, zxHeight := 0, 0
+		for j, v := range row {
+			if v > 0 {
+				xyArea++
+			}
+			yzHeight = max(yzHeight, grid[j][i])
+			zxHeight = max(zxHeight, v)
+		}
+		yzArea += yzHeight
+		zxArea += zxHeight
+	}
+	return xyArea + yzArea + zxArea
+}
+
+// 917.Reverse Only Letters
 func reverseOnlyLetters(s string) string {
 	ans := []byte(s)
 	left, right := 0, len(s)-1
@@ -443,7 +474,56 @@ func reverseOnlyLetters(s string) string {
 	return string(ans)
 }
 
-// 1991.寻找数组的中间位置
+// 961.N-Repeated Element in Size 2N Array
+func repeatedNTimes(nums []int) int {
+	found := map[int]bool{}
+	for _, num := range nums {
+		if found[num] {
+			return num
+		}
+		found[num] = true
+	}
+	return -1
+}
+
+// 1403.Minimum Subsequence in Non-Increasing Order
+func minSubsequence(nums []int) []int {
+	sort.Sort(sort.Reverse(sort.IntSlice(nums)))
+	total := 0
+	for _, num := range nums {
+		total += num
+	}
+	for i, curr := 0, 0; ; i++ {
+		curr += nums[i]
+		if total-curr < curr {
+			return nums[:i+1]
+		}
+	}
+}
+
+// 1408.String Matching in an Array
+func stringMatching(words []string) (res []string) {
+	for i, x := range words {
+		for j, y := range words {
+			if j != i && strings.Contains(y, x) {
+				res = append(res, x)
+				break
+			}
+		}
+	}
+	return
+}
+
+// 1823.Find the Winner of the Circular Game
+func findTheWinner(n, k int) int {
+	winner := 1
+	for i := 2; i <= n; i++ {
+		winner = (winner+k-1)%i + 1
+	}
+	return winner
+}
+
+// 1991.Find the Middle Index in Array
 func pivotIndex(nums []int) int {
 	total := 0
 	for _, num := range nums {
@@ -459,7 +539,7 @@ func pivotIndex(nums []int) int {
 	return -1
 }
 
-// 2006.差值的绝对值为k的数对数目
+// 2006.Count Number of Pairs With Absolute Difference K
 func countKDifference(nums []int, k int) (ans int) {
 	cnt := map[int]int{}
 	for _, num := range nums {
@@ -469,7 +549,7 @@ func countKDifference(nums []int, k int) (ans int) {
 	return
 }
 
-// 2016.增量元素之间的最大差值
+// 2016.Maximum Difference Between Increasing Elements
 func maximumDifference(nums []int) int {
 	ans := -1
 	for i, preMin := 1, nums[0]; i < len(nums); i++ {
@@ -482,14 +562,7 @@ func maximumDifference(nums []int) int {
 	return ans
 }
 
-func max(a, b int) int {
-	if b > a {
-		return b
-	}
-	return a
-}
-
-// 2044.统计按位或能得到最大值的子集数目
+// 2044.Count Number of Maximum Bitwise-OR Subsets
 func countMaxOrSubsets(nums []int) (ans int) {
 	maxOr := 0
 	var dfs func(int, int)
@@ -510,7 +583,7 @@ func countMaxOrSubsets(nums []int) (ans int) {
 	return
 }
 
-// 2055.蜡烛之间的盘子
+// 2055.Plates Between Candles
 func platesBetweenCandles(s string, queries [][]int) []int {
 	n := len(s)
 	preSum := make([]int, n)
