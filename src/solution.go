@@ -347,7 +347,6 @@ func exclusiveTime(n int, logs []string) []int {
 		if sp[1][0] == 's' { // 0:start:1
 			if len(stack) > 0 {
 				res[stack[len(stack)-1].index] += timestamp - stack[len(stack)-1].timestamp
-				stack[len(stack)-1].timestamp = timestamp
 			}
 			stack = append(stack, pair{index, timestamp})
 		} else { // 0:end:1
