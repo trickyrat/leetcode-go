@@ -106,12 +106,12 @@ func pathSum(root *TreeNode, targetSum int) (ans [][]int) {
 }
 
 // 144.Binary Tree Preorder Traversal
-func preorderTraversal(root *TreeNode) (vals []int) {
+func preorderTraversal(root *TreeNode) (res []int) {
 	var stack []*TreeNode
 	node := root
 	for node != nil || len(stack) > 0 {
 		for node != nil {
-			vals = append(vals, node.Val)
+			res = append(res, node.Val)
 			stack = append(stack, node)
 			node = node.Left
 		}

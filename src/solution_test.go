@@ -47,6 +47,12 @@ func TestPathSum(t *testing.T) {
 	assert.Equal(t, [][]int(nil), pathSum(createTreeNodeWithBFS("1,2,3"), 5))
 }
 
+func TestPreorderTraversal(t *testing.T) {
+	assert.Equal(t, []int{1, 2, 3}, preorderTraversal(createTreeNodeWithBFS("1,null,2,3")))
+	assert.Equal(t, []int(nil), preorderTraversal(createTreeNodeWithBFS("")))
+	assert.Equal(t, []int{1}, preorderTraversal(createTreeNodeWithBFS("1")))
+}
+
 func TestHammingWeight(t *testing.T) {
 	assert.Equal(t, 3, hammingWeight(00000000000000000000000000001011))
 	assert.Equal(t, 1, hammingWeight(00000000000000000000000010000000))
@@ -110,6 +116,90 @@ func TestReverseOnlyLetters(t *testing.T) {
 
 func TestOptimalDivision(t *testing.T) {
 	assert.Equal(t, "1000/(100/10/2)", optimalDivision([]int{1000, 100, 10, 2}))
+}
+
+func TestPreorder(t *testing.T) {
+	var root1 = &Node{1, []*Node{}}
+	var root1ChildNode3 = &Node{3, []*Node{}}
+	root1ChildNode3.Children = append(root1ChildNode3.Children, &Node{5, []*Node{}})
+	root1ChildNode3.Children = append(root1ChildNode3.Children, &Node{6, []*Node{}})
+	root1.Children = append(root1.Children, root1ChildNode3)
+	root1.Children = append(root1.Children, &Node{2, []*Node{}})
+	root1.Children = append(root1.Children, &Node{4, []*Node{}})
+
+	var root2 = &Node{1, []*Node{}}
+
+	root2.Children = append(root2.Children, &Node{2, []*Node{}})
+
+	var root2ChildNode3 = &Node{3, []*Node{}}
+	var root2ChildNode7 = &Node{7, []*Node{}}
+	var root2ChildNode11 = &Node{11, []*Node{}}
+	root2ChildNode11.Children = append(root2ChildNode11.Children, &Node{14, []*Node{}})
+	root2ChildNode7.Children = append(root2ChildNode7.Children, root2ChildNode11)
+	root2ChildNode3.Children = append(root2ChildNode3.Children, &Node{6, []*Node{}})
+	root2ChildNode3.Children = append(root2ChildNode3.Children, root2ChildNode7)
+
+	var root2ChildNode8 = &Node{8, []*Node{}}
+	root2ChildNode8.Children = append(root2ChildNode8.Children, &Node{12, []*Node{}})
+
+	var root2ChildNode9 = &Node{9, []*Node{}}
+	root2ChildNode9.Children = append(root2ChildNode9.Children, &Node{13, []*Node{}})
+
+	var root2ChildNode4 = &Node{4, []*Node{}}
+	root2ChildNode4.Children = append(root2ChildNode4.Children, root2ChildNode8)
+
+	var root2ChildNode5 = &Node{5, []*Node{}}
+	root2ChildNode5.Children = append(root2ChildNode5.Children, root2ChildNode9)
+	root2ChildNode5.Children = append(root2ChildNode5.Children, &Node{10, []*Node{}})
+
+	root2.Children = append(root2.Children, root2ChildNode3)
+	root2.Children = append(root2.Children, root2ChildNode4)
+	root2.Children = append(root2.Children, root2ChildNode5)
+
+	assert.Equal(t, []int{1, 3, 5, 6, 2, 4}, preorder(root1))
+	assert.Equal(t, []int{1, 2, 3, 6, 7, 11, 14, 4, 8, 12, 5, 9, 13, 10}, preorder(root2))
+}
+
+func TestPostorder(t *testing.T) {
+	var root1 = &Node{1, []*Node{}}
+	var root1ChildNode3 = &Node{3, []*Node{}}
+	root1ChildNode3.Children = append(root1ChildNode3.Children, &Node{5, []*Node{}})
+	root1ChildNode3.Children = append(root1ChildNode3.Children, &Node{6, []*Node{}})
+	root1.Children = append(root1.Children, root1ChildNode3)
+	root1.Children = append(root1.Children, &Node{2, []*Node{}})
+	root1.Children = append(root1.Children, &Node{4, []*Node{}})
+
+	var root2 = &Node{1, []*Node{}}
+
+	root2.Children = append(root2.Children, &Node{2, []*Node{}})
+
+	var root2ChildNode3 = &Node{3, []*Node{}}
+	var root2ChildNode7 = &Node{7, []*Node{}}
+	var root2ChildNode11 = &Node{11, []*Node{}}
+	root2ChildNode11.Children = append(root2ChildNode11.Children, &Node{14, []*Node{}})
+	root2ChildNode7.Children = append(root2ChildNode7.Children, root2ChildNode11)
+	root2ChildNode3.Children = append(root2ChildNode3.Children, &Node{6, []*Node{}})
+	root2ChildNode3.Children = append(root2ChildNode3.Children, root2ChildNode7)
+
+	var root2ChildNode8 = &Node{8, []*Node{}}
+	root2ChildNode8.Children = append(root2ChildNode8.Children, &Node{12, []*Node{}})
+
+	var root2ChildNode9 = &Node{9, []*Node{}}
+	root2ChildNode9.Children = append(root2ChildNode9.Children, &Node{13, []*Node{}})
+
+	var root2ChildNode4 = &Node{4, []*Node{}}
+	root2ChildNode4.Children = append(root2ChildNode4.Children, root2ChildNode8)
+
+	var root2ChildNode5 = &Node{5, []*Node{}}
+	root2ChildNode5.Children = append(root2ChildNode5.Children, root2ChildNode9)
+	root2ChildNode5.Children = append(root2ChildNode5.Children, &Node{10, []*Node{}})
+
+	root2.Children = append(root2.Children, root2ChildNode3)
+	root2.Children = append(root2.Children, root2ChildNode4)
+	root2.Children = append(root2.Children, root2ChildNode5)
+
+	assert.Equal(t, []int{5, 6, 3, 2, 4, 1}, postorder(root1))
+	assert.Equal(t, []int{2, 6, 14, 11, 7, 3, 12, 8, 4, 13, 9, 10, 5, 1}, postorder(root2))
 }
 
 func TestFindRestaurant(t *testing.T) {

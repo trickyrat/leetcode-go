@@ -18,8 +18,12 @@ func createListNode(nums []int) *ListNode {
 }
 
 func createTreeNodeWithBFS(data string) *TreeNode {
+	if len(data) == 0 {
+		return nil
+	}
 	sp := strings.Split(data, ",")
-	if sp[0] == "null" {
+	n := len(sp)
+	if sp[0] == "null" || n == 0 {
 		return nil
 	}
 	val, _ := strconv.Atoi(sp[0])
@@ -27,21 +31,23 @@ func createTreeNodeWithBFS(data string) *TreeNode {
 	var queue []*TreeNode
 	queue = append(queue, root)
 	index := 1
-	for index < len(sp) {
+	for index < n {
 		var node = queue[0]
 		queue = queue[1:]
-		leftStr := sp[index]
-		rightStr := sp[index+1]
-		if leftStr != "null" {
-			leftVal, _ := strconv.Atoi(leftStr)
+		if index > len(sp)-1 || sp[index] == "null" {
+			node.Left = nil
+		} else {
+			leftVal, _ := strconv.Atoi(sp[index])
 			leftNode := &TreeNode{leftVal, nil, nil}
 			if node != nil {
 				node.Left = leftNode
 			}
 			queue = append(queue, leftNode)
 		}
-		if rightStr != "null" {
-			rightVal, _ := strconv.Atoi(rightStr)
+		if index+1 > len(sp)-1 || sp[index+1] == "null" {
+			node.Right = nil
+		} else {
+			rightVal, _ := strconv.Atoi(sp[index+1])
 			rightNode := &TreeNode{rightVal, nil, nil}
 			if node != nil {
 				node.Right = rightNode
