@@ -514,6 +514,22 @@ func stringMatching(words []string) (res []string) {
 	return
 }
 
+// 1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence
+func isPrefixOfWord(sentence string, searchWord string) int {
+	for i, index, n := 0, 1, len(sentence); i < n; i++ {
+		start := i
+		for i < n && sentence[i] != ' ' {
+			i++
+		}
+		end := i
+		if strings.HasPrefix(sentence[start:end], searchWord) {
+			return index
+		}
+		index++
+	}
+	return -1
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
