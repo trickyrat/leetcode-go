@@ -216,6 +216,11 @@ func TestExclusiveTime(t *testing.T) {
 	assert.Equal(t, []int{1}, exclusiveTime(1, []string{"0:start:0", "0:end:0"}))
 }
 
+func TestPrintTree(t *testing.T) {
+	assert.Equal(t, [][]string{[]string{"", "1", ""}, []string{"2", "", ""}}, printTree(datastructures.CreateTreeNodeWithBFS("1,2")))
+	assert.Equal(t, [][]string{[]string{"", "", "", "1", "", "", ""}, []string{"", "2", "", "", "", "3", ""}, []string{"", "", "4", "", "", "", ""}}, printTree(datastructures.CreateTreeNodeWithBFS("1,2,3,null,4")))
+}
+
 func TestSelfDividingNumbers(t *testing.T) {
 	assert.Equal(t, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22}, selfDividingNumbers(1, 22))
 	assert.Equal(t, []int{48, 55, 66, 77}, selfDividingNumbers(48, 85))

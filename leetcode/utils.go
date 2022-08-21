@@ -1,6 +1,7 @@
 package leetcode
 
 import (
+	"datastructures"
 	"strconv"
 	"strings"
 )
@@ -45,4 +46,23 @@ func getBytes(num int) int {
 		return n
 	}
 	return -1
+}
+
+func calculateDepth(root *datastructures.TreeNode) int {
+	height := -1
+	queue := []*datastructures.TreeNode{root}
+	for len(queue) > 0 {
+		height++
+		temp := queue
+		queue = nil
+		for _, node := range temp {
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+		}
+	}
+	return height
 }

@@ -362,6 +362,35 @@ func exclusiveTime(n int, logs []string) []int {
 	return res
 }
 
+// 655. Print Binary Tree
+func printTree(root *datastructures.TreeNode) [][]string {
+	height := calculateDepth(root)
+	m := height + 1
+	n := 1<<m - 1
+	res := make([][]string, m)
+	for i := range res {
+		res[i] = make([]string, n)
+	}
+	type entry struct {
+		node        *datastructures.TreeNode
+		row, column int
+	}
+	queue := []entry{{root, 0, (n - 1) / 2}}
+	for len(queue) > 0 {
+		ele := queue[0]
+		queue = queue[1:]
+		node, row, column := ele.node, ele.row, ele.column
+		res[row][column] = strconv.Itoa(node.Val)
+		if node.Left != nil {
+			queue = append(queue, entry{node.Left, row + 1, column - 1<<(height-row-1)})
+		}
+		if node.Right != nil {
+			queue = append(queue, entry{node.Right, row + 1, column + 1<<(height-row-1)})
+		}
+	}
+	return res
+}
+
 // 728.Self Dividing Numbers
 func selfDividingNumbers(left, right int) (ans []int) {
 	for i := left; i <= right; i++ {
