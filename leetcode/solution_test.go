@@ -13,9 +13,9 @@ func TestTwoSum(t *testing.T) {
 }
 
 func TestAddTwoNumbers(t *testing.T) {
-	assert.Equal(t, addTwoNumbers(createListNode([]int{2, 4, 3}), createListNode([]int{5, 6, 4})), createListNode([]int{7, 0, 8}))
-	assert.Equal(t, addTwoNumbers(createListNode([]int{0}), createListNode([]int{0})), createListNode([]int{0}))
-	assert.Equal(t, addTwoNumbers(createListNode([]int{9, 9, 9, 9, 9, 9, 9}), createListNode([]int{9, 9, 9, 9})), createListNode([]int{8, 9, 9, 9, 0, 0, 0, 1}))
+	assert.Equal(t, addTwoNumbers(datastructures.CreateListNode([]int{2, 4, 3}), datastructures.CreateListNode([]int{5, 6, 4})), datastructures.CreateListNode([]int{7, 0, 8}))
+	assert.Equal(t, addTwoNumbers(datastructures.CreateListNode([]int{0}), datastructures.CreateListNode([]int{0})), datastructures.CreateListNode([]int{0}))
+	assert.Equal(t, addTwoNumbers(datastructures.CreateListNode([]int{9, 9, 9, 9, 9, 9, 9}), datastructures.CreateListNode([]int{9, 9, 9, 9})), datastructures.CreateListNode([]int{8, 9, 9, 9, 0, 0, 0, 1}))
 }
 
 func TestZConvert(t *testing.T) {
@@ -44,14 +44,14 @@ func TestPathSum(t *testing.T) {
 	var values [][]int
 	values = append(values, row1)
 	values = append(values, row2)
-	assert.Equal(t, values, pathSum(createTreeNodeWithBFS("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22))
-	assert.Equal(t, [][]int(nil), pathSum(createTreeNodeWithBFS("1,2,3"), 5))
+	assert.Equal(t, values, pathSum(datastructures.CreateTreeNodeWithBFS("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22))
+	assert.Equal(t, [][]int(nil), pathSum(datastructures.CreateTreeNodeWithBFS("1,2,3"), 5))
 }
 
 func TestPreorderTraversal(t *testing.T) {
-	assert.Equal(t, []int{1, 2, 3}, preorderTraversal(createTreeNodeWithBFS("1,null,2,3")))
-	assert.Equal(t, []int(nil), preorderTraversal(createTreeNodeWithBFS("")))
-	assert.Equal(t, []int{1}, preorderTraversal(createTreeNodeWithBFS("1")))
+	assert.Equal(t, []int{1, 2, 3}, preorderTraversal(datastructures.CreateTreeNodeWithBFS("1,null,2,3")))
+	assert.Equal(t, []int(nil), preorderTraversal(datastructures.CreateTreeNodeWithBFS("")))
+	assert.Equal(t, []int{1}, preorderTraversal(datastructures.CreateTreeNodeWithBFS("1")))
 }
 
 func TestHammingWeight(t *testing.T) {
@@ -68,8 +68,8 @@ func TestPowerOfTwo(t *testing.T) {
 }
 
 func TestReverseListNode(t *testing.T) {
-	assert.Equal(t, createListNode([]int{5, 4, 3, 2, 1}), reverseList(createListNode([]int{1, 2, 3, 4, 5})))
-	assert.Equal(t, createListNode([]int{2, 1}), reverseList(createListNode([]int{1, 2})))
+	assert.Equal(t, datastructures.CreateListNode([]int{5, 4, 3, 2, 1}), reverseList(datastructures.CreateListNode([]int{1, 2, 3, 4, 5})))
+	assert.Equal(t, datastructures.CreateListNode([]int{2, 1}), reverseList(datastructures.CreateListNode([]int{1, 2})))
 }
 
 func TestCountNumbersWithUniqueDigits(t *testing.T) {

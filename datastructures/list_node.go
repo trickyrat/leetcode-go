@@ -1,19 +1,21 @@
 package datastructures
 
-import "strconv"
+import (
+	"strconv"
+	"strings"
+)
 
 type ListNode struct {
 	Val  int
 	Next *ListNode
 }
 
-func (h *ListNode) toString() string {
-	var res = "["
-	res += strconv.Itoa(h.Val)
-	for h.Next != nil {
-		res += strconv.Itoa(h.Val)
-		h = h.Next
+func (h *ListNode) ToString() string {
+	var res []string
+	var dummy = &ListNode{Val: 0, Next: h}
+	for dummy.Next != nil {
+		res = append(res, strconv.Itoa(dummy.Next.Val))
+		dummy = dummy.Next
 	}
-	res += "]"
-	return res
+	return strings.Join(res, "->")
 }
