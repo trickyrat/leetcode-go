@@ -266,6 +266,17 @@ func TestStringMatching(t *testing.T) {
 	assert.Equal(t, []string(nil), stringMatching([]string{"blue", "green", "bu"}))
 }
 
+func TestBusyStudent(t *testing.T) {
+	assert.Equal(t, 1, busyStudent([]int{1, 2, 3}, []int{3, 2, 7}, 4))
+	assert.Equal(t, 1, busyStudent([]int{4}, []int{4}, 4))
+}
+
+func TestIsPrefixOfWord(t *testing.T) {
+	assert.Equal(t, 4, isPrefixOfWord("i love eating burger", "burg"))
+	assert.Equal(t, 2, isPrefixOfWord("this problem is an easy problem", "pro"))
+	assert.Equal(t, -1, isPrefixOfWord("i am tired", "you"))
+}
+
 func TestFindTheWinner(t *testing.T) {
 	assert.Equal(t, 3, findTheWinner(5, 2))
 	assert.Equal(t, 1, findTheWinner(6, 5))

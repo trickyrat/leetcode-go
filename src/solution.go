@@ -514,6 +514,16 @@ func stringMatching(words []string) (res []string) {
 	return
 }
 
+// 1450. Number of Students Doing Homework at a Given Time
+func busyStudent(startTime []int, endTime []int, queryTime int) (res int) {
+	for i, s := range startTime {
+		if s <= queryTime && queryTime <= endTime[i] {
+			res++
+		}
+	}
+	return
+}
+
 // 1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence
 func isPrefixOfWord(sentence string, searchWord string) int {
 	for i, index, n := 0, 1, len(sentence); i < n; i++ {
