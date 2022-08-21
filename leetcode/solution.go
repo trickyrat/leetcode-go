@@ -1,6 +1,7 @@
-package main
+package leetcode
 
 import (
+	"datastructures"
 	"fmt"
 	"math"
 	"sort"
@@ -22,8 +23,8 @@ func twoSum(nums []int, target int) []int {
 }
 
 // 2.Add Two Numbers
-func addTwoNumbers(l1, l2 *ListNode) (head *ListNode) {
-	var tail *ListNode
+func addTwoNumbers(l1, l2 *datastructures.ListNode) (head *datastructures.ListNode) {
+	var tail *datastructures.ListNode
 	carry := 0
 	for l1 != nil || l2 != nil {
 		n1, n2 := 0, 0
@@ -38,15 +39,15 @@ func addTwoNumbers(l1, l2 *ListNode) (head *ListNode) {
 		sum := n1 + n2 + carry
 		sum, carry = sum%10, sum/10
 		if head == nil {
-			head = &ListNode{Val: sum}
+			head = &datastructures.ListNode{Val: sum}
 			tail = head
 		} else {
-			tail.Next = &ListNode{Val: sum}
+			tail.Next = &datastructures.ListNode{Val: sum}
 			tail = tail.Next
 		}
 	}
 	if carry > 0 {
-		tail.Next = &ListNode{Val: carry}
+		tail.Next = &datastructures.ListNode{Val: carry}
 	}
 	return
 }
@@ -84,10 +85,10 @@ func reverseInt(x int) (res int) {
 }
 
 // 113.Path Sum II
-func pathSum(root *TreeNode, targetSum int) (ans [][]int) {
+func pathSum(root *datastructures.TreeNode, targetSum int) (ans [][]int) {
 	var path []int
-	var dfs func(*TreeNode, int)
-	dfs = func(node *TreeNode, left int) {
+	var dfs func(*datastructures.TreeNode, int)
+	dfs = func(node *datastructures.TreeNode, left int) {
 		if node == nil {
 			return
 		}
@@ -106,8 +107,8 @@ func pathSum(root *TreeNode, targetSum int) (ans [][]int) {
 }
 
 // 144.Binary Tree Preorder Traversal
-func preorderTraversal(root *TreeNode) (res []int) {
-	var stack []*TreeNode
+func preorderTraversal(root *datastructures.TreeNode) (res []int) {
+	var stack []*datastructures.TreeNode
 	node := root
 	for node != nil || len(stack) > 0 {
 		for node != nil {
@@ -140,8 +141,8 @@ func isPowerOfTwo(n int) bool {
 }
 
 // 206.Reverse Linked List
-func reverseList(head *ListNode) *ListNode {
-	var prev *ListNode
+func reverseList(head *datastructures.ListNode) *datastructures.ListNode {
+	var prev *datastructures.ListNode
 	curr := head
 	for curr != nil {
 		next := curr.Next
@@ -282,9 +283,9 @@ func optimalDivision(nums []int) string {
 }
 
 // 589.N-ary Tree Preorder Traversal
-func preorder(root *Node) (ans []int) {
-	var dfs func(*Node)
-	dfs = func(node *Node) {
+func preorder(root *datastructures.Node) (ans []int) {
+	var dfs func(*datastructures.Node)
+	dfs = func(node *datastructures.Node) {
 		if node == nil {
 			return
 		}
@@ -298,9 +299,9 @@ func preorder(root *Node) (ans []int) {
 }
 
 // 590.N-ary Tree Postorder Traversal
-func postorder(root *Node) (ans []int) {
-	var dfs func(*Node)
-	dfs = func(node *Node) {
+func postorder(root *datastructures.Node) (ans []int) {
+	var dfs func(*datastructures.Node)
+	dfs = func(node *datastructures.Node) {
 		if node == nil {
 			return
 		}

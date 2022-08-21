@@ -1,6 +1,7 @@
-package main
+package leetcode
 
 import (
+	"datastructures"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -119,38 +120,38 @@ func TestOptimalDivision(t *testing.T) {
 }
 
 func TestPreorder(t *testing.T) {
-	var root1 = &Node{1, []*Node{}}
-	var root1ChildNode3 = &Node{3, []*Node{}}
-	root1ChildNode3.Children = append(root1ChildNode3.Children, &Node{5, []*Node{}})
-	root1ChildNode3.Children = append(root1ChildNode3.Children, &Node{6, []*Node{}})
+	var root1 = &datastructures.Node{1, []*datastructures.Node{}}
+	var root1ChildNode3 = &datastructures.Node{3, []*datastructures.Node{}}
+	root1ChildNode3.Children = append(root1ChildNode3.Children, &datastructures.Node{5, []*datastructures.Node{}})
+	root1ChildNode3.Children = append(root1ChildNode3.Children, &datastructures.Node{6, []*datastructures.Node{}})
 	root1.Children = append(root1.Children, root1ChildNode3)
-	root1.Children = append(root1.Children, &Node{2, []*Node{}})
-	root1.Children = append(root1.Children, &Node{4, []*Node{}})
+	root1.Children = append(root1.Children, &datastructures.Node{2, []*datastructures.Node{}})
+	root1.Children = append(root1.Children, &datastructures.Node{4, []*datastructures.Node{}})
 
-	var root2 = &Node{1, []*Node{}}
+	var root2 = &datastructures.Node{1, []*datastructures.Node{}}
 
-	root2.Children = append(root2.Children, &Node{2, []*Node{}})
+	root2.Children = append(root2.Children, &datastructures.Node{2, []*datastructures.Node{}})
 
-	var root2ChildNode3 = &Node{3, []*Node{}}
-	var root2ChildNode7 = &Node{7, []*Node{}}
-	var root2ChildNode11 = &Node{11, []*Node{}}
-	root2ChildNode11.Children = append(root2ChildNode11.Children, &Node{14, []*Node{}})
+	var root2ChildNode3 = &datastructures.Node{3, []*datastructures.Node{}}
+	var root2ChildNode7 = &datastructures.Node{7, []*datastructures.Node{}}
+	var root2ChildNode11 = &datastructures.Node{11, []*datastructures.Node{}}
+	root2ChildNode11.Children = append(root2ChildNode11.Children, &datastructures.Node{14, []*datastructures.Node{}})
 	root2ChildNode7.Children = append(root2ChildNode7.Children, root2ChildNode11)
-	root2ChildNode3.Children = append(root2ChildNode3.Children, &Node{6, []*Node{}})
+	root2ChildNode3.Children = append(root2ChildNode3.Children, &datastructures.Node{6, []*datastructures.Node{}})
 	root2ChildNode3.Children = append(root2ChildNode3.Children, root2ChildNode7)
 
-	var root2ChildNode8 = &Node{8, []*Node{}}
-	root2ChildNode8.Children = append(root2ChildNode8.Children, &Node{12, []*Node{}})
+	var root2ChildNode8 = &datastructures.Node{8, []*datastructures.Node{}}
+	root2ChildNode8.Children = append(root2ChildNode8.Children, &datastructures.Node{12, []*datastructures.Node{}})
 
-	var root2ChildNode9 = &Node{9, []*Node{}}
-	root2ChildNode9.Children = append(root2ChildNode9.Children, &Node{13, []*Node{}})
+	var root2ChildNode9 = &datastructures.Node{9, []*datastructures.Node{}}
+	root2ChildNode9.Children = append(root2ChildNode9.Children, &datastructures.Node{13, []*datastructures.Node{}})
 
-	var root2ChildNode4 = &Node{4, []*Node{}}
+	var root2ChildNode4 = &datastructures.Node{4, []*datastructures.Node{}}
 	root2ChildNode4.Children = append(root2ChildNode4.Children, root2ChildNode8)
 
-	var root2ChildNode5 = &Node{5, []*Node{}}
+	var root2ChildNode5 = &datastructures.Node{5, []*datastructures.Node{}}
 	root2ChildNode5.Children = append(root2ChildNode5.Children, root2ChildNode9)
-	root2ChildNode5.Children = append(root2ChildNode5.Children, &Node{10, []*Node{}})
+	root2ChildNode5.Children = append(root2ChildNode5.Children, &datastructures.Node{10, []*datastructures.Node{}})
 
 	root2.Children = append(root2.Children, root2ChildNode3)
 	root2.Children = append(root2.Children, root2ChildNode4)
@@ -161,38 +162,38 @@ func TestPreorder(t *testing.T) {
 }
 
 func TestPostorder(t *testing.T) {
-	var root1 = &Node{1, []*Node{}}
-	var root1ChildNode3 = &Node{3, []*Node{}}
-	root1ChildNode3.Children = append(root1ChildNode3.Children, &Node{5, []*Node{}})
-	root1ChildNode3.Children = append(root1ChildNode3.Children, &Node{6, []*Node{}})
+	var root1 = &datastructures.Node{1, []*datastructures.Node{}}
+	var root1ChildNode3 = &datastructures.Node{3, []*datastructures.Node{}}
+	root1ChildNode3.Children = append(root1ChildNode3.Children, &datastructures.Node{5, []*datastructures.Node{}})
+	root1ChildNode3.Children = append(root1ChildNode3.Children, &datastructures.Node{6, []*datastructures.Node{}})
 	root1.Children = append(root1.Children, root1ChildNode3)
-	root1.Children = append(root1.Children, &Node{2, []*Node{}})
-	root1.Children = append(root1.Children, &Node{4, []*Node{}})
+	root1.Children = append(root1.Children, &datastructures.Node{2, []*datastructures.Node{}})
+	root1.Children = append(root1.Children, &datastructures.Node{4, []*datastructures.Node{}})
 
-	var root2 = &Node{1, []*Node{}}
+	var root2 = &datastructures.Node{1, []*datastructures.Node{}}
 
-	root2.Children = append(root2.Children, &Node{2, []*Node{}})
+	root2.Children = append(root2.Children, &datastructures.Node{2, []*datastructures.Node{}})
 
-	var root2ChildNode3 = &Node{3, []*Node{}}
-	var root2ChildNode7 = &Node{7, []*Node{}}
-	var root2ChildNode11 = &Node{11, []*Node{}}
-	root2ChildNode11.Children = append(root2ChildNode11.Children, &Node{14, []*Node{}})
+	var root2ChildNode3 = &datastructures.Node{3, []*datastructures.Node{}}
+	var root2ChildNode7 = &datastructures.Node{7, []*datastructures.Node{}}
+	var root2ChildNode11 = &datastructures.Node{11, []*datastructures.Node{}}
+	root2ChildNode11.Children = append(root2ChildNode11.Children, &datastructures.Node{14, []*datastructures.Node{}})
 	root2ChildNode7.Children = append(root2ChildNode7.Children, root2ChildNode11)
-	root2ChildNode3.Children = append(root2ChildNode3.Children, &Node{6, []*Node{}})
+	root2ChildNode3.Children = append(root2ChildNode3.Children, &datastructures.Node{6, []*datastructures.Node{}})
 	root2ChildNode3.Children = append(root2ChildNode3.Children, root2ChildNode7)
 
-	var root2ChildNode8 = &Node{8, []*Node{}}
-	root2ChildNode8.Children = append(root2ChildNode8.Children, &Node{12, []*Node{}})
+	var root2ChildNode8 = &datastructures.Node{8, []*datastructures.Node{}}
+	root2ChildNode8.Children = append(root2ChildNode8.Children, &datastructures.Node{12, []*datastructures.Node{}})
 
-	var root2ChildNode9 = &Node{9, []*Node{}}
-	root2ChildNode9.Children = append(root2ChildNode9.Children, &Node{13, []*Node{}})
+	var root2ChildNode9 = &datastructures.Node{9, []*datastructures.Node{}}
+	root2ChildNode9.Children = append(root2ChildNode9.Children, &datastructures.Node{13, []*datastructures.Node{}})
 
-	var root2ChildNode4 = &Node{4, []*Node{}}
+	var root2ChildNode4 = &datastructures.Node{4, []*datastructures.Node{}}
 	root2ChildNode4.Children = append(root2ChildNode4.Children, root2ChildNode8)
 
-	var root2ChildNode5 = &Node{5, []*Node{}}
+	var root2ChildNode5 = &datastructures.Node{5, []*datastructures.Node{}}
 	root2ChildNode5.Children = append(root2ChildNode5.Children, root2ChildNode9)
-	root2ChildNode5.Children = append(root2ChildNode5.Children, &Node{10, []*Node{}})
+	root2ChildNode5.Children = append(root2ChildNode5.Children, &datastructures.Node{10, []*datastructures.Node{}})
 
 	root2.Children = append(root2.Children, root2ChildNode3)
 	root2.Children = append(root2.Children, root2ChildNode4)

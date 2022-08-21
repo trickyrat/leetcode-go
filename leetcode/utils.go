@@ -1,23 +1,24 @@
-package main
+package leetcode
 
 import (
+	"datastructures"
 	"strconv"
 	"strings"
 )
 
 const mask1, mask2 = 1 << 7, 1<<7 | 1<<6
 
-func createListNode(nums []int) *ListNode {
-	head := &ListNode{Val: nums[0]}
+func createListNode(nums []int) *datastructures.ListNode {
+	head := &datastructures.ListNode{Val: nums[0]}
 	dummyHead := head
 	for i := 1; i < len(nums); i++ {
-		dummyHead.Next = &ListNode{Val: nums[i]}
+		dummyHead.Next = &datastructures.ListNode{Val: nums[i]}
 		dummyHead = dummyHead.Next
 	}
 	return head
 }
 
-func createTreeNodeWithBFS(data string) *TreeNode {
+func createTreeNodeWithBFS(data string) *datastructures.TreeNode {
 	if len(data) == 0 {
 		return nil
 	}
@@ -27,8 +28,8 @@ func createTreeNodeWithBFS(data string) *TreeNode {
 		return nil
 	}
 	val, _ := strconv.Atoi(sp[0])
-	root := &TreeNode{val, nil, nil}
-	var queue []*TreeNode
+	root := &datastructures.TreeNode{val, nil, nil}
+	var queue []*datastructures.TreeNode
 	queue = append(queue, root)
 	index := 1
 	for index < n {
@@ -38,7 +39,7 @@ func createTreeNodeWithBFS(data string) *TreeNode {
 			node.Left = nil
 		} else {
 			leftVal, _ := strconv.Atoi(sp[index])
-			leftNode := &TreeNode{leftVal, nil, nil}
+			leftNode := &datastructures.TreeNode{leftVal, nil, nil}
 			if node != nil {
 				node.Left = leftNode
 			}
@@ -48,7 +49,7 @@ func createTreeNodeWithBFS(data string) *TreeNode {
 			node.Right = nil
 		} else {
 			rightVal, _ := strconv.Atoi(sp[index+1])
-			rightNode := &TreeNode{rightVal, nil, nil}
+			rightNode := &datastructures.TreeNode{rightVal, nil, nil}
 			if node != nil {
 				node.Right = rightNode
 			}
@@ -59,30 +60,19 @@ func createTreeNodeWithBFS(data string) *TreeNode {
 	return root
 }
 
-func createTreeNodeWithDFS(data string) *TreeNode {
+func createTreeNodeWithDFS(data string) *datastructures.TreeNode {
 	sp := strings.Split(data, ",")
-	var build func() *TreeNode
-	build = func() *TreeNode {
+	var build func() *datastructures.TreeNode
+	build = func() *datastructures.TreeNode {
 		if sp[0] == "null" {
 			sp = sp[1:]
 			return nil
 		}
 		val, _ := strconv.Atoi(sp[0])
 		sp = sp[1:]
-		return &TreeNode{val, build(), build()}
+		return &datastructures.TreeNode{val, build(), build()}
 	}
 	return build()
-}
-
-func (h *ListNode) toString() string {
-	var res = "["
-	res += strconv.Itoa(h.Val)
-	for h.Next != nil {
-		res += strconv.Itoa(h.Val)
-		h = h.Next
-	}
-	res += "]"
-	return res
 }
 
 func max(a, b int) int {
