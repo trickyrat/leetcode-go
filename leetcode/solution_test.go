@@ -217,8 +217,13 @@ func TestExclusiveTime(t *testing.T) {
 }
 
 func TestPrintTree(t *testing.T) {
-	assert.Equal(t, [][]string{[]string{"", "1", ""}, []string{"2", "", ""}}, printTree(datastructures.CreateTreeNodeWithBFS("1,2")))
-	assert.Equal(t, [][]string{[]string{"", "", "", "1", "", "", ""}, []string{"", "2", "", "", "", "3", ""}, []string{"", "", "4", "", "", "", ""}}, printTree(datastructures.CreateTreeNodeWithBFS("1,2,3,null,4")))
+	assert.Equal(t, [][]string{{"", "1", ""}, {"2", "", ""}}, printTree(datastructures.CreateTreeNodeWithBFS("1,2")))
+	assert.Equal(t, [][]string{{"", "", "", "1", "", "", ""}, {"", "2", "", "", "", "3", ""}, {"", "", "4", "", "", "", ""}}, printTree(datastructures.CreateTreeNodeWithBFS("1,2,3,null,4")))
+}
+
+func TestFindClosestElements(t *testing.T) {
+	assert.Equal(t, []int{1, 2, 3, 4}, findClosestElements([]int{1, 2, 3, 4, 5}, 4, 3))
+	assert.Equal(t, []int{1, 2, 3, 4}, findClosestElements([]int{1, 2, 3, 4, 5}, 4, -1))
 }
 
 func TestSelfDividingNumbers(t *testing.T) {

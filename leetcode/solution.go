@@ -391,6 +391,23 @@ func printTree(root *datastructures.TreeNode) [][]string {
 	return res
 }
 
+// 658. Find K Closest Elements
+func findClosestElements(arr []int, k, x int) []int {
+	right := sort.SearchInts(arr, x)
+	left := right - 1
+	n := len(arr)
+	for ; k > 0; k-- {
+		if left < 0 {
+			right++
+		} else if right >= n || x-arr[left] <= arr[right]-x {
+			left--
+		} else {
+			right++
+		}
+	}
+	return arr[left+1 : right]
+}
+
 // 728.Self Dividing Numbers
 func selfDividingNumbers(left, right int) (ans []int) {
 	for i := left; i <= right; i++ {
