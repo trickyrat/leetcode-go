@@ -120,38 +120,38 @@ func TestOptimalDivision(t *testing.T) {
 }
 
 func TestPreorder(t *testing.T) {
-	var root1 = &datastructures.Node{1, []*datastructures.Node{}}
-	var root1ChildNode3 = &datastructures.Node{3, []*datastructures.Node{}}
-	root1ChildNode3.Children = append(root1ChildNode3.Children, &datastructures.Node{5, []*datastructures.Node{}})
-	root1ChildNode3.Children = append(root1ChildNode3.Children, &datastructures.Node{6, []*datastructures.Node{}})
+	var root1 = &datastructures.Node{Val: 1, Children: []*datastructures.Node{}}
+	var root1ChildNode3 = &datastructures.Node{Val: 3, Children: []*datastructures.Node{}}
+	root1ChildNode3.Children = append(root1ChildNode3.Children, &datastructures.Node{Val: 5, Children: []*datastructures.Node{}})
+	root1ChildNode3.Children = append(root1ChildNode3.Children, &datastructures.Node{Val: 6, Children: []*datastructures.Node{}})
 	root1.Children = append(root1.Children, root1ChildNode3)
-	root1.Children = append(root1.Children, &datastructures.Node{2, []*datastructures.Node{}})
-	root1.Children = append(root1.Children, &datastructures.Node{4, []*datastructures.Node{}})
+	root1.Children = append(root1.Children, &datastructures.Node{Val: 2, Children: []*datastructures.Node{}})
+	root1.Children = append(root1.Children, &datastructures.Node{Val: 4, Children: []*datastructures.Node{}})
 
-	var root2 = &datastructures.Node{1, []*datastructures.Node{}}
+	var root2 = &datastructures.Node{Val: 1, Children: []*datastructures.Node{}}
 
-	root2.Children = append(root2.Children, &datastructures.Node{2, []*datastructures.Node{}})
+	root2.Children = append(root2.Children, &datastructures.Node{Val: 2, Children: []*datastructures.Node{}})
 
-	var root2ChildNode3 = &datastructures.Node{3, []*datastructures.Node{}}
-	var root2ChildNode7 = &datastructures.Node{7, []*datastructures.Node{}}
-	var root2ChildNode11 = &datastructures.Node{11, []*datastructures.Node{}}
-	root2ChildNode11.Children = append(root2ChildNode11.Children, &datastructures.Node{14, []*datastructures.Node{}})
+	var root2ChildNode3 = &datastructures.Node{Val: 3, Children: []*datastructures.Node{}}
+	var root2ChildNode7 = &datastructures.Node{Val: 7, Children: []*datastructures.Node{}}
+	var root2ChildNode11 = &datastructures.Node{Val: 11, Children: []*datastructures.Node{}}
+	root2ChildNode11.Children = append(root2ChildNode11.Children, &datastructures.Node{Val: 14, Children: []*datastructures.Node{}})
 	root2ChildNode7.Children = append(root2ChildNode7.Children, root2ChildNode11)
-	root2ChildNode3.Children = append(root2ChildNode3.Children, &datastructures.Node{6, []*datastructures.Node{}})
+	root2ChildNode3.Children = append(root2ChildNode3.Children, &datastructures.Node{Val: 6, Children: []*datastructures.Node{}})
 	root2ChildNode3.Children = append(root2ChildNode3.Children, root2ChildNode7)
 
-	var root2ChildNode8 = &datastructures.Node{8, []*datastructures.Node{}}
-	root2ChildNode8.Children = append(root2ChildNode8.Children, &datastructures.Node{12, []*datastructures.Node{}})
+	var root2ChildNode8 = &datastructures.Node{Val: 8, Children: []*datastructures.Node{}}
+	root2ChildNode8.Children = append(root2ChildNode8.Children, &datastructures.Node{Val: 12, Children: []*datastructures.Node{}})
 
-	var root2ChildNode9 = &datastructures.Node{9, []*datastructures.Node{}}
-	root2ChildNode9.Children = append(root2ChildNode9.Children, &datastructures.Node{13, []*datastructures.Node{}})
+	var root2ChildNode9 = &datastructures.Node{Val: 9, Children: []*datastructures.Node{}}
+	root2ChildNode9.Children = append(root2ChildNode9.Children, &datastructures.Node{Val: 13, Children: []*datastructures.Node{}})
 
-	var root2ChildNode4 = &datastructures.Node{4, []*datastructures.Node{}}
+	var root2ChildNode4 = &datastructures.Node{Val: 4, Children: []*datastructures.Node{}}
 	root2ChildNode4.Children = append(root2ChildNode4.Children, root2ChildNode8)
 
-	var root2ChildNode5 = &datastructures.Node{5, []*datastructures.Node{}}
+	var root2ChildNode5 = &datastructures.Node{Val: 5, Children: []*datastructures.Node{}}
 	root2ChildNode5.Children = append(root2ChildNode5.Children, root2ChildNode9)
-	root2ChildNode5.Children = append(root2ChildNode5.Children, &datastructures.Node{10, []*datastructures.Node{}})
+	root2ChildNode5.Children = append(root2ChildNode5.Children, &datastructures.Node{Val: 10, Children: []*datastructures.Node{}})
 
 	root2.Children = append(root2.Children, root2ChildNode3)
 	root2.Children = append(root2.Children, root2ChildNode4)
@@ -162,38 +162,38 @@ func TestPreorder(t *testing.T) {
 }
 
 func TestPostorder(t *testing.T) {
-	var root1 = &datastructures.Node{1, []*datastructures.Node{}}
-	var root1ChildNode3 = &datastructures.Node{3, []*datastructures.Node{}}
-	root1ChildNode3.Children = append(root1ChildNode3.Children, &datastructures.Node{5, []*datastructures.Node{}})
-	root1ChildNode3.Children = append(root1ChildNode3.Children, &datastructures.Node{6, []*datastructures.Node{}})
+	var root1 = &datastructures.Node{Val: 1, Children: []*datastructures.Node{}}
+	var root1ChildNode3 = &datastructures.Node{Val: 3, Children: []*datastructures.Node{}}
+	root1ChildNode3.Children = append(root1ChildNode3.Children, &datastructures.Node{Val: 5, Children: []*datastructures.Node{}})
+	root1ChildNode3.Children = append(root1ChildNode3.Children, &datastructures.Node{Val: 6, Children: []*datastructures.Node{}})
 	root1.Children = append(root1.Children, root1ChildNode3)
-	root1.Children = append(root1.Children, &datastructures.Node{2, []*datastructures.Node{}})
-	root1.Children = append(root1.Children, &datastructures.Node{4, []*datastructures.Node{}})
+	root1.Children = append(root1.Children, &datastructures.Node{Val: 2, Children: []*datastructures.Node{}})
+	root1.Children = append(root1.Children, &datastructures.Node{Val: 4, Children: []*datastructures.Node{}})
 
-	var root2 = &datastructures.Node{1, []*datastructures.Node{}}
+	var root2 = &datastructures.Node{Val: 1, Children: []*datastructures.Node{}}
 
-	root2.Children = append(root2.Children, &datastructures.Node{2, []*datastructures.Node{}})
+	root2.Children = append(root2.Children, &datastructures.Node{Val: 2, Children: []*datastructures.Node{}})
 
-	var root2ChildNode3 = &datastructures.Node{3, []*datastructures.Node{}}
-	var root2ChildNode7 = &datastructures.Node{7, []*datastructures.Node{}}
-	var root2ChildNode11 = &datastructures.Node{11, []*datastructures.Node{}}
-	root2ChildNode11.Children = append(root2ChildNode11.Children, &datastructures.Node{14, []*datastructures.Node{}})
+	var root2ChildNode3 = &datastructures.Node{Val: 3, Children: []*datastructures.Node{}}
+	var root2ChildNode7 = &datastructures.Node{Val: 7, Children: []*datastructures.Node{}}
+	var root2ChildNode11 = &datastructures.Node{Val: 11, Children: []*datastructures.Node{}}
+	root2ChildNode11.Children = append(root2ChildNode11.Children, &datastructures.Node{Val: 14, Children: []*datastructures.Node{}})
 	root2ChildNode7.Children = append(root2ChildNode7.Children, root2ChildNode11)
-	root2ChildNode3.Children = append(root2ChildNode3.Children, &datastructures.Node{6, []*datastructures.Node{}})
+	root2ChildNode3.Children = append(root2ChildNode3.Children, &datastructures.Node{Val: 6, Children: []*datastructures.Node{}})
 	root2ChildNode3.Children = append(root2ChildNode3.Children, root2ChildNode7)
 
-	var root2ChildNode8 = &datastructures.Node{8, []*datastructures.Node{}}
-	root2ChildNode8.Children = append(root2ChildNode8.Children, &datastructures.Node{12, []*datastructures.Node{}})
+	var root2ChildNode8 = &datastructures.Node{Val: 8, Children: []*datastructures.Node{}}
+	root2ChildNode8.Children = append(root2ChildNode8.Children, &datastructures.Node{Val: 12, Children: []*datastructures.Node{}})
 
-	var root2ChildNode9 = &datastructures.Node{9, []*datastructures.Node{}}
-	root2ChildNode9.Children = append(root2ChildNode9.Children, &datastructures.Node{13, []*datastructures.Node{}})
+	var root2ChildNode9 = &datastructures.Node{Val: 9, Children: []*datastructures.Node{}}
+	root2ChildNode9.Children = append(root2ChildNode9.Children, &datastructures.Node{Val: 13, Children: []*datastructures.Node{}})
 
-	var root2ChildNode4 = &datastructures.Node{4, []*datastructures.Node{}}
+	var root2ChildNode4 = &datastructures.Node{Val: 4, Children: []*datastructures.Node{}}
 	root2ChildNode4.Children = append(root2ChildNode4.Children, root2ChildNode8)
 
-	var root2ChildNode5 = &datastructures.Node{5, []*datastructures.Node{}}
+	var root2ChildNode5 = &datastructures.Node{Val: 5, Children: []*datastructures.Node{}}
 	root2ChildNode5.Children = append(root2ChildNode5.Children, root2ChildNode9)
-	root2ChildNode5.Children = append(root2ChildNode5.Children, &datastructures.Node{10, []*datastructures.Node{}})
+	root2ChildNode5.Children = append(root2ChildNode5.Children, &datastructures.Node{Val: 10, Children: []*datastructures.Node{}})
 
 	root2.Children = append(root2.Children, root2ChildNode3)
 	root2.Children = append(root2.Children, root2ChildNode4)
