@@ -438,6 +438,23 @@ func selfDividingNumbers(left, right int) (ans []int) {
 	return
 }
 
+// 793. Preimage Size of Factorial Zeroes Function
+func preimageSizeFZF(k int) int {
+	var zeta func(n int) int
+	zeta = func(n int) (res int) {
+		for n > 0 {
+			n /= 5
+			res += n
+		}
+		return res
+	}
+	var nx func(n int) int
+	nx = func(n int) int {
+		return sort.Search(5*n, func(x int) bool { return zeta(x) >= n })
+	}
+	return nx(k+1) - nx(k)
+}
+
 // 804.Unique Morse Code Words
 func uniqueMorseRepresentations(words []string) int {
 	var morse = []string{

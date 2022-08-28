@@ -237,6 +237,12 @@ func TestSelfDividingNumbers(t *testing.T) {
 	assert.Equal(t, []int{48, 55, 66, 77}, selfDividingNumbers(48, 85))
 }
 
+func TestPreimageSizeFZF(t *testing.T) {
+	assert.Equal(t, 5, preimageSizeFZF(0))
+	assert.Equal(t, 0, preimageSizeFZF(5))
+	assert.Equal(t, 5, preimageSizeFZF(3))
+}
+
 func TestUniqueMorseRepresentations(t *testing.T) {
 	assert.Equal(t, 2, uniqueMorseRepresentations([]string{"gin", "zen", "gig", "msg"}))
 	assert.Equal(t, 1, uniqueMorseRepresentations([]string{"a"}))
