@@ -1,6 +1,7 @@
-package main
+package leetcode
 
 import (
+	"datastructures"
 	"fmt"
 	"math"
 	"sort"
@@ -22,8 +23,8 @@ func twoSum(nums []int, target int) []int {
 }
 
 // 2.Add Two Numbers
-func addTwoNumbers(l1, l2 *ListNode) (head *ListNode) {
-	var tail *ListNode
+func addTwoNumbers(l1, l2 *datastructures.ListNode) (head *datastructures.ListNode) {
+	var tail *datastructures.ListNode
 	carry := 0
 	for l1 != nil || l2 != nil {
 		n1, n2 := 0, 0
@@ -38,15 +39,15 @@ func addTwoNumbers(l1, l2 *ListNode) (head *ListNode) {
 		sum := n1 + n2 + carry
 		sum, carry = sum%10, sum/10
 		if head == nil {
-			head = &ListNode{Val: sum}
+			head = &datastructures.ListNode{Val: sum}
 			tail = head
 		} else {
-			tail.Next = &ListNode{Val: sum}
+			tail.Next = &datastructures.ListNode{Val: sum}
 			tail = tail.Next
 		}
 	}
 	if carry > 0 {
-		tail.Next = &ListNode{Val: carry}
+		tail.Next = &datastructures.ListNode{Val: carry}
 	}
 	return
 }
@@ -84,10 +85,10 @@ func reverseInt(x int) (res int) {
 }
 
 // 113.Path Sum II
-func pathSum(root *TreeNode, targetSum int) (ans [][]int) {
+func pathSum(root *datastructures.TreeNode, targetSum int) (ans [][]int) {
 	var path []int
-	var dfs func(*TreeNode, int)
-	dfs = func(node *TreeNode, left int) {
+	var dfs func(*datastructures.TreeNode, int)
+	dfs = func(node *datastructures.TreeNode, left int) {
 		if node == nil {
 			return
 		}
@@ -106,12 +107,12 @@ func pathSum(root *TreeNode, targetSum int) (ans [][]int) {
 }
 
 // 144.Binary Tree Preorder Traversal
-func preorderTraversal(root *TreeNode) (vals []int) {
-	var stack []*TreeNode
+func preorderTraversal(root *datastructures.TreeNode) (res []int) {
+	var stack []*datastructures.TreeNode
 	node := root
 	for node != nil || len(stack) > 0 {
 		for node != nil {
-			vals = append(vals, node.Val)
+			res = append(res, node.Val)
 			stack = append(stack, node)
 			node = node.Left
 		}
@@ -140,8 +141,8 @@ func isPowerOfTwo(n int) bool {
 }
 
 // 206.Reverse Linked List
-func reverseList(head *ListNode) *ListNode {
-	var prev *ListNode
+func reverseList(head *datastructures.ListNode) *datastructures.ListNode {
+	var prev *datastructures.ListNode
 	curr := head
 	for curr != nil {
 		next := curr.Next
@@ -282,9 +283,9 @@ func optimalDivision(nums []int) string {
 }
 
 // 589.N-ary Tree Preorder Traversal
-func preorder(root *Node) (ans []int) {
-	var dfs func(*Node)
-	dfs = func(node *Node) {
+func preorder(root *datastructures.Node) (ans []int) {
+	var dfs func(*datastructures.Node)
+	dfs = func(node *datastructures.Node) {
 		if node == nil {
 			return
 		}
@@ -298,9 +299,9 @@ func preorder(root *Node) (ans []int) {
 }
 
 // 590.N-ary Tree Postorder Traversal
-func postorder(root *Node) (ans []int) {
-	var dfs func(*Node)
-	dfs = func(node *Node) {
+func postorder(root *datastructures.Node) (ans []int) {
+	var dfs func(*datastructures.Node)
+	dfs = func(node *datastructures.Node) {
 		if node == nil {
 			return
 		}
@@ -361,6 +362,72 @@ func exclusiveTime(n int, logs []string) []int {
 	return res
 }
 
+// 655. Print Binary Tree
+func printTree(root *datastructures.TreeNode) [][]string {
+	height := calculateDepth(root)
+	m := height + 1
+	n := 1<<m - 1
+	res := make([][]string, m)
+	for i := range res {
+		res[i] = make([]string, n)
+	}
+	type entry struct {
+		node        *datastructures.TreeNode
+		row, column int
+	}
+	queue := []entry{{root, 0, (n - 1) / 2}}
+	for len(queue) > 0 {
+		ele := queue[0]
+		queue = queue[1:]
+		node, row, column := ele.node, ele.row, ele.column
+		res[row][column] = strconv.Itoa(node.Val)
+		if node.Left != nil {
+			queue = append(queue, entry{node.Left, row + 1, column - 1<<(height-row-1)})
+		}
+		if node.Right != nil {
+			queue = append(queue, entry{node.Right, row + 1, column + 1<<(height-row-1)})
+		}
+	}
+	return res
+}
+
+// 658. Find K Closest Elements
+func findClosestElements(arr []int, k, x int) []int {
+	right := sort.SearchInts(arr, x)
+	left := right - 1
+	n := len(arr)
+	for ; k > 0; k-- {
+		if left < 0 {
+			right++
+		} else if right >= n || x-arr[left] <= arr[right]-x {
+			left--
+		} else {
+			right++
+		}
+	}
+	return arr[left+1 : right]
+}
+
+// 662. Maximum Width of Binary Tree
+func widthOfBinaryTree(root *datastructures.TreeNode) int {
+	levelMin := map[int]int{}
+	var dfs func(*datastructures.TreeNode, int, int) int
+	dfs = func(node *datastructures.TreeNode, depth, index int) int {
+		if node == nil {
+			return 0
+		}
+		if _, ok := levelMin[depth]; !ok {
+			levelMin[depth] = index
+		}
+		return max(index-levelMin[depth]+1,
+			max(
+				dfs(node.Left, depth+1, index*2),
+				dfs(node.Right, depth+1, index*2+1),
+			))
+	}
+	return dfs(root, 1, 1)
+}
+
 // 728.Self Dividing Numbers
 func selfDividingNumbers(left, right int) (ans []int) {
 	for i := left; i <= right; i++ {
@@ -369,6 +436,23 @@ func selfDividingNumbers(left, right int) (ans []int) {
 		}
 	}
 	return
+}
+
+// 793. Preimage Size of Factorial Zeroes Function
+func preimageSizeFZF(k int) int {
+	var zeta func(n int) int
+	zeta = func(n int) (res int) {
+		for n > 0 {
+			n /= 5
+			res += n
+		}
+		return res
+	}
+	var nx func(n int) int
+	nx = func(n int) int {
+		return sort.Search(5*n, func(x int) bool { return zeta(x) >= n })
+	}
+	return nx(k+1) - nx(k)
 }
 
 // 804.Unique Morse Code Words
@@ -512,6 +596,48 @@ func stringMatching(words []string) (res []string) {
 		}
 	}
 	return
+}
+
+// 1450. Number of Students Doing Homework at a Given Time
+func busyStudent(startTime []int, endTime []int, queryTime int) (res int) {
+	for i, s := range startTime {
+		if s <= queryTime && queryTime <= endTime[i] {
+			res++
+		}
+	}
+	return
+}
+
+// 1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence
+func isPrefixOfWord(sentence string, searchWord string) int {
+	for i, index, n := 0, 1, len(sentence); i < n; i++ {
+		start := i
+		for i < n && sentence[i] != ' ' {
+			i++
+		}
+		end := i
+		if strings.HasPrefix(sentence[start:end], searchWord) {
+			return index
+		}
+		index++
+	}
+	return -1
+}
+
+// 1464. Maximum Product of Two Elements in an Array
+func maxProduct(nums []int) int {
+	a, b := nums[0], nums[1]
+	if a < b {
+		a, b = b, a
+	}
+	for _, num := range nums[2:] {
+		if num > a {
+			a, b = num, a
+		} else if num > b {
+			b = num
+		}
+	}
+	return (a - 1) * (b - 1)
 }
 
 // 1823.Find the Winner of the Circular Game
