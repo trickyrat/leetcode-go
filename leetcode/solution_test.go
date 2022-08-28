@@ -226,6 +226,12 @@ func TestFindClosestElements(t *testing.T) {
 	assert.Equal(t, []int{1, 2, 3, 4}, findClosestElements([]int{1, 2, 3, 4, 5}, 4, -1))
 }
 
+func TestWidthOfBinaryTree(t *testing.T) {
+	assert.Equal(t, 4, widthOfBinaryTree(datastructures.CreateTreeNodeIteratively("1,3,2,5,3,null,9")))
+	assert.Equal(t, 7, widthOfBinaryTree(datastructures.CreateTreeNodeIteratively("1,3,2,5,null,null,9,6,null,7")))
+	assert.Equal(t, 2, widthOfBinaryTree(datastructures.CreateTreeNodeIteratively("1,3,2,5")))
+}
+
 func TestSelfDividingNumbers(t *testing.T) {
 	assert.Equal(t, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22}, selfDividingNumbers(1, 22))
 	assert.Equal(t, []int{48, 55, 66, 77}, selfDividingNumbers(48, 85))

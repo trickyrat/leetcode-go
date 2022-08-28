@@ -408,6 +408,26 @@ func findClosestElements(arr []int, k, x int) []int {
 	return arr[left+1 : right]
 }
 
+// 662. Maximum Width of Binary Tree
+func widthOfBinaryTree(root *datastructures.TreeNode) int {
+	levelMin := map[int]int{}
+	var dfs func(*datastructures.TreeNode, int, int) int
+	dfs = func(node *datastructures.TreeNode, depth, index int) int {
+		if node == nil {
+			return 0
+		}
+		if _, ok := levelMin[depth]; !ok {
+			levelMin[depth] = index
+		}
+		return max(index-levelMin[depth]+1,
+			max(
+				dfs(node.Left, depth+1, index*2),
+				dfs(node.Right, depth+1, index*2+1),
+			))
+	}
+	return dfs(root, 1, 1)
+}
+
 // 728.Self Dividing Numbers
 func selfDividingNumbers(left, right int) (ans []int) {
 	for i := left; i <= right; i++ {
