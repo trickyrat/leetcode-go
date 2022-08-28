@@ -587,6 +587,22 @@ func isPrefixOfWord(sentence string, searchWord string) int {
 	return -1
 }
 
+// 1464. Maximum Product of Two Elements in an Array
+func maxProduct(nums []int) int {
+	a, b := nums[0], nums[1]
+	if a < b {
+		a, b = b, a
+	}
+	for _, num := range nums[2:] {
+		if num > a {
+			a, b = num, a
+		} else if num > b {
+			b = num
+		}
+	}
+	return (a - 1) * (b - 1)
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1

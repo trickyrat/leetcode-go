@@ -15,7 +15,7 @@ func CreateListNode(nums []int) *ListNode {
 	return head
 }
 
-func CreateTreeNodeWithBFS(data string) *TreeNode {
+func CreateTreeNodeIteratively(data string) *TreeNode {
 	if len(data) == 0 {
 		return nil
 	}
@@ -55,19 +55,4 @@ func CreateTreeNodeWithBFS(data string) *TreeNode {
 		index += 2
 	}
 	return root
-}
-
-func CreateTreeNodeWithDFS(data string) *TreeNode {
-	sp := strings.Split(data, ",")
-	var build func() *TreeNode
-	build = func() *TreeNode {
-		if sp[0] == "null" {
-			sp = sp[1:]
-			return nil
-		}
-		val, _ := strconv.Atoi(sp[0])
-		sp = sp[1:]
-		return &TreeNode{val, build(), build()}
-	}
-	return build()
 }

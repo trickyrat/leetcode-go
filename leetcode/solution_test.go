@@ -44,14 +44,14 @@ func TestPathSum(t *testing.T) {
 	var values [][]int
 	values = append(values, row1)
 	values = append(values, row2)
-	assert.Equal(t, values, pathSum(datastructures.CreateTreeNodeWithBFS("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22))
-	assert.Equal(t, [][]int(nil), pathSum(datastructures.CreateTreeNodeWithBFS("1,2,3"), 5))
+	assert.Equal(t, values, pathSum(datastructures.CreateTreeNodeIteratively("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22))
+	assert.Equal(t, [][]int(nil), pathSum(datastructures.CreateTreeNodeIteratively("1,2,3"), 5))
 }
 
 func TestPreorderTraversal(t *testing.T) {
-	assert.Equal(t, []int{1, 2, 3}, preorderTraversal(datastructures.CreateTreeNodeWithBFS("1,null,2,3")))
-	assert.Equal(t, []int(nil), preorderTraversal(datastructures.CreateTreeNodeWithBFS("")))
-	assert.Equal(t, []int{1}, preorderTraversal(datastructures.CreateTreeNodeWithBFS("1")))
+	assert.Equal(t, []int{1, 2, 3}, preorderTraversal(datastructures.CreateTreeNodeIteratively("1,null,2,3")))
+	assert.Equal(t, []int(nil), preorderTraversal(datastructures.CreateTreeNodeIteratively("")))
+	assert.Equal(t, []int{1}, preorderTraversal(datastructures.CreateTreeNodeIteratively("1")))
 }
 
 func TestHammingWeight(t *testing.T) {
@@ -217,8 +217,8 @@ func TestExclusiveTime(t *testing.T) {
 }
 
 func TestPrintTree(t *testing.T) {
-	assert.Equal(t, [][]string{{"", "1", ""}, {"2", "", ""}}, printTree(datastructures.CreateTreeNodeWithBFS("1,2")))
-	assert.Equal(t, [][]string{{"", "", "", "1", "", "", ""}, {"", "2", "", "", "", "3", ""}, {"", "", "4", "", "", "", ""}}, printTree(datastructures.CreateTreeNodeWithBFS("1,2,3,null,4")))
+	assert.Equal(t, [][]string{{"", "1", ""}, {"2", "", ""}}, printTree(datastructures.CreateTreeNodeIteratively("1,2")))
+	assert.Equal(t, [][]string{{"", "", "", "1", "", "", ""}, {"", "2", "", "", "", "3", ""}, {"", "", "4", "", "", "", ""}}, printTree(datastructures.CreateTreeNodeIteratively("1,2,3,null,4")))
 }
 
 func TestFindClosestElements(t *testing.T) {
@@ -286,6 +286,12 @@ func TestIsPrefixOfWord(t *testing.T) {
 	assert.Equal(t, 4, isPrefixOfWord("i love eating burger", "burg"))
 	assert.Equal(t, 2, isPrefixOfWord("this problem is an easy problem", "pro"))
 	assert.Equal(t, -1, isPrefixOfWord("i am tired", "you"))
+}
+
+func TestMaxProduct(t *testing.T) {
+	assert.Equal(t, 12, maxProduct([]int{3, 4, 5, 2}))
+	assert.Equal(t, 16, maxProduct([]int{1, 5, 4, 5}))
+	assert.Equal(t, 12, maxProduct([]int{3, 7}))
 }
 
 func TestFindTheWinner(t *testing.T) {
