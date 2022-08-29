@@ -306,6 +306,12 @@ func TestMaxProduct(t *testing.T) {
 	assert.Equal(t, 12, maxProduct([]int{3, 7}))
 }
 
+func TestShuffle(t *testing.T) {
+	assert.Equal(t, []int{2, 3, 5, 4, 1, 7}, shuffle([]int{2, 5, 1, 3, 4, 7}, 3))
+	assert.Equal(t, []int{1, 4, 2, 3, 3, 2, 4, 1}, shuffle([]int{1, 2, 3, 4, 4, 3, 2, 1}, 4))
+	assert.Equal(t, []int{1, 2, 1, 2}, shuffle([]int{1, 1, 2, 2}, 2))
+}
+
 func TestFindTheWinner(t *testing.T) {
 	assert.Equal(t, 3, findTheWinner(5, 2))
 	assert.Equal(t, 1, findTheWinner(6, 5))

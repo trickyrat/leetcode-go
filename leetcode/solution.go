@@ -640,6 +640,16 @@ func maxProduct(nums []int) int {
 	return (a - 1) * (b - 1)
 }
 
+// 1470. Shuffle the Array
+func shuffle(nums []int, n int) []int {
+	res := make([]int, n*2)
+	for i, num := range nums[:n] {
+		res[2*i] = num
+		res[2*i+1] = nums[i+n]
+	}
+	return res
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
