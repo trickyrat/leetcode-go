@@ -570,6 +570,23 @@ func repeatedNTimes(nums []int) int {
 	return -1
 }
 
+// 998. Maximum Binary Tree II
+func insertIntoMaxTree(root *datastructures.TreeNode, val int) *datastructures.TreeNode {
+	var parent *datastructures.TreeNode
+	for curr := root; curr != nil; curr = curr.Right {
+		if val > curr.Val {
+			if parent == nil {
+				return &datastructures.TreeNode{Val: val, Left: root}
+			}
+			parent.Right = &datastructures.TreeNode{Val: val, Left: curr}
+			return root
+		}
+		parent = curr
+	}
+	parent.Right = &datastructures.TreeNode{Val: val}
+	return root
+}
+
 // 1403.Minimum Subsequence in Non-Increasing Order
 func minSubsequence(nums []int) []int {
 	sort.Sort(sort.Reverse(sort.IntSlice(nums)))

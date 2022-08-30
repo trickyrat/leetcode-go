@@ -277,6 +277,15 @@ func TestRepeatedNTimes(t *testing.T) {
 	assert.Equal(t, 5, repeatedNTimes([]int{5, 1, 5, 2, 5, 3, 5, 4}))
 }
 
+func TestInsertIntoMaxTree(t *testing.T) {
+	assert.Equal(t, datastructures.CreateTreeNodeIteratively("5,4,null,1,3,null,null,2"),
+		insertIntoMaxTree(datastructures.CreateTreeNodeIteratively("4,1,3,null,null,2"), 5))
+	assert.Equal(t, datastructures.CreateTreeNodeIteratively("5,2,4,null,1,null,3"),
+		insertIntoMaxTree(datastructures.CreateTreeNodeIteratively("5,2,4,null,1"), 3))
+	assert.Equal(t, datastructures.CreateTreeNodeIteratively("5,2,4,null,1,3"),
+		insertIntoMaxTree(datastructures.CreateTreeNodeIteratively("5,2,3,null,1"), 4))
+}
+
 func TestMinSubsequence(t *testing.T) {
 	assert.Equal(t, []int{10, 9}, minSubsequence([]int{4, 3, 10, 9, 8}))
 	assert.Equal(t, []int{7, 7, 6}, minSubsequence([]int{4, 4, 7, 6, 7}))
