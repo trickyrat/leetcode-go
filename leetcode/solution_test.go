@@ -115,6 +115,11 @@ func TestReverseOnlyLetters(t *testing.T) {
 	assert.Equal(t, "Qedo1ct-eeLg=ntse-T!", reverseOnlyLetters("Test1ng-Leet=code-Q!"))
 }
 
+func TestValidateStackSequences(t *testing.T) {
+	assert.Equal(t, true, validateStackSequences([]int{1, 2, 3, 4, 5}, []int{4, 5, 3, 2, 1}))
+	assert.Equal(t, false, validateStackSequences([]int{1, 2, 3, 4, 5}, []int{4, 3, 5, 1, 2}))
+}
+
 func TestOptimalDivision(t *testing.T) {
 	assert.Equal(t, "1000/(100/10/2)", optimalDivision([]int{1000, 100, 10, 2}))
 }
@@ -277,6 +282,15 @@ func TestRepeatedNTimes(t *testing.T) {
 	assert.Equal(t, 5, repeatedNTimes([]int{5, 1, 5, 2, 5, 3, 5, 4}))
 }
 
+func TestInsertIntoMaxTree(t *testing.T) {
+	assert.Equal(t, datastructures.CreateTreeNodeIteratively("5,4,null,1,3,null,null,2"),
+		insertIntoMaxTree(datastructures.CreateTreeNodeIteratively("4,1,3,null,null,2"), 5))
+	assert.Equal(t, datastructures.CreateTreeNodeIteratively("5,2,4,null,1,null,3"),
+		insertIntoMaxTree(datastructures.CreateTreeNodeIteratively("5,2,4,null,1"), 3))
+	assert.Equal(t, datastructures.CreateTreeNodeIteratively("5,2,4,null,1,3"),
+		insertIntoMaxTree(datastructures.CreateTreeNodeIteratively("5,2,3,null,1"), 4))
+}
+
 func TestMinSubsequence(t *testing.T) {
 	assert.Equal(t, []int{10, 9}, minSubsequence([]int{4, 3, 10, 9, 8}))
 	assert.Equal(t, []int{7, 7, 6}, minSubsequence([]int{4, 4, 7, 6, 7}))
@@ -304,6 +318,12 @@ func TestMaxProduct(t *testing.T) {
 	assert.Equal(t, 12, maxProduct([]int{3, 4, 5, 2}))
 	assert.Equal(t, 16, maxProduct([]int{1, 5, 4, 5}))
 	assert.Equal(t, 12, maxProduct([]int{3, 7}))
+}
+
+func TestShuffle(t *testing.T) {
+	assert.Equal(t, []int{2, 3, 5, 4, 1, 7}, shuffle([]int{2, 5, 1, 3, 4, 7}, 3))
+	assert.Equal(t, []int{1, 4, 2, 3, 3, 2, 4, 1}, shuffle([]int{1, 2, 3, 4, 4, 3, 2, 1}, 4))
+	assert.Equal(t, []int{1, 2, 1, 2}, shuffle([]int{1, 1, 2, 2}, 2))
 }
 
 func TestFindTheWinner(t *testing.T) {

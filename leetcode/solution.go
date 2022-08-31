@@ -558,6 +558,20 @@ func reverseOnlyLetters(s string) string {
 	return string(ans)
 }
 
+// 946. Validate Stack Sequences
+func validateStackSequences(pushed, popped []int) bool {
+	var stack []int
+	j := 0
+	for _, num := range pushed {
+		stack = append(stack, num)
+		for len(stack) > 0 && stack[len(stack)-1] == popped[j] {
+			stack = stack[:len(stack)-1]
+			j++
+		}
+	}
+	return len(stack) == 0
+}
+
 // 961.N-Repeated Element in Size 2N Array
 func repeatedNTimes(nums []int) int {
 	found := map[int]bool{}
@@ -568,6 +582,23 @@ func repeatedNTimes(nums []int) int {
 		found[num] = true
 	}
 	return -1
+}
+
+// 998. Maximum Binary Tree II
+func insertIntoMaxTree(root *datastructures.TreeNode, val int) *datastructures.TreeNode {
+	var parent *datastructures.TreeNode
+	for curr := root; curr != nil; curr = curr.Right {
+		if val > curr.Val {
+			if parent == nil {
+				return &datastructures.TreeNode{Val: val, Left: root}
+			}
+			parent.Right = &datastructures.TreeNode{Val: val, Left: curr}
+			return root
+		}
+		parent = curr
+	}
+	parent.Right = &datastructures.TreeNode{Val: val}
+	return root
 }
 
 // 1403.Minimum Subsequence in Non-Increasing Order
@@ -638,6 +669,16 @@ func maxProduct(nums []int) int {
 		}
 	}
 	return (a - 1) * (b - 1)
+}
+
+// 1470. Shuffle the Array
+func shuffle(nums []int, n int) []int {
+	res := make([]int, n*2)
+	for i, num := range nums[:n] {
+		res[2*i] = num
+		res[2*i+1] = nums[i+n]
+	}
+	return res
 }
 
 // 1823.Find the Winner of the Circular Game
