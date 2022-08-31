@@ -115,6 +115,11 @@ func TestReverseOnlyLetters(t *testing.T) {
 	assert.Equal(t, "Qedo1ct-eeLg=ntse-T!", reverseOnlyLetters("Test1ng-Leet=code-Q!"))
 }
 
+func TestValidateStackSequences(t *testing.T) {
+	assert.Equal(t, true, validateStackSequences([]int{1, 2, 3, 4, 5}, []int{4, 5, 3, 2, 1}))
+	assert.Equal(t, false, validateStackSequences([]int{1, 2, 3, 4, 5}, []int{4, 3, 5, 1, 2}))
+}
+
 func TestOptimalDivision(t *testing.T) {
 	assert.Equal(t, "1000/(100/10/2)", optimalDivision([]int{1000, 100, 10, 2}))
 }

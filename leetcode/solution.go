@@ -558,6 +558,20 @@ func reverseOnlyLetters(s string) string {
 	return string(ans)
 }
 
+// 946. Validate Stack Sequences
+func validateStackSequences(pushed, popped []int) bool {
+	var stack []int
+	j := 0
+	for _, num := range pushed {
+		stack = append(stack, num)
+		for len(stack) > 0 && stack[len(stack)-1] == popped[j] {
+			stack = stack[:len(stack)-1]
+			j++
+		}
+	}
+	return len(stack) == 0
+}
+
 // 961.N-Repeated Element in Size 2N Array
 func repeatedNTimes(nums []int) int {
 	found := map[int]bool{}
