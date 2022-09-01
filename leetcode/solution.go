@@ -681,6 +681,22 @@ func shuffle(nums []int, n int) []int {
 	return res
 }
 
+// 1475. Final Prices With a Special Discount in a Shop
+func finalPrices(prices []int) []int {
+	n := len(prices)
+	res := make([]int, n)
+	stack := []int{0}
+	for i := n - 1; i >= 0; i-- {
+		p := prices[i]
+		for len(stack) > 1 && stack[len(stack)-1] > p {
+			stack = stack[:len(stack)-1]
+		}
+		res[i] = p - stack[len(stack)-1]
+		stack = append(stack, p)
+	}
+	return res
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
