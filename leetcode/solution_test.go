@@ -326,6 +326,12 @@ func TestShuffle(t *testing.T) {
 	assert.Equal(t, []int{1, 2, 1, 2}, shuffle([]int{1, 1, 2, 2}, 2))
 }
 
+func TestFinalPrices(t *testing.T) {
+	assert.Equal(t, []int{4, 2, 4, 2, 3}, finalPrices([]int{8, 4, 6, 2, 3}))
+	assert.Equal(t, []int{1, 2, 3, 4, 5}, finalPrices([]int{1, 2, 3, 4, 5}))
+	assert.Equal(t, []int{9, 0, 1, 6}, finalPrices([]int{10, 1, 1, 6}))
+}
+
 func TestFindTheWinner(t *testing.T) {
 	assert.Equal(t, 3, findTheWinner(5, 2))
 	assert.Equal(t, 1, findTheWinner(6, 5))
