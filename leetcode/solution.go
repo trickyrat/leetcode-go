@@ -733,6 +733,32 @@ func finalPrices(prices []int) []int {
 	return res
 }
 
+// 1582. Special Positions in a Binary Matrix
+func numSpecial(mat [][]int) (res int) {
+	for i, row := range mat {
+		count := 0
+		for _, x := range row {
+			count += x
+		}
+		if i == 0 {
+			count--
+		}
+		if count > 0 {
+			for j, x := range row {
+				if x == 1 {
+					mat[0][j] += count
+				}
+			}
+		}
+	}
+	for _, x := range mat[0] {
+		if x == 1 {
+			res++
+		}
+	}
+	return
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
