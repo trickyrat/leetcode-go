@@ -362,6 +362,19 @@ func exclusiveTime(n int, logs []string) []int {
 	return res
 }
 
+// 646. Maximum Length of Pair Chain
+func findLongestChain(pairs [][]int) (res int) {
+	sort.Slice(pairs, func(i, j int) bool { return pairs[i][1] < pairs[j][1] })
+	curr := math.MinInt32
+	for _, p := range pairs {
+		if curr < p[0] {
+			curr = p[1]
+			res++
+		}
+	}
+	return
+}
+
 // 655. Print Binary Tree
 func printTree(root *datastructures.TreeNode) [][]string {
 	height := calculateDepth(root)

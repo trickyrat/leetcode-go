@@ -39,11 +39,7 @@ func TestReverseInt(t *testing.T) {
 }
 
 func TestPathSum(t *testing.T) {
-	row1 := []int{5, 4, 11, 2}
-	row2 := []int{5, 8, 4, 5}
-	var values [][]int
-	values = append(values, row1)
-	values = append(values, row2)
+	var values = [][]int{{5, 4, 11, 2}, {5, 8, 4, 5}}
 	assert.Equal(t, values, pathSum(datastructures.CreateTreeNodeIteratively("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22))
 	assert.Equal(t, [][]int(nil), pathSum(datastructures.CreateTreeNodeIteratively("1,2,3"), 5))
 }
@@ -221,6 +217,13 @@ func TestExclusiveTime(t *testing.T) {
 	assert.Equal(t, []int{1}, exclusiveTime(1, []string{"0:start:0", "0:end:0"}))
 }
 
+func TestFindLongestChain(t *testing.T) {
+	var pairs1 = [][]int{{1, 2}, {2, 3}, {3, 4}}
+	var pairs2 = [][]int{{1, 2}, {7, 8}, {4, 5}}
+	assert.Equal(t, 2, findLongestChain(pairs1))
+	assert.Equal(t, 3, findLongestChain(pairs2))
+}
+
 func TestPrintTree(t *testing.T) {
 	assert.Equal(t, [][]string{{"", "1", ""}, {"2", "", ""}}, printTree(datastructures.CreateTreeNodeIteratively("1,2")))
 	assert.Equal(t, [][]string{{"", "", "", "1", "", "", ""}, {"", "2", "", "", "", "3", ""}, {"", "", "4", "", "", "", ""}}, printTree(datastructures.CreateTreeNodeIteratively("1,2,3,null,4")))
@@ -268,14 +271,9 @@ func TestMostCommonWord(t *testing.T) {
 }
 
 func TestProjectionArea(t *testing.T) {
-	var grid1 [][]int
-	grid1 = append(grid1, []int{1, 2})
-	grid1 = append(grid1, []int{3, 4})
-	var grid2 [][]int
-	grid2 = append(grid2, []int{2})
-	var grid3 [][]int
-	grid3 = append(grid3, []int{1, 0})
-	grid3 = append(grid3, []int{0, 2})
+	var grid1 = [][]int{{1, 2}, {3, 4}}
+	var grid2 = [][]int{{2}}
+	var grid3 = [][]int{{1, 0}, {0, 2}}
 	assert.Equal(t, 17, projectionArea(grid1))
 	assert.Equal(t, 5, projectionArea(grid2))
 	assert.Equal(t, 8, projectionArea(grid3))
@@ -367,23 +365,8 @@ func TestCountMaxOrSubsets(t *testing.T) {
 }
 
 func TestPlatesBetweenCandles(t *testing.T) {
-	query1 := []int{2, 5}
-	query2 := []int{5, 9}
-	var queries1 [][]int
-	queries1 = append(queries1, query1)
-	queries1 = append(queries1, query2)
+	var queries1 = [][]int{{2, 5}, {5, 9}}
+	var queries2 = [][]int{{1, 17}, {4, 5}, {14, 17}, {5, 11}, {15, 16}}
 	assert.Equal(t, []int{2, 3}, platesBetweenCandles("**|**|***|", queries1))
-
-	query3 := []int{1, 17}
-	query4 := []int{4, 5}
-	query5 := []int{14, 17}
-	query6 := []int{5, 11}
-	query7 := []int{15, 16}
-	var queries2 [][]int
-	queries2 = append(queries2, query3)
-	queries2 = append(queries2, query4)
-	queries2 = append(queries2, query5)
-	queries2 = append(queries2, query6)
-	queries2 = append(queries2, query7)
 	assert.Equal(t, []int{9, 0, 0, 0, 0}, platesBetweenCandles("***|**|*****|**||**|*", queries2))
 }
