@@ -281,6 +281,12 @@ func TestMostCommonWord(t *testing.T) {
 	assert.Equal(t, "ball", mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit.", []string{"hit"}))
 }
 
+func TestUniqueLetterString(t *testing.T) {
+	assert.Equal(t, 10, uniqueLetterString("ABC"))
+	assert.Equal(t, 8, uniqueLetterString("ABA"))
+	assert.Equal(t, 92, uniqueLetterString("LEETCODE"))
+}
+
 func TestProjectionArea(t *testing.T) {
 	assert.Equal(t, 17, projectionArea([][]int{{1, 2}, {3, 4}}))
 	assert.Equal(t, 5, projectionArea([][]int{{2}}))

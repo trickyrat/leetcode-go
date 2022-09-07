@@ -586,6 +586,21 @@ func mostCommonWord(paragraph string, banned []string) string {
 	return ""
 }
 
+// 828. Count Unique Characters of All Substrings of a Given String
+func uniqueLetterString(s string) (res int) {
+	index := map[rune][]int{}
+	for i, c := range s {
+		index[c] = append(index[c], i)
+	}
+	for _, arr := range index {
+		arr = append(append([]int{-1}, arr...), len(s))
+		for i := 1; i < len(arr)-1; i++ {
+			res += (arr[i] - arr[i-1]) * (arr[i+1] - arr[i])
+		}
+	}
+	return
+}
+
 // 883.Projection Area of 3D Shapes
 func projectionArea(grid [][]int) int {
 	var xyArea, yzArea, zxArea int
