@@ -805,6 +805,17 @@ func numSpecial(mat [][]int) (res int) {
 	return
 }
 
+// 1592. Rearrange Spaces Between Words
+func reorderSpaces(text string) string {
+	words := strings.Fields(text)
+	space := strings.Count(text, " ")
+	lengthOfWord := len(words) - 1
+	if lengthOfWord == 0 {
+		return words[0] + strings.Repeat(" ", space)
+	}
+	return strings.Join(words, strings.Repeat(" ", space/lengthOfWord)) + strings.Repeat(" ", space%lengthOfWord)
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1

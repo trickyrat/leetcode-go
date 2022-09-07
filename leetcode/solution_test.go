@@ -354,6 +354,11 @@ func TestNumSpecial(t *testing.T) {
 	assert.Equal(t, 3, numSpecial([][]int{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}))
 }
 
+func TestReorderSpaces(t *testing.T) {
+	assert.Equal(t, "this   is   a   sentence", reorderSpaces("  this   is  a sentence "))
+	assert.Equal(t, "practice   makes   perfect ", reorderSpaces(" practice   makes   perfect"))
+}
+
 func TestFindTheWinner(t *testing.T) {
 	assert.Equal(t, 3, findTheWinner(5, 2))
 	assert.Equal(t, 1, findTheWinner(6, 5))
