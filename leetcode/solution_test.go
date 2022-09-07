@@ -237,6 +237,11 @@ func TestWidthOfBinaryTree(t *testing.T) {
 	assert.Equal(t, 2, widthOfBinaryTree(datastructures.CreateTreeNodeIteratively("1,3,2,5")))
 }
 
+func TestLongestUnivaluePath(t *testing.T) {
+	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNodeIteratively("5,4,5,1,1,null,5")))
+	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNodeIteratively("1,4,5,4,4,null,5")))
+}
+
 func TestSelfDividingNumbers(t *testing.T) {
 	assert.Equal(t, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22}, selfDividingNumbers(1, 22))
 	assert.Equal(t, []int{48, 55, 66, 77}, selfDividingNumbers(48, 85))

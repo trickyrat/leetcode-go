@@ -428,6 +428,29 @@ func widthOfBinaryTree(root *datastructures.TreeNode) int {
 	return dfs(root, 1, 1)
 }
 
+// 687. Longest Univalue Path
+func longestUnivaluePath(root *datastructures.TreeNode) (res int) {
+	var dfs func(node *datastructures.TreeNode) int
+	dfs = func(node *datastructures.TreeNode) int {
+		if node == nil {
+			return 0
+		}
+		left := dfs(node.Left)
+		right := dfs(node.Right)
+		left1, right1 := 0, 0
+		if node.Left != nil && node.Left.Val == node.Val {
+			left1 = left + 1
+		}
+		if node.Right != nil && node.Right.Val == node.Val {
+			right1 = right + 1
+		}
+		res = max(res, left1+right1)
+		return max(left1, right1)
+	}
+	dfs(root)
+	return res
+}
+
 // 728.Self Dividing Numbers
 func selfDividingNumbers(left, right int) (ans []int) {
 	for i := left; i <= right; i++ {
