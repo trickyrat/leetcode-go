@@ -375,6 +375,37 @@ func findLongestChain(pairs [][]int) (res int) {
 	return
 }
 
+// 652. Find Duplicate Subtrees
+func findDuplicateSubtrees(root *datastructures.TreeNode) []*datastructures.TreeNode {
+	type pair struct {
+		node  *datastructures.TreeNode
+		index int
+	}
+	repeat := map[*datastructures.TreeNode]struct{}{}
+	seen := map[[3]int]pair{}
+	index := 0
+	var dfs func(*datastructures.TreeNode) int
+	dfs = func(node *datastructures.TreeNode) int {
+		if node == nil {
+			return 0
+		}
+		triple := [3]int{node.Val, dfs(node.Left), dfs(node.Right)}
+		if p, ok := seen[triple]; ok {
+			repeat[p.node] = struct{}{}
+			return p.index
+		}
+		index++
+		seen[triple] = pair{node, index}
+		return index
+	}
+	dfs(root)
+	res := make([]*datastructures.TreeNode, 0, len(repeat))
+	for node := range repeat {
+		res = append(res, node)
+	}
+	return res
+}
+
 // 655. Print Binary Tree
 func printTree(root *datastructures.TreeNode) [][]string {
 	height := calculateDepth(root)

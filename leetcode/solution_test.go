@@ -221,6 +221,20 @@ func TestFindLongestChain(t *testing.T) {
 	assert.Equal(t, 3, findLongestChain([][]int{{1, 2}, {7, 8}, {4, 5}}))
 }
 
+func TestFindDuplicateSubtrees(t *testing.T) {
+	assert.Equal(t, []*datastructures.TreeNode{
+		datastructures.CreateTreeNodeIteratively("4"),
+		datastructures.CreateTreeNodeIteratively("2,4"),
+	}, findDuplicateSubtrees(datastructures.CreateTreeNodeIteratively("1,2,3,4,null,2,4,null,null,4")))
+	assert.Equal(t, []*datastructures.TreeNode{
+		datastructures.CreateTreeNodeIteratively("1"),
+	}, findDuplicateSubtrees(datastructures.CreateTreeNodeIteratively("2,1,1")))
+	assert.Equal(t, []*datastructures.TreeNode{
+		datastructures.CreateTreeNodeIteratively("3"),
+		datastructures.CreateTreeNodeIteratively("2,3"),
+	}, findDuplicateSubtrees(datastructures.CreateTreeNodeIteratively("2,2,2,3,null,3,null")))
+}
+
 func TestPrintTree(t *testing.T) {
 	assert.Equal(t, [][]string{{"", "1", ""}, {"2", "", ""}}, printTree(datastructures.CreateTreeNodeIteratively("1,2")))
 	assert.Equal(t, [][]string{{"", "", "", "1", "", "", ""}, {"", "2", "", "", "", "3", ""}, {"", "", "4", "", "", "", ""}}, printTree(datastructures.CreateTreeNodeIteratively("1,2,3,null,4")))
