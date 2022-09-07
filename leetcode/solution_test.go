@@ -39,8 +39,7 @@ func TestReverseInt(t *testing.T) {
 }
 
 func TestPathSum(t *testing.T) {
-	var values = [][]int{{5, 4, 11, 2}, {5, 8, 4, 5}}
-	assert.Equal(t, values, pathSum(datastructures.CreateTreeNodeIteratively("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22))
+	assert.Equal(t, [][]int{{5, 4, 11, 2}, {5, 8, 4, 5}}, pathSum(datastructures.CreateTreeNodeIteratively("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22))
 	assert.Equal(t, [][]int(nil), pathSum(datastructures.CreateTreeNodeIteratively("1,2,3"), 5))
 }
 
@@ -218,10 +217,8 @@ func TestExclusiveTime(t *testing.T) {
 }
 
 func TestFindLongestChain(t *testing.T) {
-	var pairs1 = [][]int{{1, 2}, {2, 3}, {3, 4}}
-	var pairs2 = [][]int{{1, 2}, {7, 8}, {4, 5}}
-	assert.Equal(t, 2, findLongestChain(pairs1))
-	assert.Equal(t, 3, findLongestChain(pairs2))
+	assert.Equal(t, 2, findLongestChain([][]int{{1, 2}, {2, 3}, {3, 4}}))
+	assert.Equal(t, 3, findLongestChain([][]int{{1, 2}, {7, 8}, {4, 5}}))
 }
 
 func TestPrintTree(t *testing.T) {
@@ -271,12 +268,9 @@ func TestMostCommonWord(t *testing.T) {
 }
 
 func TestProjectionArea(t *testing.T) {
-	var grid1 = [][]int{{1, 2}, {3, 4}}
-	var grid2 = [][]int{{2}}
-	var grid3 = [][]int{{1, 0}, {0, 2}}
-	assert.Equal(t, 17, projectionArea(grid1))
-	assert.Equal(t, 5, projectionArea(grid2))
-	assert.Equal(t, 8, projectionArea(grid3))
+	assert.Equal(t, 17, projectionArea([][]int{{1, 2}, {3, 4}}))
+	assert.Equal(t, 5, projectionArea([][]int{{2}}))
+	assert.Equal(t, 8, projectionArea([][]int{{1, 0}, {0, 2}}))
 }
 
 func TestRepeatedNTimes(t *testing.T) {
@@ -335,6 +329,11 @@ func TestFinalPrices(t *testing.T) {
 	assert.Equal(t, []int{9, 0, 1, 6}, finalPrices([]int{10, 1, 1, 6}))
 }
 
+func TestNumSpecial(t *testing.T) {
+	assert.Equal(t, 1, numSpecial([][]int{{1, 0, 0}, {0, 0, 1}, {1, 0, 0}}))
+	assert.Equal(t, 3, numSpecial([][]int{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}))
+}
+
 func TestFindTheWinner(t *testing.T) {
 	assert.Equal(t, 3, findTheWinner(5, 2))
 	assert.Equal(t, 1, findTheWinner(6, 5))
@@ -365,8 +364,6 @@ func TestCountMaxOrSubsets(t *testing.T) {
 }
 
 func TestPlatesBetweenCandles(t *testing.T) {
-	var queries1 = [][]int{{2, 5}, {5, 9}}
-	var queries2 = [][]int{{1, 17}, {4, 5}, {14, 17}, {5, 11}, {15, 16}}
-	assert.Equal(t, []int{2, 3}, platesBetweenCandles("**|**|***|", queries1))
-	assert.Equal(t, []int{9, 0, 0, 0, 0}, platesBetweenCandles("***|**|*****|**||**|*", queries2))
+	assert.Equal(t, []int{2, 3}, platesBetweenCandles("**|**|***|", [][]int{{2, 5}, {5, 9}}))
+	assert.Equal(t, []int{9, 0, 0, 0, 0}, platesBetweenCandles("***|**|*****|**||**|*", [][]int{{1, 17}, {4, 5}, {14, 17}, {5, 11}, {15, 16}}))
 }
