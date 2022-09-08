@@ -251,6 +251,11 @@ func TestWidthOfBinaryTree(t *testing.T) {
 	assert.Equal(t, 2, widthOfBinaryTree(datastructures.CreateTreeNodeIteratively("1,3,2,5")))
 }
 
+func TestConstructArray(t *testing.T) {
+	assert.Equal(t, []int{1, 2, 3}, constructArray(3, 1))
+	assert.Equal(t, []int{1, 3, 2}, constructArray(3, 2))
+}
+
 func TestLongestUnivaluePath(t *testing.T) {
 	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNodeIteratively("5,4,5,1,1,null,5")))
 	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNodeIteratively("1,4,5,4,4,null,5")))
