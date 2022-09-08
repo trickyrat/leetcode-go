@@ -364,6 +364,12 @@ func TestReorderSpaces(t *testing.T) {
 	assert.Equal(t, "practice   makes   perfect ", reorderSpaces(" practice   makes   perfect"))
 }
 
+func TestMinOperations(t *testing.T) {
+	assert.Equal(t, 2, minOperations([]string{"d1/", "d2/", "../", "d21/", "./"}))
+	assert.Equal(t, 3, minOperations([]string{"d1/", "d2/", "./", "d3/", "../", "d31/"}))
+	assert.Equal(t, 0, minOperations([]string{"d1/", "../", "../", "../"}))
+}
+
 func TestFindTheWinner(t *testing.T) {
 	assert.Equal(t, 3, findTheWinner(5, 2))
 	assert.Equal(t, 1, findTheWinner(6, 5))
