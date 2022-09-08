@@ -832,6 +832,23 @@ func reorderSpaces(text string) string {
 	return strings.Join(words, strings.Repeat(" ", space/lengthOfWord)) + strings.Repeat(" ", space%lengthOfWord)
 }
 
+// 1598. Crawler Log Folder
+func minOperations(logs []string) int {
+	depth := 0
+	for _, log := range logs {
+		if log == "./" {
+			continue
+		} else if log == "../" {
+			if depth > 0 {
+				depth--
+			}
+		} else {
+			depth++
+		}
+	}
+	return depth
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
