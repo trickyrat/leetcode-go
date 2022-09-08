@@ -472,6 +472,22 @@ func widthOfBinaryTree(root *datastructures.TreeNode) int {
 	return dfs(root, 1, 1)
 }
 
+// 667. Beautiful Arrangement II
+func constructArray(n, k int) []int {
+	res := make([]int, 0, n)
+	for i := 1; i < n-k; i++ {
+		res = append(res, i)
+	}
+	for i, j := n-k, n; i <= j; i++ {
+		res = append(res, i)
+		if i != j {
+			res = append(res, j)
+		}
+		j--
+	}
+	return res
+}
+
 // 687. Longest Univalue Path
 func longestUnivaluePath(root *datastructures.TreeNode) (res int) {
 	var dfs func(node *datastructures.TreeNode) int
