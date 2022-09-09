@@ -15,7 +15,7 @@ func CreateListNode(nums []int) *ListNode {
 	return head
 }
 
-func CreateTreeNodeIteratively(data string) *TreeNode {
+func CreateTreeNode(data string) *TreeNode {
 	if len(data) == 0 {
 		return nil
 	}
