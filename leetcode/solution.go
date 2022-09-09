@@ -488,6 +488,35 @@ func constructArray(n, k int) []int {
 	return res
 }
 
+// 669. Trim a Binary Search Tree
+func trimBST(root *datastructures.TreeNode, low, high int) *datastructures.TreeNode {
+	for root != nil && (root.Val < low || root.Val > high) {
+		if root.Val < low {
+			root = root.Right
+		} else {
+			root = root.Left
+		}
+	}
+	if root == nil {
+		return nil
+	}
+	for node := root; node.Left != nil; {
+		if node.Left.Val < low {
+			node.Left = node.Left.Right
+		} else {
+			node = node.Left
+		}
+	}
+	for node := root; node.Right != nil; {
+		if node.Right.Val > high {
+			node.Right = node.Right.Left
+		} else {
+			node = node.Right
+		}
+	}
+	return root
+}
+
 // 687. Longest Univalue Path
 func longestUnivaluePath(root *datastructures.TreeNode) (res int) {
 	var dfs func(node *datastructures.TreeNode) int

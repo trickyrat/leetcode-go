@@ -39,14 +39,14 @@ func TestReverseInt(t *testing.T) {
 }
 
 func TestPathSum(t *testing.T) {
-	assert.Equal(t, [][]int{{5, 4, 11, 2}, {5, 8, 4, 5}}, pathSum(datastructures.CreateTreeNodeIteratively("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22))
-	assert.Equal(t, [][]int(nil), pathSum(datastructures.CreateTreeNodeIteratively("1,2,3"), 5))
+	assert.Equal(t, [][]int{{5, 4, 11, 2}, {5, 8, 4, 5}}, pathSum(datastructures.CreateTreeNode("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22))
+	assert.Equal(t, [][]int(nil), pathSum(datastructures.CreateTreeNode("1,2,3"), 5))
 }
 
 func TestPreorderTraversal(t *testing.T) {
-	assert.Equal(t, []int{1, 2, 3}, preorderTraversal(datastructures.CreateTreeNodeIteratively("1,null,2,3")))
-	assert.Equal(t, []int(nil), preorderTraversal(datastructures.CreateTreeNodeIteratively("")))
-	assert.Equal(t, []int{1}, preorderTraversal(datastructures.CreateTreeNodeIteratively("1")))
+	assert.Equal(t, []int{1, 2, 3}, preorderTraversal(datastructures.CreateTreeNode("1,null,2,3")))
+	assert.Equal(t, []int(nil), preorderTraversal(datastructures.CreateTreeNode("")))
+	assert.Equal(t, []int{1}, preorderTraversal(datastructures.CreateTreeNode("1")))
 }
 
 func TestHammingWeight(t *testing.T) {
@@ -223,21 +223,21 @@ func TestFindLongestChain(t *testing.T) {
 
 func TestFindDuplicateSubtrees(t *testing.T) {
 	assert.Equal(t, []*datastructures.TreeNode{
-		datastructures.CreateTreeNodeIteratively("4"),
-		datastructures.CreateTreeNodeIteratively("2,4"),
-	}, findDuplicateSubtrees(datastructures.CreateTreeNodeIteratively("1,2,3,4,null,2,4,null,null,4")))
+		datastructures.CreateTreeNode("4"),
+		datastructures.CreateTreeNode("2,4"),
+	}, findDuplicateSubtrees(datastructures.CreateTreeNode("1,2,3,4,null,2,4,null,null,4")))
 	assert.Equal(t, []*datastructures.TreeNode{
-		datastructures.CreateTreeNodeIteratively("1"),
-	}, findDuplicateSubtrees(datastructures.CreateTreeNodeIteratively("2,1,1")))
+		datastructures.CreateTreeNode("1"),
+	}, findDuplicateSubtrees(datastructures.CreateTreeNode("2,1,1")))
 	assert.Equal(t, []*datastructures.TreeNode{
-		datastructures.CreateTreeNodeIteratively("3"),
-		datastructures.CreateTreeNodeIteratively("2,3"),
-	}, findDuplicateSubtrees(datastructures.CreateTreeNodeIteratively("2,2,2,3,null,3,null")))
+		datastructures.CreateTreeNode("3"),
+		datastructures.CreateTreeNode("2,3"),
+	}, findDuplicateSubtrees(datastructures.CreateTreeNode("2,2,2,3,null,3,null")))
 }
 
 func TestPrintTree(t *testing.T) {
-	assert.Equal(t, [][]string{{"", "1", ""}, {"2", "", ""}}, printTree(datastructures.CreateTreeNodeIteratively("1,2")))
-	assert.Equal(t, [][]string{{"", "", "", "1", "", "", ""}, {"", "2", "", "", "", "3", ""}, {"", "", "4", "", "", "", ""}}, printTree(datastructures.CreateTreeNodeIteratively("1,2,3,null,4")))
+	assert.Equal(t, [][]string{{"", "1", ""}, {"2", "", ""}}, printTree(datastructures.CreateTreeNode("1,2")))
+	assert.Equal(t, [][]string{{"", "", "", "1", "", "", ""}, {"", "2", "", "", "", "3", ""}, {"", "", "4", "", "", "", ""}}, printTree(datastructures.CreateTreeNode("1,2,3,null,4")))
 }
 
 func TestFindClosestElements(t *testing.T) {
@@ -246,9 +246,9 @@ func TestFindClosestElements(t *testing.T) {
 }
 
 func TestWidthOfBinaryTree(t *testing.T) {
-	assert.Equal(t, 4, widthOfBinaryTree(datastructures.CreateTreeNodeIteratively("1,3,2,5,3,null,9")))
-	assert.Equal(t, 7, widthOfBinaryTree(datastructures.CreateTreeNodeIteratively("1,3,2,5,null,null,9,6,null,7")))
-	assert.Equal(t, 2, widthOfBinaryTree(datastructures.CreateTreeNodeIteratively("1,3,2,5")))
+	assert.Equal(t, 4, widthOfBinaryTree(datastructures.CreateTreeNode("1,3,2,5,3,null,9")))
+	assert.Equal(t, 7, widthOfBinaryTree(datastructures.CreateTreeNode("1,3,2,5,null,null,9,6,null,7")))
+	assert.Equal(t, 2, widthOfBinaryTree(datastructures.CreateTreeNode("1,3,2,5")))
 }
 
 func TestConstructArray(t *testing.T) {
@@ -256,9 +256,14 @@ func TestConstructArray(t *testing.T) {
 	assert.Equal(t, []int{1, 3, 2}, constructArray(3, 2))
 }
 
+func TestTrimBST(t *testing.T) {
+	assert.Equal(t, datastructures.CreateTreeNode("1,null,2"), trimBST(datastructures.CreateTreeNode("1,0,2"), 1, 2))
+	assert.Equal(t, datastructures.CreateTreeNode("3,2,null,1"), trimBST(datastructures.CreateTreeNode("3,0,4,null,2,null,null,1"), 1, 3))
+}
+
 func TestLongestUnivaluePath(t *testing.T) {
-	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNodeIteratively("5,4,5,1,1,null,5")))
-	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNodeIteratively("1,4,5,4,4,null,5")))
+	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNode("5,4,5,1,1,null,5")))
+	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNode("1,4,5,4,4,null,5")))
 }
 
 func TestSelfDividingNumbers(t *testing.T) {
@@ -305,12 +310,12 @@ func TestRepeatedNTimes(t *testing.T) {
 }
 
 func TestInsertIntoMaxTree(t *testing.T) {
-	assert.Equal(t, datastructures.CreateTreeNodeIteratively("5,4,null,1,3,null,null,2"),
-		insertIntoMaxTree(datastructures.CreateTreeNodeIteratively("4,1,3,null,null,2"), 5))
-	assert.Equal(t, datastructures.CreateTreeNodeIteratively("5,2,4,null,1,null,3"),
-		insertIntoMaxTree(datastructures.CreateTreeNodeIteratively("5,2,4,null,1"), 3))
-	assert.Equal(t, datastructures.CreateTreeNodeIteratively("5,2,4,null,1,3"),
-		insertIntoMaxTree(datastructures.CreateTreeNodeIteratively("5,2,3,null,1"), 4))
+	assert.Equal(t, datastructures.CreateTreeNode("5,4,null,1,3,null,null,2"),
+		insertIntoMaxTree(datastructures.CreateTreeNode("4,1,3,null,null,2"), 5))
+	assert.Equal(t, datastructures.CreateTreeNode("5,2,4,null,1,null,3"),
+		insertIntoMaxTree(datastructures.CreateTreeNode("5,2,4,null,1"), 3))
+	assert.Equal(t, datastructures.CreateTreeNode("5,2,4,null,1,3"),
+		insertIntoMaxTree(datastructures.CreateTreeNode("5,2,3,null,1"), 4))
 }
 
 func TestMinSubsequence(t *testing.T) {
