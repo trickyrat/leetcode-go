@@ -66,3 +66,8 @@ func calculateDepth(root *datastructures.TreeNode) int {
 	}
 	return height
 }
+
+func round(value float64, digits int) float64 {
+	value, _ = strconv.ParseFloat(strconv.FormatFloat(value, 'f', digits, 64), 64)
+	return value
+}
