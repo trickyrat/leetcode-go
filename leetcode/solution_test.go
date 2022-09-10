@@ -297,6 +297,11 @@ func TestUniqueLetterString(t *testing.T) {
 	assert.Equal(t, 92, uniqueLetterString("LEETCODE"))
 }
 
+func TestMinCostToHireWorkers(t *testing.T) {
+	assert.Equal(t, 105.00000, round(minCostToHireWorkers([]int{10, 20, 5}, []int{70, 50, 30}, 2), 5))
+	assert.Equal(t, 30.66667, round(minCostToHireWorkers([]int{3, 1, 10, 10, 1}, []int{4, 8, 2, 2, 7}, 3), 5))
+}
+
 func TestProjectionArea(t *testing.T) {
 	assert.Equal(t, 17, projectionArea([][]int{{1, 2}, {3, 4}}))
 	assert.Equal(t, 5, projectionArea([][]int{{2}}))

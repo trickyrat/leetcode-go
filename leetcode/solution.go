@@ -1,6 +1,7 @@
 package leetcode
 
 import (
+	"container/heap"
 	"datastructures"
 	"fmt"
 	"math"
@@ -644,6 +645,47 @@ func uniqueLetterString(s string) (res int) {
 		}
 	}
 	return
+}
+
+type hp struct {
+	sort.IntSlice
+}
+
+func (h hp) Less(i, j int) bool  { return h.IntSlice[i] > h.IntSlice[j] }
+func (h *hp) Push(v interface{}) { h.IntSlice = append(h.IntSlice, v.(int)) }
+func (h *hp) Pop() interface{} {
+	a := h.IntSlice
+	v := a[len(a)-1]
+	h.IntSlice = a[:len(a)-1]
+	return v
+}
+
+// 857. Minimum Cost to Hire K Workers
+func minCostToHireWorkers(quality, wage []int, k int) float64 {
+	n := len(quality)
+	hire := make([]int, n)
+	for i := range hire {
+		hire[i] = i
+	}
+	sort.Slice(hire, func(i, j int) bool {
+		a, b := hire[i], hire[j]
+		return quality[a]*wage[b] > quality[b]*wage[a]
+	})
+	totalQuality := 0
+	queue := hp{}
+	for i := 0; i < k-1; i++ {
+		totalQuality += quality[hire[i]]
+		heap.Push(&queue, quality[hire[i]])
+	}
+	res := 1e9
+	for i := k - 1; i < n; i++ {
+		index := hire[i]
+		totalQuality += quality[index]
+		heap.Push(&queue, quality[index])
+		res = math.Min(res, float64(wage[index])/float64(quality[index])*float64(totalQuality))
+		totalQuality -= heap.Pop(&queue).(int)
+	}
+	return res
 }
 
 // 883.Projection Area of 3D Shapes
