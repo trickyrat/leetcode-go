@@ -518,6 +518,26 @@ func trimBST(root *datastructures.TreeNode, low, high int) *datastructures.TreeN
 	return root
 }
 
+// 670. Maximum Swap
+func maximumSwap(num int) int {
+	s := []byte(strconv.Itoa(num))
+	n := len(s)
+	maxIndex, index1, index2 := n-1, -1, -1
+	for i := n - 1; i >= 0; i-- {
+		if s[i] > s[maxIndex] {
+			maxIndex = i
+		} else if s[i] < s[maxIndex] {
+			index1, index2 = i, maxIndex
+		}
+	}
+	if index1 < 0 {
+		return num
+	}
+	s[index1], s[index2] = s[index2], s[index1]
+	v, _ := strconv.Atoi(string(s))
+	return v
+}
+
 // 687. Longest Univalue Path
 func longestUnivaluePath(root *datastructures.TreeNode) (res int) {
 	var dfs func(node *datastructures.TreeNode) int
