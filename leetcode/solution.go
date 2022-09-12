@@ -920,6 +920,17 @@ func minOperations(logs []string) int {
 	return depth
 }
 
+// 1608. Special Array With X Elements Greater Than or Equal X
+func specialArray(nums []int) int {
+	sort.Sort(sort.Reverse(sort.IntSlice(nums)))
+	for i, n := 1, len(nums); i <= n; i++ {
+		if nums[i-1] >= i && (i == n || nums[i] < i) {
+			return i
+		}
+	}
+	return -1
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
