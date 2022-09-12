@@ -261,6 +261,11 @@ func TestTrimBST(t *testing.T) {
 	assert.Equal(t, datastructures.CreateTreeNode("3,2,null,1"), trimBST(datastructures.CreateTreeNode("3,0,4,null,2,null,null,1"), 1, 3))
 }
 
+func TestMaximumSwap(t *testing.T) {
+	assert.Equal(t, 7236, maximumSwap(2736))
+	assert.Equal(t, 9973, maximumSwap(9973))
+}
+
 func TestLongestUnivaluePath(t *testing.T) {
 	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNode("5,4,5,1,1,null,5")))
 	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNode("1,4,5,4,4,null,5")))
