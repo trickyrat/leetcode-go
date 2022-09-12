@@ -380,6 +380,12 @@ func TestMinOperations(t *testing.T) {
 	assert.Equal(t, 0, minOperations([]string{"d1/", "../", "../", "../"}))
 }
 
+func TestSpecialArray(t *testing.T) {
+	assert.Equal(t, 2, specialArray([]int{3, 5}))
+	assert.Equal(t, -1, specialArray([]int{0, 0}))
+	assert.Equal(t, 3, specialArray([]int{0, 4, 3, 0, 4}))
+}
+
 func TestFindTheWinner(t *testing.T) {
 	assert.Equal(t, 3, findTheWinner(5, 2))
 	assert.Equal(t, 1, findTheWinner(6, 5))
