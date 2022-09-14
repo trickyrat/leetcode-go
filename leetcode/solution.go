@@ -951,6 +951,17 @@ func specialArray(nums []int) int {
 	return -1
 }
 
+// 1619. Mean of Array After Removing Some Elements
+func trimMean(arr []int) float64 {
+	n := len(arr)
+	sort.Ints(arr)
+	sum := 0
+	for _, i := range arr[n/20 : (19 * n / 20)] {
+		sum += i
+	}
+	return float64(sum*10) / float64(n*9)
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
