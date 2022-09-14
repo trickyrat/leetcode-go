@@ -271,6 +271,12 @@ func TestLongestUnivaluePath(t *testing.T) {
 	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNode("1,4,5,4,4,null,5")))
 }
 
+func TestPivotIndex(t *testing.T) {
+	assert.Equal(t, 3, pivotIndex([]int{2, 3, -1, 8, 4}))
+	assert.Equal(t, 2, pivotIndex([]int{1, -1, 4}))
+	assert.Equal(t, -1, pivotIndex([]int{2, 5}))
+}
+
 func TestSelfDividingNumbers(t *testing.T) {
 	assert.Equal(t, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22}, selfDividingNumbers(1, 22))
 	assert.Equal(t, []int{48, 55, 66, 77}, selfDividingNumbers(48, 85))
@@ -402,10 +408,10 @@ func TestFindTheWinner(t *testing.T) {
 	assert.Equal(t, 1, findTheWinner(6, 5))
 }
 
-func TestPivotIndex(t *testing.T) {
-	assert.Equal(t, 3, pivotIndex([]int{2, 3, -1, 8, 4}))
-	assert.Equal(t, 2, pivotIndex([]int{1, -1, 4}))
-	assert.Equal(t, -1, pivotIndex([]int{2, 5}))
+func TestFindMiddleIndex(t *testing.T) {
+	assert.Equal(t, 3, findMiddleIndex([]int{2, 3, -1, 8, 4}))
+	assert.Equal(t, 2, findMiddleIndex([]int{1, -1, 4}))
+	assert.Equal(t, -1, findMiddleIndex([]int{2, 5}))
 }
 
 func TestCountKDifference(t *testing.T) {
