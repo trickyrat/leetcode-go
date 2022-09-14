@@ -538,6 +538,33 @@ func maximumSwap(num int) int {
 	return v
 }
 
+// 672. Bulb Switcher II
+func flipLights(n, presses int) int {
+	seen := map[int]struct{}{}
+	for i := 0; i < 1<<4; i++ {
+		pressArray := [4]int{}
+		sum := 0
+		for j := 0; j < 4; j++ {
+			pressArray[j] = i >> j & 1
+			sum += pressArray[j]
+		}
+		if sum%2 == presses%2 && sum <= presses {
+			status := pressArray[0] ^ pressArray[1] ^ pressArray[3]
+			if n >= 2 {
+				status |= (pressArray[0] ^ pressArray[1]) << 1
+			}
+			if n >= 3 {
+				status |= (pressArray[0] ^ pressArray[2]) << 2
+			}
+			if n >= 4 {
+				status |= (pressArray[0] ^ pressArray[1] ^ pressArray[3]) << 3
+			}
+			seen[status] = struct{}{}
+		}
+	}
+	return len(seen)
+}
+
 // 687. Longest Univalue Path
 func longestUnivaluePath(root *datastructures.TreeNode) (res int) {
 	var dfs func(node *datastructures.TreeNode) int
