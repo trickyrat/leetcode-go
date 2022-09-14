@@ -266,6 +266,12 @@ func TestMaximumSwap(t *testing.T) {
 	assert.Equal(t, 9973, maximumSwap(9973))
 }
 
+func TestFlipLights(t *testing.T) {
+	assert.Equal(t, 2, flipLights(1, 1))
+	assert.Equal(t, 3, flipLights(2, 1))
+	assert.Equal(t, 4, flipLights(3, 1))
+}
+
 func TestLongestUnivaluePath(t *testing.T) {
 	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNode("5,4,5,1,1,null,5")))
 	assert.Equal(t, 2, longestUnivaluePath(datastructures.CreateTreeNode("1,4,5,4,4,null,5")))
