@@ -561,6 +561,22 @@ func longestUnivaluePath(root *datastructures.TreeNode) (res int) {
 	return res
 }
 
+// 724. Find Pivot Index
+func pivotIndex(nums []int) int {
+	total := 0
+	for _, num := range nums {
+		total += num
+	}
+	sum := 0
+	for i, num := range nums {
+		if 2*sum+num == total {
+			return i
+		}
+		sum += num
+	}
+	return -1
+}
+
 // 728.Self Dividing Numbers
 func selfDividingNumbers(left, right int) (ans []int) {
 	for i := left; i <= right; i++ {
@@ -972,7 +988,7 @@ func findTheWinner(n, k int) int {
 }
 
 // 1991.Find the Middle Index in Array
-func pivotIndex(nums []int) int {
+func findMiddleIndex(nums []int) int {
 	total := 0
 	for _, num := range nums {
 		total += num
