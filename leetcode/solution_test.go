@@ -18,6 +18,12 @@ func TestAddTwoNumbers(t *testing.T) {
 	assert.Equal(t, addTwoNumbers(datastructures.CreateListNode([]int{9, 9, 9, 9, 9, 9, 9}), datastructures.CreateListNode([]int{9, 9, 9, 9})), datastructures.CreateListNode([]int{8, 9, 9, 9, 0, 0, 0, 1}))
 }
 
+func TestLengthOfLongestSubstring(t *testing.T) {
+	assert.Equal(t, 3, lengthOfLongestSubstring("abcabcbb"))
+	assert.Equal(t, 1, lengthOfLongestSubstring("bbbbb"))
+	assert.Equal(t, 3, lengthOfLongestSubstring("pwwkew"))
+}
+
 func TestZConvert(t *testing.T) {
 	assert.Equal(t, "PAHNAPLSIIGYIR", zconvert("PAYPALISHIRING", 3))
 	assert.Equal(t, "PINALSIGYAHRPI", zconvert("PAYPALISHIRING", 4))
