@@ -24,6 +24,11 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 	assert.Equal(t, 3, lengthOfLongestSubstring("pwwkew"))
 }
 
+func TestFindMedianSortedArrays(t *testing.T) {
+	assert.Equal(t, 2.00000, findMedianSortedArrays([]int{1, 3}, []int{2}))
+	assert.Equal(t, 2.50000, findMedianSortedArrays([]int{1, 2}, []int{3, 4}))
+}
+
 func TestZConvert(t *testing.T) {
 	assert.Equal(t, "PAHNAPLSIIGYIR", zconvert("PAYPALISHIRING", 3))
 	assert.Equal(t, "PINALSIGYAHRPI", zconvert("PAYPALISHIRING", 4))

@@ -71,6 +71,47 @@ func lengthOfLongestSubstring(s string) int {
 	return res
 }
 
+// 4. Median of Two Sorted Arrays
+func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
+	if len(nums1) > len(nums2) {
+		return findMedianSortedArrays(nums2, nums1)
+	}
+	m, n := len(nums1), len(nums2)
+	left, right := 0, m
+	median1, median2 := 0, 0
+	for left <= right {
+		i := (left + right) / 2
+		j := (m+n+1)/2 - i
+		numsIm1 := math.MinInt32
+		if i != 0 {
+			numsIm1 = nums1[i-1]
+		}
+		numsI := math.MaxInt32
+		if i != m {
+			numsI = nums1[i]
+		}
+		numsJm1 := math.MinInt32
+		if j != 0 {
+			numsJm1 = nums2[j-1]
+		}
+		numsJ := math.MaxInt32
+		if j != n {
+			numsJ = nums2[j]
+		}
+		if numsIm1 <= numsJ {
+			median1 = max(numsIm1, numsJm1)
+			median2 = min(numsI, numsJ)
+			left = i + 1
+		} else {
+			right = i - 1
+		}
+	}
+	if (m+n)%2 == 0 {
+		return float64(median1+median2) / 2.0
+	}
+	return float64(median1)
+}
+
 // 6.Zigzag Conversion
 func zconvert(s string, numRows int) string {
 	n, r := len(s), numRows

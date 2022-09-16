@@ -15,6 +15,13 @@ func max(a, b int) int {
 	return a
 }
 
+func min(a, b int) int {
+	if b < a {
+		return b
+	}
+	return a
+}
+
 func isSelfDividing(num int) bool {
 	for x := num; x > 0; x /= 10 {
 		if d := x % 10; d == 0 || num%d != 0 {
