@@ -53,6 +53,24 @@ func addTwoNumbers(l1, l2 *datastructures.ListNode) (head *datastructures.ListNo
 	return
 }
 
+// 3. Longest Substring Without Repeating Characters
+func lengthOfLongestSubstring(s string) int {
+	m := map[byte]int{}
+	n := len(s)
+	rightKey, res := -1, 0
+	for i := 0; i < n; i++ {
+		if i != 0 {
+			delete(m, s[i-1])
+		}
+		for rightKey+1 < n && m[s[rightKey+1]] == 0 {
+			m[s[rightKey+1]]++
+			rightKey++
+		}
+		res = max(res, rightKey-i+1)
+	}
+	return res
+}
+
 // 6.Zigzag Conversion
 func zconvert(s string, numRows int) string {
 	n, r := len(s), numRows
