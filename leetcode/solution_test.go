@@ -420,6 +420,12 @@ func TestTrimMean(t *testing.T) {
 	assert.True(t, (trimMean([]int{6, 0, 7, 0, 7, 5, 7, 8, 3, 4, 0, 7, 8, 1, 6, 8, 1, 1, 2, 4, 8, 1, 9, 5, 4, 3, 8, 5, 10, 8, 6, 6, 1, 0, 6, 10, 8, 2, 3, 4})-4.77778) <= 0.00001)
 }
 
+func TestMaxLengthBetweenEqualCharacters(t *testing.T) {
+	assert.Equal(t, 0, maxLengthBetweenEqualCharacters("aa"))
+	assert.Equal(t, 2, maxLengthBetweenEqualCharacters("abca"))
+	assert.Equal(t, -1, maxLengthBetweenEqualCharacters("bczyx"))
+}
+
 func TestFindTheWinner(t *testing.T) {
 	assert.Equal(t, 3, findTheWinner(5, 2))
 	assert.Equal(t, 1, findTheWinner(6, 5))

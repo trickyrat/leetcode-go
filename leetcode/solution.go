@@ -1064,6 +1064,24 @@ func trimMean(arr []int) float64 {
 	return float64(sum*10) / float64(n*9)
 }
 
+// 1624. Largest Substring Between Two Equal Characters
+func maxLengthBetweenEqualCharacters(s string) int {
+	res := -1
+	dic := [26]int{}
+	for i := range dic {
+		dic[i] = -1
+	}
+	for i, c := range s {
+		c -= 'a'
+		if dic[c] < 0 {
+			dic[c] = i
+		} else {
+			res = max(res, i-dic[c]-1)
+		}
+	}
+	return res
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
