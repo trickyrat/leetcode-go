@@ -1082,6 +1082,19 @@ func maxLengthBetweenEqualCharacters(s string) int {
 	return res
 }
 
+// 1636. Sort Array by Increasing Frequency
+func frequencySort(nums []int) []int {
+	count := map[int]int{}
+	for _, num := range nums {
+		count[num]++
+	}
+	sort.Slice(nums, func(i, j int) bool {
+		a, b := nums[i], nums[j]
+		return count[a] < count[b] || count[a] == count[b] && a > b
+	})
+	return nums
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
