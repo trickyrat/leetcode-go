@@ -1095,6 +1095,24 @@ func frequencySort(nums []int) []int {
 	return nums
 }
 
+// 1694. Reformat Phone Number
+func reformatNumber(number string) string {
+	s := strings.ReplaceAll(number, " ", "")
+	s = strings.ReplaceAll(s, "-", "")
+	res := []string{}
+	i := 0
+	for ; i+4 < len(s); i += 3 {
+		res = append(res, s[i:i+3])
+	}
+	s = s[i:]
+	if len(s) < 4 {
+		res = append(res, s)
+	} else {
+		res = append(res, s[:2], s[2:])
+	}
+	return strings.Join(res, "-")
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
