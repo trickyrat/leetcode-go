@@ -432,6 +432,12 @@ func TestFrequencySort(t *testing.T) {
 	assert.Equal(t, []int{5, -1, 4, 4, -6, -6, 1, 1, 1}, frequencySort([]int{-1, 1, -6, 4, 5, -6, 1, 4, 1}))
 }
 
+func TestReformatNumber(t *testing.T) {
+	assert.Equal(t, "123-456", reformatNumber("1-23-45 6"))
+	assert.Equal(t, "123-45-67", reformatNumber("123 4-567"))
+	assert.Equal(t, "123-456-78", reformatNumber("123 4-5678"))
+}
+
 func TestFindTheWinner(t *testing.T) {
 	assert.Equal(t, 3, findTheWinner(5, 2))
 	assert.Equal(t, 1, findTheWinner(6, 5))
