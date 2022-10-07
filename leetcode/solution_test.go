@@ -443,6 +443,11 @@ func TestReformatNumber(t *testing.T) {
 	assert.Equal(t, "123-456-78", reformatNumber("123 4-5678"))
 }
 
+func TestCheckOnesSegment(t *testing.T) {
+	assert.Equal(t, false, checkOnesSegment("1001"))
+	assert.Equal(t, true, checkOnesSegment("110"))
+}
+
 func TestFindTheWinner(t *testing.T) {
 	assert.Equal(t, 3, findTheWinner(5, 2))
 	assert.Equal(t, 1, findTheWinner(6, 5))
