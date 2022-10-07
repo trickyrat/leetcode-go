@@ -1150,6 +1150,11 @@ func reformatNumber(number string) string {
 	return strings.Join(res, "-")
 }
 
+// 1784. Check if Binary String Has at Most One Segment of Ones
+func checkOnesSegment(s string) bool {
+	return !strings.Contains(s, "01")
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
