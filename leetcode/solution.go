@@ -886,6 +886,21 @@ func reverseOnlyLetters(s string) string {
 	return string(ans)
 }
 
+// 921. Minimum Add to Make Parentheses Valid
+func minAddToMakeValid(s string) (res int) {
+	count := 0
+	for _, c := range s {
+		if c == '(' {
+			count++
+		} else if count > 0 {
+			count--
+		} else {
+			res++
+		}
+	}
+	return res + count
+}
+
 // 946. Validate Stack Sequences
 func validateStackSequences(pushed, popped []int) bool {
 	var stack []int
