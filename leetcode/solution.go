@@ -673,6 +673,43 @@ func selfDividingNumbers(left, right int) (ans []int) {
 	return
 }
 
+// 777. Swap Adjacent in LR String
+func canTransform(start, end string) bool {
+	i, j, n := 0, 0, len(start)
+	for i < n && j < n {
+		for i < n && start[i] == 'X' {
+			i++
+		}
+		for j < n && end[j] == 'X' {
+			j++
+		}
+		if i < n && j < n {
+			if start[i] != end[j] {
+				return false
+			}
+			ch := start[i]
+			if (ch == 'L' && i < j) || (ch == 'R' && i > j) {
+				return false
+			}
+			i++
+			j++
+		}
+	}
+	for i < n {
+		if start[i] != 'X' {
+			return false
+		}
+		i++
+	}
+	for j < n {
+		if end[j] != 'X' {
+			return false
+		}
+		j++
+	}
+	return true
+}
+
 // 793. Preimage Size of Factorial Zeroes Function
 func preimageSizeFZF(k int) int {
 	var zeta func(n int) int
