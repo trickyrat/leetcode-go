@@ -299,6 +299,11 @@ func TestSelfDividingNumbers(t *testing.T) {
 	assert.Equal(t, []int{48, 55, 66, 77}, selfDividingNumbers(48, 85))
 }
 
+func TestCanTransform(t *testing.T) {
+	assert.Equal(t, true, canTransform("RXXLRXRXL", "XRLXXRRLX"))
+	assert.Equal(t, false, canTransform("X", "L"))
+}
+
 func TestPreimageSizeFZF(t *testing.T) {
 	assert.Equal(t, 5, preimageSizeFZF(0))
 	assert.Equal(t, 0, preimageSizeFZF(5))
