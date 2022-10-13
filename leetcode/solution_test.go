@@ -350,6 +350,11 @@ func TestSubdomainVisits(t *testing.T) {
 	assert.Equal(t, expected2, actual2)
 }
 
+func TestNumComponents(t *testing.T) {
+	assert.Equal(t, 2, numComponents(datastructures.CreateListNode([]int{0, 1, 2, 3}), []int{0, 1, 3}))
+	assert.Equal(t, 2, numComponents(datastructures.CreateListNode([]int{0, 1, 2, 3, 4}), []int{0, 3, 1, 4}))
+}
+
 func TestMostCommonWord(t *testing.T) {
 	assert.Equal(t, "ball", mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit.", []string{"hit"}))
 }
