@@ -830,6 +830,22 @@ func uniqueLetterString(s string) (res int) {
 	return
 }
 
+// 856. Score of Parentheses
+func scoreOfParentheses(s string) int {
+	res, bal := 0, 0
+	for i, c := range s {
+		if c == '(' {
+			bal++
+		} else {
+			bal--
+			if s[i-1] == '(' {
+				res += 1 << bal
+			}
+		}
+	}
+	return res
+}
+
 type hp struct {
 	sort.IntSlice
 }
