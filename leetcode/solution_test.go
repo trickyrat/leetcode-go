@@ -127,6 +127,12 @@ func TestMinAddToMakeValid(t *testing.T) {
 	assert.Equal(t, 3, minAddToMakeValid("((("))
 }
 
+func TestThreeEqualParts(t *testing.T) {
+	assert.Equal(t, []int{0, 3}, threeEqualParts([]int{1, 0, 1, 0, 1}))
+	assert.Equal(t, []int{-1, -1}, threeEqualParts([]int{1, 1, 0, 1, 1}))
+	assert.Equal(t, []int{0, 2}, threeEqualParts([]int{1, 1, 0, 0, 1}))
+}
+
 func TestValidateStackSequences(t *testing.T) {
 	assert.Equal(t, true, validateStackSequences([]int{1, 2, 3, 4, 5}, []int{4, 5, 3, 2, 1}))
 	assert.Equal(t, false, validateStackSequences([]int{1, 2, 3, 4, 5}, []int{4, 3, 5, 1, 2}))
