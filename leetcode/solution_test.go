@@ -489,6 +489,12 @@ func TestCheckOnesSegment(t *testing.T) {
 	assert.Equal(t, true, checkOnesSegment("110"))
 }
 
+func TestAreAlmostEqual(t *testing.T) {
+	assert.Equal(t, true, areAlmostEqual("bank", "kanb"))
+	assert.Equal(t, false, areAlmostEqual("attack", "defend"))
+	assert.Equal(t, true, areAlmostEqual("kelb", "kelb"))
+}
+
 func TestMaxAscendingSum(t *testing.T) {
 	assert.Equal(t, 65, maxAscendingSum([]int{10, 20, 30, 5, 10, 50}))
 	assert.Equal(t, 150, maxAscendingSum([]int{10, 20, 30, 40, 50}))
