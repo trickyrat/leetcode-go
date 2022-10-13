@@ -871,6 +871,31 @@ func minCostToHireWorkers(quality, wage []int, k int) float64 {
 	return res
 }
 
+// 870. Advantage Shuffle
+func advantageCount(nums1, nums2 []int) []int {
+	n := len(nums1)
+	index1 := make([]int, n)
+	index2 := make([]int, n)
+	for i := 1; i < n; i++ {
+		index1[i] = i
+		index2[i] = i
+	}
+	sort.Slice(index1, func(i, j int) bool { return nums1[index1[i]] < nums1[index1[j]] })
+	sort.Slice(index2, func(i, j int) bool { return nums2[index2[i]] < nums2[index2[j]] })
+	res := make([]int, n)
+	left, right := 0, n-1
+	for i := 0; i < n; i++ {
+		if nums1[index1[i]] > nums2[index2[left]] {
+			res[index2[left]] = nums1[index1[i]]
+			left++
+		} else {
+			res[index2[right]] = nums1[index1[i]]
+			right--
+		}
+	}
+	return res
+}
+
 // 883.Projection Area of 3D Shapes
 func projectionArea(grid [][]int) int {
 	var xyArea, yzArea, zxArea int
