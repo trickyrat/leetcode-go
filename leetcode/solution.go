@@ -805,6 +805,24 @@ func subdomainVisits(cpdomains []string) []string {
 	return res
 }
 
+// 817. Linked List Components
+func numComponents(head *datastructures.ListNode, nums []int) int {
+	res := 0
+	set := make(map[int]struct{}, len(nums))
+	for _, v := range nums {
+		set[v] = struct{}{}
+	}
+	for inSet := false; head != nil; head = head.Next {
+		if _, ok := set[head.Val]; !ok {
+			inSet = false
+		} else if !inSet {
+			inSet = true
+			res++
+		}
+	}
+	return res
+}
+
 // 819.Most Common Word
 func mostCommonWord(paragraph string, banned []string) string {
 	ban := map[string]bool{}
