@@ -1235,6 +1235,21 @@ func checkOnesSegment(s string) bool {
 	return !strings.Contains(s, "01")
 }
 
+// 1800. Maximum Ascending Subarray Sum
+func maxAscendingSum(nums []int) int {
+	res := 0
+	for i, n := 0, len(nums); i < n; {
+		sum := nums[i]
+		for i++; i < n && nums[i] > nums[i-1]; i++ {
+			sum += nums[i]
+		}
+		if sum > res {
+			res = sum
+		}
+	}
+	return res
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
