@@ -925,6 +925,47 @@ func minAddToMakeValid(s string) (res int) {
 	return res + count
 }
 
+// 927. Three Equal Parts
+func threeEqualParts(arr []int) []int {
+	sum := 0
+	for _, v := range arr {
+		sum += v
+	}
+	if sum%3 != 0 {
+		return []int{-1, -1}
+	}
+	if sum == 0 {
+		return []int{0, 2}
+	}
+	partial := sum / 3
+	first, second, third, curr := 0, 0, 0, 0
+	for i, x := range arr {
+		if x == 1 {
+			if curr == 0 {
+				first = i
+			} else if curr == partial {
+				second = i
+			} else if curr == 2*partial {
+				third = i
+			}
+			curr++
+		}
+	}
+	n := len(arr)
+	length := n - third
+	if first+length <= second && second+length <= third {
+		i := 0
+		for third+i < n {
+			if arr[first+i] != arr[second+i] || arr[first+i] != arr[third+i] {
+				return []int{-1, -1}
+			}
+			i++
+		}
+		return []int{first + length - 1, second + length}
+	}
+	return []int{-1, -1}
+}
+
 // 946. Validate Stack Sequences
 func validateStackSequences(pushed, popped []int) bool {
 	var stack []int
