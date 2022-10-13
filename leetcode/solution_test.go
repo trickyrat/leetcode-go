@@ -3,6 +3,7 @@ package leetcode
 import (
 	"datastructures"
 	"github.com/stretchr/testify/assert"
+	"sort"
 	"testing"
 )
 
@@ -323,6 +324,19 @@ func TestUniqueMorseRepresentations(t *testing.T) {
 func TestNumberOfLines(t *testing.T) {
 	assert.Equal(t, []int{3, 60}, numberOfLines([]int{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10}, "abcdefghijklmnopqrstuvwxyz"))
 	assert.Equal(t, []int{2, 4}, numberOfLines([]int{4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10}, "bbbcccdddaaa"))
+}
+
+func TestSubdomainVisits(t *testing.T) {
+	expected1 := []string{"9001 leetcode.com", "9001 com", "9001 discuss.leetcode.com"}
+	expected2 := []string{"901 mail.com", "951 com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org", "5 org", "900 google.mail.com"}
+	actual1 := subdomainVisits([]string{"9001 discuss.leetcode.com"})
+	actual2 := subdomainVisits([]string{"900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"})
+	sort.Strings(expected1)
+	sort.Strings(actual1)
+	sort.Strings(expected2)
+	sort.Strings(actual2)
+	assert.Equal(t, expected1, actual1)
+	assert.Equal(t, expected2, actual2)
 }
 
 func TestMostCommonWord(t *testing.T) {
