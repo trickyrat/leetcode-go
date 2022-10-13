@@ -1295,6 +1295,23 @@ func checkOnesSegment(s string) bool {
 	return !strings.Contains(s, "01")
 }
 
+// 1790. Check if One String Swap Can Make Strings Equal
+func areAlmostEqual(s1, s2 string) bool {
+	i, j := -1, -1
+	for index := range s1 {
+		if s1[index] != s2[index] {
+			if i < 0 {
+				i = index
+			} else if j < 0 {
+				j = index
+			} else {
+				return false
+			}
+		}
+	}
+	return i < 0 || j >= 0 && s1[i] == s2[j] && s1[j] == s2[i]
+}
+
 // 1800. Maximum Ascending Subarray Sum
 func maxAscendingSum(nums []int) int {
 	res := 0
