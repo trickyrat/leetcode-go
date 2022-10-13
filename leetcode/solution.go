@@ -673,6 +673,21 @@ func selfDividingNumbers(left, right int) (ans []int) {
 	return
 }
 
+// 769. Max Chunks To Make Sorted
+func maxChunksToSorted(arr []int) int {
+	res := 0
+	maximum := 0
+	for i, x := range arr {
+		if x > maximum {
+			maximum = x
+		}
+		if maximum == i {
+			res++
+		}
+	}
+	return res
+}
+
 // 777. Swap Adjacent in LR String
 func canTransform(start, end string) bool {
 	i, j, n := 0, 0, len(start)
