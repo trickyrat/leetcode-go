@@ -762,6 +762,30 @@ func numberOfLines(widths []int, s string) (ans []int) {
 	return
 }
 
+// 811. Subdomain Visit Count
+func subdomainVisits(cpdomains []string) []string {
+	count := map[string]int{}
+	for _, s := range cpdomains {
+		i := strings.IndexByte(s, ' ')
+		c, _ := strconv.Atoi(s[:i])
+		s = s[i+1:]
+		count[s] += c
+		for {
+			i := strings.IndexByte(s, '.')
+			if i < 0 {
+				break
+			}
+			s = s[i+1:]
+			count[s] += c
+		}
+	}
+	res := make([]string, 0, len(count))
+	for s, c := range count {
+		res = append(res, strconv.Itoa(c)+" "+s)
+	}
+	return res
+}
+
 // 819.Most Common Word
 func mostCommonWord(paragraph string, banned []string) string {
 	ban := map[string]bool{}
