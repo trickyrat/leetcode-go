@@ -322,6 +322,11 @@ func TestPreimageSizeFZF(t *testing.T) {
 	assert.Equal(t, 5, preimageSizeFZF(3))
 }
 
+func TestMinSwap(t *testing.T) {
+	assert.Equal(t, 1, minSwap([]int{1, 3, 5, 4}, []int{1, 2, 3, 7}))
+	assert.Equal(t, 1, minSwap([]int{0, 3, 5, 8, 9}, []int{2, 1, 4, 6, 9}))
+}
+
 func TestUniqueMorseRepresentations(t *testing.T) {
 	assert.Equal(t, 2, uniqueMorseRepresentations([]string{"gin", "zen", "gig", "msg"}))
 	assert.Equal(t, 1, uniqueMorseRepresentations([]string{"a"}))
