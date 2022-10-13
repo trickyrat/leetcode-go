@@ -311,6 +311,11 @@ func TestSelfDividingNumbers(t *testing.T) {
 	assert.Equal(t, []int{48, 55, 66, 77}, selfDividingNumbers(48, 85))
 }
 
+func TestMaxChunksToSorted(t *testing.T) {
+	assert.Equal(t, 1, maxChunksToSorted([]int{4, 3, 2, 1, 0}))
+	assert.Equal(t, 4, maxChunksToSorted([]int{1, 0, 2, 3, 4}))
+}
+
 func TestCanTransform(t *testing.T) {
 	assert.Equal(t, true, canTransform("RXXLRXRXL", "XRLXXRRLX"))
 	assert.Equal(t, false, canTransform("X", "L"))
