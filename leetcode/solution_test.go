@@ -360,6 +360,11 @@ func TestMinCostToHireWorkers(t *testing.T) {
 	assert.Equal(t, 30.66667, round(minCostToHireWorkers([]int{3, 1, 10, 10, 1}, []int{4, 8, 2, 2, 7}, 3), 5))
 }
 
+func TestAdvantageCount(t *testing.T) {
+	assert.Equal(t, []int{2, 11, 7, 15}, advantageCount([]int{2, 7, 11, 15}, []int{1, 10, 4, 11}))
+	assert.Equal(t, []int{24, 32, 8, 12}, advantageCount([]int{12, 24, 8, 32}, []int{13, 25, 32, 11}))
+}
+
 func TestProjectionArea(t *testing.T) {
 	assert.Equal(t, 17, projectionArea([][]int{{1, 2}, {3, 4}}))
 	assert.Equal(t, 5, projectionArea([][]int{{2}}))
