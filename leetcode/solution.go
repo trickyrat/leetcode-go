@@ -982,6 +982,33 @@ func projectionArea(grid [][]int) int {
 	return xyArea + yzArea + zxArea
 }
 
+// 886. Possible Bipartition
+func possibleBipartition(n int, dislikes [][]int) bool {
+	group := make([][]int, n)
+	for _, d := range dislikes {
+		x, y := d[0]-1, d[1]-1
+		group[x] = append(group[x], y)
+		group[y] = append(group[y], x)
+	}
+	color := make([]int, n)
+	var dfs func(int, int) bool
+	dfs = func(x, c int) bool {
+		color[x] = c
+		for _, y := range group[x] {
+			if color[y] == c || color[y] == 0 && !dfs(y, 3^c) {
+				return false
+			}
+		}
+		return true
+	}
+	for i, c := range color {
+		if c == 0 && !dfs(i, 1) {
+			return false
+		}
+	}
+	return true
+}
+
 // 917.Reverse Only Letters
 func reverseOnlyLetters(s string) string {
 	ans := []byte(s)
