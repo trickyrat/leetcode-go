@@ -1144,6 +1144,19 @@ func stringMatching(words []string) (res []string) {
 	return
 }
 
+// 1441. Build an Array With Stack Operations
+func buildArray(target []int, n int) (res []string) {
+	prev := 0
+	for _, num := range target {
+		for i := 0; i < num-prev-1; i++ {
+			res = append(res, "Push", "Pop")
+		}
+		res = append(res, "Push")
+		prev = num
+	}
+	return
+}
+
 // 1450. Number of Students Doing Homework at a Given Time
 func busyStudent(startTime []int, endTime []int, queryTime int) (res int) {
 	for i, s := range startTime {
