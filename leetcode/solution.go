@@ -1059,6 +1059,20 @@ func threeEqualParts(arr []int) []int {
 	return []int{-1, -1}
 }
 
+// 940. Distinct Subsequences II
+func distinctSubseqII(s string) int {
+	const mod int = 1e9 + 7
+	res := 0
+	alphas := make([]int, 26)
+	for _, c := range s {
+		index := c - 'a'
+		prev := alphas[index]
+		alphas[index] = (res + 1) % mod
+		res = ((res+alphas[index]-prev)%mod + mod) % mod
+	}
+	return res
+}
+
 // 946. Validate Stack Sequences
 func validateStackSequences(pushed, popped []int) bool {
 	var stack []int

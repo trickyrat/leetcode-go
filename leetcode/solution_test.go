@@ -133,6 +133,12 @@ func TestThreeEqualParts(t *testing.T) {
 	assert.Equal(t, []int{0, 2}, threeEqualParts([]int{1, 1, 0, 0, 1}))
 }
 
+func TestDistinctSubseqII(t *testing.T) {
+	assert.Equal(t, 7, distinctSubseqII("abc"))
+	assert.Equal(t, 6, distinctSubseqII("aba"))
+	assert.Equal(t, 3, distinctSubseqII("aaa"))
+}
+
 func TestValidateStackSequences(t *testing.T) {
 	assert.Equal(t, true, validateStackSequences([]int{1, 2, 3, 4, 5}, []int{4, 5, 3, 2, 1}))
 	assert.Equal(t, false, validateStackSequences([]int{1, 2, 3, 4, 5}, []int{4, 3, 5, 1, 2}))
