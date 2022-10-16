@@ -398,6 +398,12 @@ func TestProjectionArea(t *testing.T) {
 	assert.Equal(t, 8, projectionArea([][]int{{1, 0}, {0, 2}}))
 }
 
+func TestPossibleBipartition(t *testing.T) {
+	assert.Equal(t, true, possibleBipartition(4, [][]int{{1, 2}, {1, 3}, {2, 4}}))
+	assert.Equal(t, false, possibleBipartition(3, [][]int{{1, 2}, {1, 3}, {2, 3}}))
+	assert.Equal(t, false, possibleBipartition(5, [][]int{{1, 2}, {2, 3}, {3, 4}, {4, 5}, {1, 5}}))
+}
+
 func TestRepeatedNTimes(t *testing.T) {
 	assert.Equal(t, 3, repeatedNTimes([]int{1, 2, 3, 3}))
 	assert.Equal(t, 2, repeatedNTimes([]int{2, 1, 2, 5, 3, 2}))
