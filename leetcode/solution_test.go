@@ -425,6 +425,12 @@ func TestStringMatching(t *testing.T) {
 	assert.Equal(t, []string(nil), stringMatching([]string{"blue", "green", "bu"}))
 }
 
+func TestBuildArray(t *testing.T) {
+	assert.Equal(t, []string{"Push", "Push", "Pop", "Push"}, buildArray([]int{1, 3}, 3))
+	assert.Equal(t, []string{"Push", "Push", "Push"}, buildArray([]int{1, 2, 3}, 3))
+	assert.Equal(t, []string{"Push", "Push"}, buildArray([]int{1, 2}, 4))
+}
+
 func TestBusyStudent(t *testing.T) {
 	assert.Equal(t, 1, busyStudent([]int{1, 2, 3}, []int{3, 2, 7}, 4))
 	assert.Equal(t, 1, busyStudent([]int{4}, []int{4}, 4))
