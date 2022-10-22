@@ -404,6 +404,12 @@ func TestPossibleBipartition(t *testing.T) {
 	assert.Equal(t, false, possibleBipartition(5, [][]int{{1, 2}, {2, 3}, {3, 4}, {4, 5}, {1, 5}}))
 }
 
+func TestTotalFruit(t *testing.T) {
+	assert.Equal(t, 3, totalFruit([]int{1, 2, 1}))
+	assert.Equal(t, 3, totalFruit([]int{0, 1, 2, 2}))
+	assert.Equal(t, 4, totalFruit([]int{1, 2, 3, 2, 2}))
+}
+
 func TestRepeatedNTimes(t *testing.T) {
 	assert.Equal(t, 3, repeatedNTimes([]int{1, 2, 3, 3}))
 	assert.Equal(t, 2, repeatedNTimes([]int{2, 1, 2, 5, 3, 2}))

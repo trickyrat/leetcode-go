@@ -1009,6 +1009,26 @@ func possibleBipartition(n int, dislikes [][]int) bool {
 	return true
 }
 
+// 904. Fruit Into Baskets
+func totalFruit(fruits []int) int {
+	counter := map[int]int{}
+	res := 0
+	left := 0
+	for right, x := range fruits {
+		counter[x]++
+		for len(counter) > 2 {
+			y := fruits[left]
+			counter[y]--
+			if counter[y] == 0 {
+				delete(counter, y)
+			}
+			left++
+		}
+		res = max(res, right-left+1)
+	}
+	return res
+}
+
 // 917.Reverse Only Letters
 func reverseOnlyLetters(s string) string {
 	ans := []byte(s)
