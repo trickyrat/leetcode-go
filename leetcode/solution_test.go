@@ -327,6 +327,12 @@ func TestCanTransform(t *testing.T) {
 	assert.Equal(t, false, canTransform("X", "L"))
 }
 
+func TestKthGrammar(t *testing.T) {
+	assert.Equal(t, 0, kthGrammar(1, 1))
+	assert.Equal(t, 0, kthGrammar(2, 1))
+	assert.Equal(t, 1, kthGrammar(2, 2))
+}
+
 func TestPreimageSizeFZF(t *testing.T) {
 	assert.Equal(t, 5, preimageSizeFZF(0))
 	assert.Equal(t, 0, preimageSizeFZF(5))
