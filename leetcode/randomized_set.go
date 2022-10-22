@@ -7,7 +7,7 @@ type RandomizedSet struct {
 	indices map[int]int
 }
 
-func Constructor() RandomizedSet {
+func RandomizedSetConstructor() RandomizedSet {
 	return RandomizedSet{[]int{}, map[int]int{}}
 }
 
