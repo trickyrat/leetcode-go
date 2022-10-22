@@ -725,6 +725,17 @@ func canTransform(start, end string) bool {
 	return true
 }
 
+// 779. K-th Symbol in Grammar
+func kthGrammar(n, k int) int {
+	k -= 1
+	res := 0
+	for k > 0 {
+		k &= k - 1
+		res ^= 1
+	}
+	return res
+}
+
 // 793. Preimage Size of Factorial Zeroes Function
 func preimageSizeFZF(k int) int {
 	var zeta func(n int) int
