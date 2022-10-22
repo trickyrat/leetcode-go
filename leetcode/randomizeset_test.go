@@ -6,7 +6,7 @@ import (
 )
 
 func TestRandomizedSet(t *testing.T) {
-	randomizedSet := Constructor()
+	randomizedSet := RandomizedSetConstructor()
 	assert.True(t, randomizedSet.Insert(1))
 	assert.False(t, randomizedSet.Remove(2))
 	assert.True(t, randomizedSet.Insert(2))
