@@ -524,6 +524,12 @@ func TestReformatNumber(t *testing.T) {
 	assert.Equal(t, "123-456-78", reformatNumber("123 4-5678"))
 }
 
+func TestMergeAlternately(t *testing.T) {
+	assert.Equal(t, "apbqcr", mergeAlternately("abc", "pqr"))
+	assert.Equal(t, "apbqrs", mergeAlternately("ab", "pqrs"))
+	assert.Equal(t, "apbqcd", mergeAlternately("abcd", "pq"))
+}
+
 func TestCheckOnesSegment(t *testing.T) {
 	assert.Equal(t, false, checkOnesSegment("1001"))
 	assert.Equal(t, true, checkOnesSegment("110"))

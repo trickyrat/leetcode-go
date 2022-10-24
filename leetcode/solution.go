@@ -1408,6 +1408,21 @@ func reformatNumber(number string) string {
 	return strings.Join(res, "-")
 }
 
+// 1768. Merge Strings Alternately
+func mergeAlternately(word1, word2 string) string {
+	m, n := len(word1), len(word2)
+	res := make([]byte, 0, m+n)
+	for i := 0; i < n || i < m; i++ {
+		if i < m {
+			res = append(res, word1[i])
+		}
+		if i < n {
+			res = append(res, word2[i])
+		}
+	}
+	return string(res)
+}
+
 // 1784. Check if Binary String Has at Most One Segment of Ones
 func checkOnesSegment(s string) bool {
 	return !strings.Contains(s, "01")
