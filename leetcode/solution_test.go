@@ -416,6 +416,11 @@ func TestTotalFruit(t *testing.T) {
 	assert.Equal(t, 4, totalFruit([]int{1, 2, 3, 2, 2}))
 }
 
+func TestPartitionDisjoint(t *testing.T) {
+	assert.Equal(t, 3, partitionDisjoint([]int{5, 0, 3, 8, 6}))
+	assert.Equal(t, 4, partitionDisjoint([]int{1, 1, 1, 0, 6, 12}))
+}
+
 func TestRepeatedNTimes(t *testing.T) {
 	assert.Equal(t, 3, repeatedNTimes([]int{1, 2, 3, 3}))
 	assert.Equal(t, 2, repeatedNTimes([]int{2, 1, 2, 5, 3, 2}))

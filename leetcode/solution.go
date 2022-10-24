@@ -1040,6 +1040,20 @@ func totalFruit(fruits []int) int {
 	return res
 }
 
+// 915. Partition Array into Disjoint Intervals
+func partitionDisjoint(nums []int) int {
+	n := len(nums)
+	currMax, leftMax, index := nums[0], nums[0], 0
+	for i := 1; i < n-1; i++ {
+		currMax = max(currMax, nums[i])
+		if nums[i] < leftMax {
+			leftMax = currMax
+			index = i
+		}
+	}
+	return index + 1
+}
+
 // 917.Reverse Only Letters
 func reverseOnlyLetters(s string) string {
 	ans := []byte(s)
