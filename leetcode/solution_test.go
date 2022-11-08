@@ -133,6 +133,12 @@ func TestThreeEqualParts(t *testing.T) {
 	assert.Equal(t, []int{0, 2}, threeEqualParts([]int{1, 1, 0, 0, 1}))
 }
 
+func TestShortestBridge(t *testing.T) {
+	assert.Equal(t, 1, shortestBridge([][]int{{0, 1}, {1, 0}}))
+	assert.Equal(t, 2, shortestBridge([][]int{{0, 1, 0}, {0, 0, 0}, {0, 0, 1}}))
+	assert.Equal(t, 1, shortestBridge([][]int{{1, 1, 1, 1, 1}, {1, 0, 0, 0, 1}, {1, 0, 1, 0, 1}, {1, 0, 0, 0, 1}, {1, 1, 1, 1, 1}}))
+}
+
 func TestDistinctSubseqII(t *testing.T) {
 	assert.Equal(t, 7, distinctSubseqII("abc"))
 	assert.Equal(t, 6, distinctSubseqII("aba"))
