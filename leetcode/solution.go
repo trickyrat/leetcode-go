@@ -1558,6 +1558,19 @@ func countKDifference(nums []int, k int) (ans int) {
 	return
 }
 
+// 2011. Final Value of Variable After Performing Operations
+func finalValueAfterOperations(operations []string) int {
+	res := 0
+	for _, op := range operations {
+		if op[1] == '+' {
+			res++
+		} else {
+			res--
+		}
+	}
+	return res
+}
+
 // 2016.Maximum Difference Between Increasing Elements
 func maximumDifference(nums []int) int {
 	ans := -1

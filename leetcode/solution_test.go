@@ -575,6 +575,12 @@ func TestCountKDifference(t *testing.T) {
 	assert.Equal(t, 3, countKDifference([]int{3, 2, 1, 5, 4}, 2))
 }
 
+func TestFinalValueAfterOperations(t *testing.T) {
+	assert.Equal(t, 1, finalValueAfterOperations([]string{"--X", "X++", "X++"}))
+	assert.Equal(t, 3, finalValueAfterOperations([]string{"++X", "++X", "X++"}))
+	assert.Equal(t, 0, finalValueAfterOperations([]string{"X++", "++X", "--X", "X--"}))
+}
+
 func TestMaximumDifference(t *testing.T) {
 	assert.Equal(t, 4, maximumDifference([]int{7, 1, 5, 4}))
 	assert.Equal(t, -1, maximumDifference([]int{9, 4, 3, 2}))
