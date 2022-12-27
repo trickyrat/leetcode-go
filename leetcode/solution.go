@@ -1584,6 +1584,18 @@ func maximumDifference(nums []int) int {
 	return ans
 }
 
+// 2027. Minimum Moves to Convert String
+func minimumMoves(s string) int {
+	res, count := 0, -1
+	for i, ch := range s {
+		if ch == 'X' && i > count {
+			res++
+			count = i + 2
+		}
+	}
+	return res
+}
+
 // 2044.Count Number of Maximum Bitwise-OR Subsets
 func countMaxOrSubsets(nums []int) (ans int) {
 	maxOr := 0

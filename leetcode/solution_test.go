@@ -587,6 +587,12 @@ func TestMaximumDifference(t *testing.T) {
 	assert.Equal(t, 9, maximumDifference([]int{1, 5, 2, 10}))
 }
 
+func TestMinimumMoves(t *testing.T) {
+	assert.Equal(t, 1, minimumMoves("XXX"))
+	assert.Equal(t, 2, minimumMoves("XXOX"))
+	assert.Equal(t, 0, minimumMoves("OOOO"))
+}
+
 func TestCountMaxOrSubsets(t *testing.T) {
 	assert.Equal(t, 2, countMaxOrSubsets([]int{3, 1}))
 	assert.Equal(t, 7, countMaxOrSubsets([]int{2, 2, 2}))
