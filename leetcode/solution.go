@@ -1471,6 +1471,21 @@ func reformatNumber(number string) string {
 	return strings.Join(res, "-")
 }
 
+// 1750. Minimum Length of String After Deleting Similar Ends
+func minimumLength(s string) int {
+	left, right := 0, len(s)-1
+	for left < right && s[left] == s[right] {
+		c := s[left]
+		for left <= right && s[left] == c {
+			left++
+		}
+		for left <= right && s[right] == c {
+			right--
+		}
+	}
+	return right - left + 1
+}
+
 // 1768. Merge Strings Alternately
 func mergeAlternately(word1, word2 string) string {
 	m, n := len(word1), len(word2)
