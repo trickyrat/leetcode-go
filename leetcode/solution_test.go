@@ -535,6 +535,12 @@ func TestReformatNumber(t *testing.T) {
 	assert.Equal(t, "123-456-78", reformatNumber("123 4-5678"))
 }
 
+func TestMinimumLength(t *testing.T) {
+	assert.Equal(t, 2, minimumLength("ca"))
+	assert.Equal(t, 0, minimumLength("cabaabac"))
+	assert.Equal(t, 3, minimumLength("aabccabba"))
+}
+
 func TestMergeAlternately(t *testing.T) {
 	assert.Equal(t, "apbqcr", mergeAlternately("abc", "pqr"))
 	assert.Equal(t, "apbqrs", mergeAlternately("ab", "pqrs"))
