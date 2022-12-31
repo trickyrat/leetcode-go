@@ -11,6 +11,13 @@ import (
 	"unicode"
 )
 
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
+
 // 1.Two Sum
 func twoSum(nums []int, target int) []int {
 	hashTable := map[int]int{}
@@ -1624,6 +1631,16 @@ func twoOutOfThree(nums1, nums2, nums3 []int) (res []int) {
 		if m&(m-1) > 0 {
 			res = append(res, x)
 		}
+	}
+	return
+}
+
+// 2037. Minimum Number of Moves to Seat Everyone
+func minMovesToSeat(seats, students []int) (res int) {
+	sort.Ints(seats)
+	sort.Ints(students)
+	for i, x := range seats {
+		res += abs(x - students[i])
 	}
 	return
 }

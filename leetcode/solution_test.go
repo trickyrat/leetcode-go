@@ -605,6 +605,12 @@ func TestTwoOutOfThree(t *testing.T) {
 	assert.Equal(t, []int(nil), twoOutOfThree([]int{1, 2, 2}, []int{4, 3, 3}, []int{5}))
 }
 
+func TestMinMovesToSeat(t *testing.T) {
+	assert.Equal(t, 4, minMovesToSeat([]int{3, 1, 5}, []int{2, 7, 4}))
+	assert.Equal(t, 7, minMovesToSeat([]int{4, 1, 5, 9}, []int{1, 3, 2, 6}))
+	assert.Equal(t, 4, minMovesToSeat([]int{2, 2, 6, 6}, []int{1, 3, 2, 6}))
+}
+
 func TestCountMaxOrSubsets(t *testing.T) {
 	assert.Equal(t, 2, countMaxOrSubsets([]int{3, 1}))
 	assert.Equal(t, 7, countMaxOrSubsets([]int{2, 2, 2}))
