@@ -600,8 +600,12 @@ func TestMinimumMoves(t *testing.T) {
 }
 
 func TestTwoOutOfThree(t *testing.T) {
-	assert.Equal(t, []int{3, 2}, twoOutOfThree([]int{1, 1, 3, 2}, []int{2, 3}, []int{3}))
-	assert.Equal(t, []int{2, 3, 1}, twoOutOfThree([]int{3, 1}, []int{2, 3}, []int{1, 2}))
+	expected1 := twoOutOfThree([]int{1, 1, 3, 2}, []int{2, 3}, []int{3})
+	expected2 := twoOutOfThree([]int{3, 1}, []int{2, 3}, []int{1, 2})
+	sort.Ints(expected1)
+	sort.Ints(expected2)
+	assert.Equal(t, []int{2, 3}, expected1)
+	assert.Equal(t, []int{1, 2, 3}, expected2)
 	assert.Equal(t, []int(nil), twoOutOfThree([]int{1, 2, 2}, []int{4, 3, 3}, []int{5}))
 }
 
