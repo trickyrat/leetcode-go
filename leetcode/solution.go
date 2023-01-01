@@ -1697,3 +1697,15 @@ func platesBetweenCandles(s string, queries [][]int) []int {
 	}
 	return ans
 }
+
+func repeatedCharacter(s string) byte {
+	seen := 0
+	for _, ch := range s {
+		index := ch - 'a'
+		if seen>>index&1 > 0 {
+			return byte(ch)
+		}
+		seen |= 1 << index
+	}
+	return 0
+}
