@@ -615,6 +615,12 @@ func TestMinMovesToSeat(t *testing.T) {
 	assert.Equal(t, 4, minMovesToSeat([]int{2, 2, 6, 6}, []int{1, 3, 2, 6}))
 }
 
+func TestAreNumberAscending(t *testing.T) {
+	assert.Equal(t, true, areNumberAscending("1 box has 3 blue 4 red 6 green and 12 yellow marbles"))
+	assert.Equal(t, false, areNumberAscending("hello world 5 x 5"))
+	assert.Equal(t, false, areNumberAscending("sunset is at 7 51 pm overnight lows will be in the low 50 and 60 s"))
+}
+
 func TestCountMaxOrSubsets(t *testing.T) {
 	assert.Equal(t, 2, countMaxOrSubsets([]int{3, 1}))
 	assert.Equal(t, 7, countMaxOrSubsets([]int{2, 2, 2}))

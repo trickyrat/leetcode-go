@@ -1645,6 +1645,27 @@ func minMovesToSeat(seats, students []int) (res int) {
 	return
 }
 
+// 2042. Check if Numbers Are Ascending in a Sentence
+func areNumberAscending(s string) bool {
+	prev, pos, n := 0, 0, len(s)
+	for pos < n {
+		if unicode.IsDigit(rune(s[pos])) {
+			curr := 0
+			for pos < n && unicode.IsDigit(rune(s[pos])) {
+				curr = curr*10 + int(s[pos]-'0')
+				pos++
+			}
+			if curr <= prev {
+				return false
+			}
+			prev = curr
+		} else {
+			pos++
+		}
+	}
+	return true
+}
+
 // 2044.Count Number of Maximum Bitwise-OR Subsets
 func countMaxOrSubsets(nums []int) (ans int) {
 	maxOr := 0
