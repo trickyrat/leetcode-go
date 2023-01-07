@@ -1545,6 +1545,35 @@ func maxAscendingSum(nums []int) int {
 	return res
 }
 
+// 1802. Maximum Value at a Given Index in a Bounded Array
+func maxValue(n, index, maxSum int) int {
+	left := index
+	right := n - index - 1
+	if left > right {
+		left, right = right, left
+	}
+
+	upper := ((left+1)*(left+1)-3*(left+1))/2 + left + 1 + (left + 1) + ((left+1)*(left+1)-3*(left+1))/2 + right + 1
+	if upper >= maxSum {
+		a := 1.0
+		b := -2.0
+		c := float64(left + right + 2 - maxSum)
+		return int((-b + math.Sqrt(b*b-4*a*c)) / (2 * a))
+	}
+
+	upper = (2*(right+1)-left-1)*left/2 + (right + 1) + ((right+1)*(right+1)-3*(right+1))/2 + right + 1
+	if upper >= maxSum {
+		a := 1.0 / 2
+		b := float64(left) + 1 - 3.0/2
+		c := float64(right + 1 + (-left-1)*left/2.0 - maxSum)
+		return int((-b + math.Sqrt(b*b-4*a*c)) / (2 * a))
+	} else {
+		a := float64(left + right + 1)
+		b := float64(-left*left-left-right*right-right)/2 - float64(maxSum)
+		return int(-b / a)
+	}
+}
+
 // 1823.Find the Winner of the Circular Game
 func findTheWinner(n, k int) int {
 	winner := 1
