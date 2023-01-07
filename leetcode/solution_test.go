@@ -637,6 +637,11 @@ func TestPlatesBetweenCandles(t *testing.T) {
 	assert.Equal(t, []int{9, 0, 0, 0, 0}, platesBetweenCandles("***|**|*****|**||**|*", [][]int{{1, 17}, {4, 5}, {14, 17}, {5, 11}, {15, 16}}))
 }
 
+func TestCountEven(t *testing.T) {
+	assert.Equal(t, 2, countEven(4))
+	assert.Equal(t, 14, countEven(30))
+}
+
 func TestRepeatedCharacter(t *testing.T) {
 	assert.Equal(t, byte('c'), repeatedCharacter("abccbaacz"))
 	assert.Equal(t, byte('d'), repeatedCharacter("abcdd"))

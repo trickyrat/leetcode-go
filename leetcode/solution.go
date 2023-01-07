@@ -1748,6 +1748,23 @@ func platesBetweenCandles(s string, queries [][]int) []int {
 	return ans
 }
 
+// 2180. Count Integers With Even Digit Sum
+func countEven(num int) int {
+	y, x := num/10, num%10
+	res, ySum := y*5, 0
+	for y > 0 {
+		ySum += y % 10
+		y /= 10
+	}
+	if ySum%2 == 0 {
+		res += x/2 + 1
+	} else {
+		res += (x + 1) / 2
+	}
+	return res - 1
+}
+
+// 6078.Rearrange Characters to Make Target String
 func repeatedCharacter(s string) byte {
 	seen := 0
 	for _, ch := range s {
