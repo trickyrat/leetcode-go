@@ -564,6 +564,11 @@ func TestMaxAscendingSum(t *testing.T) {
 	assert.Equal(t, 33, maxAscendingSum([]int{12, 17, 15, 13, 10, 11, 12}))
 }
 
+func TestMaxValue(t *testing.T) {
+	assert.Equal(t, 2, maxValue(4, 2, 6))
+	assert.Equal(t, 3, maxValue(6, 1, 10))
+}
+
 func TestFindTheWinner(t *testing.T) {
 	assert.Equal(t, 3, findTheWinner(5, 2))
 	assert.Equal(t, 1, findTheWinner(6, 5))
