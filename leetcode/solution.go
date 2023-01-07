@@ -1460,6 +1460,40 @@ func frequencySort(nums []int) []int {
 	return nums
 }
 
+// 1658. Minimum Operations to Reduce X to Zero
+func minOperations2(nums []int, x int) int {
+	n := len(nums)
+	sum := 0
+	for _, num := range nums {
+		sum += num
+	}
+	if sum < x {
+		return -1
+	}
+
+	right := 0
+	leftSum := 0
+	rightSum := sum
+	res := n + 1
+
+	for left := -1; left < n; left++ {
+		if left != -1 {
+			leftSum += nums[left]
+		}
+		for right < n && leftSum+rightSum > x {
+			rightSum -= nums[right]
+			right++
+		}
+		if leftSum+rightSum == x {
+			res = min(res, (left+1)+(n-right))
+		}
+	}
+	if res > n {
+		return -1
+	}
+	return res
+}
+
 // 1694. Reformat Phone Number
 func reformatNumber(number string) string {
 	s := strings.ReplaceAll(number, " ", "")
