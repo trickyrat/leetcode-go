@@ -648,6 +648,11 @@ func TestCountEven(t *testing.T) {
 	assert.Equal(t, 14, countEven(30))
 }
 
+func TestPrefixCount(t *testing.T) {
+	assert.Equal(t, 2, prefixCount([]string{"pay", "attention", "practice", "attend"}, "at"))
+	assert.Equal(t, 0, prefixCount([]string{"leetcode", "win", "loops", "success"}, "code"))
+}
+
 func TestRepeatedCharacter(t *testing.T) {
 	assert.Equal(t, byte('c'), repeatedCharacter("abccbaacz"))
 	assert.Equal(t, byte('d'), repeatedCharacter("abcdd"))
