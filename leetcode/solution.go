@@ -1798,6 +1798,17 @@ func countEven(num int) int {
 	return res - 1
 }
 
+// 2185. Counting Words With a Given Prefix
+func prefixCount(words []string, pref string) int {
+	res := 0
+	for _, word := range words {
+		if strings.HasPrefix(word, pref) {
+			res++
+		}
+	}
+	return res
+}
+
 // 6078.Rearrange Characters to Make Target String
 func repeatedCharacter(s string) byte {
 	seen := 0
