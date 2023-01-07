@@ -529,6 +529,12 @@ func TestFrequencySort(t *testing.T) {
 	assert.Equal(t, []int{5, -1, 4, 4, -6, -6, 1, 1, 1}, frequencySort([]int{-1, 1, -6, 4, 5, -6, 1, 4, 1}))
 }
 
+func TestMinOperations2(t *testing.T) {
+	assert.Equal(t, 2, minOperations2([]int{1, 1, 4, 2, 3}, 5))
+	assert.Equal(t, -1, minOperations2([]int{5, 6, 7, 8, 9}, 4))
+	assert.Equal(t, 5, minOperations2([]int{3, 2, 20, 1, 1, 3}, 10))
+}
+
 func TestReformatNumber(t *testing.T) {
 	assert.Equal(t, "123-456", reformatNumber("1-23-45 6"))
 	assert.Equal(t, "123-45-67", reformatNumber("123 4-567"))
