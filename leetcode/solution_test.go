@@ -1,8 +1,8 @@
 package leetcode
 
 import (
-	"datastructures"
 	"github.com/stretchr/testify/assert"
+	"github.com/trickyrat/leetcodego/datastructures"
 	"sort"
 	"testing"
 )

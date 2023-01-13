@@ -1,7 +1,7 @@
 package leetcode
 
 import (
-	"datastructures"
+	"github.com/trickyrat/leetcodego/datastructures"
 	"strconv"
 	"strings"
 )
