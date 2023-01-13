@@ -2,8 +2,8 @@ package leetcode
 
 import (
 	"container/heap"
-	"datastructures"
 	"fmt"
+	"github.com/trickyrat/leetcodego/datastructures"
 	"math"
 	"sort"
 	"strconv"
