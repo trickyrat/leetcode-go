@@ -50,6 +50,12 @@ func TestReverseInt(t *testing.T) {
 	assert.Equal(t, 0, reverseInt(2147483649))
 }
 
+func TestRemoveNthFromEnd(t *testing.T) {
+	assert.Equal(t, removeNthFromEnd(datastructures.CreateListNode([]int{1, 2, 3, 4, 5}), 2), datastructures.CreateListNode([]int{1, 2, 3, 5}))
+	assert.Equal(t, removeNthFromEnd(datastructures.CreateListNode([]int{1}), 1), (*datastructures.ListNode)(nil))
+	assert.Equal(t, removeNthFromEnd(datastructures.CreateListNode([]int{1, 2}), 1), datastructures.CreateListNode([]int{1}))
+}
+
 func TestPathSum(t *testing.T) {
 	assert.Equal(t, [][]int{{5, 4, 11, 2}, {5, 8, 4, 5}}, pathSum(datastructures.CreateTreeNode("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22))
 	assert.Equal(t, [][]int(nil), pathSum(datastructures.CreateTreeNode("1,2,3"), 5))
