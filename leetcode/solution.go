@@ -151,6 +151,20 @@ func reverseInt(x int) (res int) {
 	return
 }
 
+// 19.Remove Nth Node of List
+func removeNthFromEnd(head *datastructures.ListNode, n int) *datastructures.ListNode {
+	dummy := &datastructures.ListNode{Val: -1, Next: head}
+	fast, slow := head, dummy
+	for i := 0; i < n; i++ {
+		fast = fast.Next
+	}
+	for ; fast != nil; fast = fast.Next {
+		slow = slow.Next
+	}
+	slow.Next = slow.Next.Next
+	return dummy.Next
+}
+
 // 113.Path Sum II
 func pathSum(root *datastructures.TreeNode, targetSum int) (ans [][]int) {
 	var path []int
