@@ -1,10 +1,11 @@
 package leetcode
 
 import (
-	"github.com/stretchr/testify/assert"
-	"github.com/trickyrat/leetcodego/datastructures"
 	"sort"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/trickyrat/leetcodego/datastructures"
 )
 
 func TestTwoSum(t *testing.T) {
@@ -54,6 +55,11 @@ func TestRemoveNthFromEnd(t *testing.T) {
 	assert.Equal(t, removeNthFromEnd(datastructures.CreateListNode([]int{1, 2, 3, 4, 5}), 2), datastructures.CreateListNode([]int{1, 2, 3, 5}))
 	assert.Equal(t, removeNthFromEnd(datastructures.CreateListNode([]int{1}), 1), (*datastructures.ListNode)(nil))
 	assert.Equal(t, removeNthFromEnd(datastructures.CreateListNode([]int{1, 2}), 1), datastructures.CreateListNode([]int{1}))
+}
+
+func TestRemoveDuplicates(t *testing.T) {
+	assert.Equal(t, removeDuplicates([]int{1, 1, 2}), 2)
+	assert.Equal(t, removeDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}), 5)
 }
 
 func TestPathSum(t *testing.T) {

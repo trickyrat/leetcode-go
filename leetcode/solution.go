@@ -3,12 +3,13 @@ package leetcode
 import (
 	"container/heap"
 	"fmt"
-	"github.com/trickyrat/leetcodego/datastructures"
 	"math"
 	"sort"
 	"strconv"
 	"strings"
 	"unicode"
+
+	"github.com/trickyrat/leetcodego/datastructures"
 )
 
 func abs(x int) int {
@@ -163,6 +164,22 @@ func removeNthFromEnd(head *datastructures.ListNode, n int) *datastructures.List
 	}
 	slow.Next = slow.Next.Next
 	return dummy.Next
+}
+
+// 26. Remove Duplicates from Sorted Array
+func removeDuplicates(nums []int) int {
+	n := len(nums)
+	if n == 0 {
+		return 0
+	}
+	slow := 1
+	for fast := 1; fast < n; fast++ {
+		if nums[fast] != nums[fast-1] {
+			nums[slow] = nums[fast]
+			slow++
+		}
+	}
+	return slow
 }
 
 // 113.Path Sum II
