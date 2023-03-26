@@ -182,6 +182,22 @@ func removeDuplicates(nums []int) int {
 	return slow
 }
 
+// 35. Search Insert Position
+func searchInsert(nums []int, target int) int {
+	n := len(nums)
+	left, right, res := 0, n-1, n
+	for left <= right {
+		mid := left + (right-left)/2
+		if nums[mid] >= target {
+			res = mid
+			right = mid - 1
+		} else {
+			left = mid + 1
+		}
+	}
+	return res
+}
+
 // 113.Path Sum II
 func pathSum(root *datastructures.TreeNode, targetSum int) (ans [][]int) {
 	var path []int

@@ -62,6 +62,12 @@ func TestRemoveDuplicates(t *testing.T) {
 	assert.Equal(t, removeDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}), 5)
 }
 
+func TestSearchInsert(t *testing.T) {
+	assert.Equal(t, searchInsert([]int{1, 3, 5, 6}, 5), 2)
+	assert.Equal(t, searchInsert([]int{1, 3, 5, 6}, 2), 1)
+	assert.Equal(t, searchInsert([]int{1, 3, 5, 6}, 7), 4)
+}
+
 func TestPathSum(t *testing.T) {
 	assert.Equal(t, [][]int{{5, 4, 11, 2}, {5, 8, 4, 5}}, pathSum(datastructures.CreateTreeNode("5,4,8,11,null,13,4,7,2,null,null,5,1"), 22))
 	assert.Equal(t, [][]int(nil), pathSum(datastructures.CreateTreeNode("1,2,3"), 5))
