@@ -62,6 +62,12 @@ func TestRemoveDuplicates(t *testing.T) {
 	assert.Equal(t, removeDuplicates([]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}), 5)
 }
 
+func TestSearch(t *testing.T) {
+	assert.Equal(t, search([]int{4, 5, 6, 7, 0, 1, 2}, 0), 4)
+	assert.Equal(t, search([]int{4, 5, 6, 7, 0, 1, 2}, 3), -1)
+	assert.Equal(t, search([]int{1}, 0), -1)
+}
+
 func TestSearchInsert(t *testing.T) {
 	assert.Equal(t, searchInsert([]int{1, 3, 5, 6}, 5), 2)
 	assert.Equal(t, searchInsert([]int{1, 3, 5, 6}, 2), 1)
