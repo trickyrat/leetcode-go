@@ -368,6 +368,21 @@ func validUtf8(data []int) bool {
 	return true
 }
 
+// 453. Minimum Moves to Equal Array Elements
+func minMoves(nums []int) int {
+	min := nums[0]
+	for _, num := range nums[1:] {
+		if num < min {
+			min = num
+		}
+	}
+	res := 0
+	for _, num := range nums {
+		res += num - min
+	}
+	return res
+}
+
 // 467.Unique Substrings in Wraparound String
 func findSubstringWraparoundString(p string) (ans int) {
 	dp := [26]int{}
