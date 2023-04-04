@@ -118,6 +118,11 @@ func TestValidUtf8(t *testing.T) {
 	assert.False(t, validUtf8([]int{235, 140, 4}))
 }
 
+func TestMinMoves(t *testing.T) {
+	assert.Equal(t, 3, minMoves([]int{1, 2, 3}))
+	assert.Equal(t, 0, minMoves([]int{1, 1, 1}))
+}
+
 func TestFindSubstringWraparoundString(t *testing.T) {
 	assert.Equal(t, 1, findSubstringWraparoundString("a"))
 	assert.Equal(t, 2, findSubstringWraparoundString("cac"))
