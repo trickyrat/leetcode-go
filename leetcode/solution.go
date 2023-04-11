@@ -651,6 +651,24 @@ func widthOfBinaryTree(root *datastructures.TreeNode) int {
 	return dfs(root, 1, 1)
 }
 
+// 665. Non-decreasing Array
+func checkPossibility(nums []int) bool {
+	count := 0
+	for i := 0; i < len(nums)-1; i++ {
+		x, y := nums[i], nums[i+1]
+		if x > y {
+			count++
+			if count > 1 {
+				return false
+			}
+			if i > 0 && y < nums[i-1] {
+				nums[i+1] = x
+			}
+		}
+	}
+	return true
+}
+
 // 667. Beautiful Arrangement II
 func constructArray(n, k int) []int {
 	res := make([]int, 0, n)

@@ -315,6 +315,11 @@ func TestWidthOfBinaryTree(t *testing.T) {
 	assert.Equal(t, 2, widthOfBinaryTree(datastructures.CreateTreeNode("1,3,2,5")))
 }
 
+func TestCheckPossibility(t *testing.T) {
+	assert.Equal(t, true, checkPossibility([]int{4, 2, 3}))
+	assert.Equal(t, false, checkPossibility([]int{4, 2, 1}))
+}
+
 func TestConstructArray(t *testing.T) {
 	assert.Equal(t, []int{1, 2, 3}, constructArray(3, 1))
 	assert.Equal(t, []int{1, 3, 2}, constructArray(3, 2))
