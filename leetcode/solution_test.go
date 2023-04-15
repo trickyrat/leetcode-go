@@ -85,6 +85,15 @@ func TestPreorderTraversal(t *testing.T) {
 	assert.Equal(t, []int{1}, preorderTraversal(datastructures.CreateTreeNode("1")))
 }
 
+func TestRotate(t *testing.T) {
+	nums1 := []int{1, 2, 3, 4, 5, 6, 7}
+	nums2 := []int{-1, 100, 3, 99}
+	rotate(nums1, 3)
+	rotate(nums2, 2)
+	assert.Equal(t, []int{5, 6, 7, 1, 2, 3, 4}, nums1)
+	assert.Equal(t, []int{3, 99, -1, 100}, nums2)
+}
+
 func TestHammingWeight(t *testing.T) {
 	assert.Equal(t, 3, hammingWeight(00000000000000000000000000001011))
 	assert.Equal(t, 1, hammingWeight(00000000000000000000000010000000))

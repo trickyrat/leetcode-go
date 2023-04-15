@@ -286,6 +286,20 @@ func preorderTraversal(root *datastructures.TreeNode) (res []int) {
 	return
 }
 
+// 189. Rotate Array
+func rotate(nums []int, k int) {
+	reverse := func(a []int) {
+		for i, n := 0, len(a); i < n/2; i++ {
+			a[i], a[n-1-i] = a[n-1-i], a[i]
+		}
+	}
+
+	k %= len(nums)
+	reverse(nums)
+	reverse(nums[:k])
+	reverse(nums[k:])
+}
+
 // 191.Number of 1 Bits
 func hammingWeight(num uint32) int {
 	var res = 0
