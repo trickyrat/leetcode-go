@@ -331,6 +331,19 @@ func reverseList(head *datastructures.ListNode) *datastructures.ListNode {
 	return prev
 }
 
+// 283. Move Zeroes
+func moveZeroes(nums []int) {
+	n := len(nums)
+	left, right := 0, 0
+	for right < n {
+		if nums[right] != 0 {
+			nums[left], nums[right] = nums[right], nums[left]
+			left++
+		}
+		right++
+	}
+}
+
 // 357.Count Numbers with Unique Digits
 func countNumbersWithUniqueDigits(n int) int {
 	if n == 0 {
