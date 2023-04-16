@@ -112,6 +112,15 @@ func TestReverseListNode(t *testing.T) {
 	assert.Equal(t, datastructures.CreateListNode([]int{2, 1}), reverseList(datastructures.CreateListNode([]int{1, 2})))
 }
 
+func TestMoveZeroes(t *testing.T) {
+	nums1 := []int{0, 1, 0, 3, 12}
+	nums2 := []int{0}
+	moveZeroes(nums1)
+	moveZeroes(nums2)
+	assert.Equal(t, []int{1, 3, 12, 0, 0}, nums1)
+	assert.Equal(t, []int{0}, nums2)
+}
+
 func TestCountNumbersWithUniqueDigits(t *testing.T) {
 	assert.Equal(t, 91, countNumbersWithUniqueDigits(2))
 	assert.Equal(t, 1, countNumbersWithUniqueDigits(0))
