@@ -136,6 +136,11 @@ func TestValidUtf8(t *testing.T) {
 	assert.False(t, validUtf8([]int{235, 140, 4}))
 }
 
+func TestMaxRotateFunction(t *testing.T) {
+	assert.Equal(t, maxRoatateFunction([]int{4, 3, 2, 6}), 26)
+	assert.Equal(t, maxRoatateFunction([]int{100}), 0)
+}
+
 func TestMinMoves(t *testing.T) {
 	assert.Equal(t, 3, minMoves([]int{1, 2, 3}))
 	assert.Equal(t, 0, minMoves([]int{1, 1, 1}))

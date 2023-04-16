@@ -395,6 +395,24 @@ func validUtf8(data []int) bool {
 	return true
 }
 
+// 396. Rotate Function
+func maxRoatateFunction(nums []int) int {
+	f, n := 0, len(nums)
+	numsSum := 0
+	for _, num := range nums {
+		numsSum += num
+	}
+	for i, num := range nums {
+		f += i * num
+	}
+	res := f
+	for i := n - 1; i > 0; i-- {
+		f += numsSum - n*nums[i]
+		res = max(res, f)
+	}
+	return res
+}
+
 // 453. Minimum Moves to Equal Array Elements
 func minMoves(nums []int) int {
 	min := nums[0]
