@@ -499,6 +499,11 @@ func TestInsertIntoMaxTree(t *testing.T) {
 		insertIntoMaxTree(datastructures.CreateTreeNode("5,2,3,null,1"), 4))
 }
 
+func TestMinSetSize(t *testing.T) {
+	assert.Equal(t, 2, minSetSize([]int{3, 3, 3, 3, 5, 5, 5, 2, 2, 7}))
+	assert.Equal(t, 1, minSetSize([]int{7, 7, 7, 7, 7, 7}))
+}
+
 func TestMinSubsequence(t *testing.T) {
 	assert.Equal(t, []int{10, 9}, minSubsequence([]int{4, 3, 10, 9, 8}))
 	assert.Equal(t, []int{7, 7, 6}, minSubsequence([]int{4, 4, 7, 6, 7}))

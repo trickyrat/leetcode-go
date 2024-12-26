@@ -1419,6 +1419,28 @@ func insertIntoMaxTree(root *datastructures.TreeNode, val int) *datastructures.T
 	return root
 }
 
+// 338. Reduce Array Size to The Half
+func minSetSize(arr []int) int {
+	frequencies := make(map[int]int)
+	for _, num := range arr {
+		frequencies[num]++
+	}
+	sorted_map := []int{}
+	for _, freq := range frequencies {
+		sorted_map = append(sorted_map, freq)
+	}
+	sort.Sort(sort.Reverse(sort.IntSlice(sorted_map)))
+	count, res := 0, 0
+	for _, c := range sorted_map {
+		count += c
+		res++
+		if count*2 >= len(arr) {
+			break
+		}
+	}
+	return res
+}
+
 // 1403.Minimum Subsequence in Non-Increasing Order
 func minSubsequence(nums []int) []int {
 	sort.Sort(sort.Reverse(sort.IntSlice(nums)))
