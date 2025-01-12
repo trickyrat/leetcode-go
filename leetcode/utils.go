@@ -1,9 +1,10 @@
 package leetcode
 
 import (
-	"github.com/trickyrat/leetcodego/datastructures"
 	"strconv"
 	"strings"
+
+	"github.com/trickyrat/leetcodego/datastructures"
 )
 
 const mask1, mask2 = 1 << 7, 1<<7 | 1<<6
@@ -15,12 +16,12 @@ func max(a, b int) int {
 	return a
 }
 
-func min(a, b int) int {
-	if b < a {
-		return b
-	}
-	return a
-}
+// func min(a, b int) int {
+// 	if b < a {
+// 		return b
+// 	}
+// 	return a
+// }
 
 func isSelfDividing(num int) bool {
 	for x := num; x > 0; x /= 10 {
